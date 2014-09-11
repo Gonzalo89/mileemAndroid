@@ -7,5 +7,7 @@
     <string name="title_activity_lista_propiedades">ListaPropiedadesActivity</string>
     <string name="Direccion">Direccion</string>
     <string name="Precio">Precio</string>
+    <string name="Superficie">Superficie</string>
+    <string name="Ambientes">Ambientes</string>
 
 </resources>
