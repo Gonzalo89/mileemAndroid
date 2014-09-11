@@ -2,10 +2,10 @@ package com.g7.mileemandroid;
 
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ListView;
 
 public class ListaPropiedadesActivity extends Activity {
@@ -15,34 +15,31 @@ public class ListaPropiedadesActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_propiedades);
 
-//		ListView lista = (ListView) findViewById(R.id.listadirectivos);
-/*		ArrayList<Directivo> arraydir = new ArrayList<Directivo>();
-		Directivo directivo;
+		ListView listaPropiedades= (ListView) findViewById(R.id.listaPropiedades);
+		ArrayList<Propiedad> arrayProp = new ArrayList<Propiedad>();
+		Propiedad propiedad;
 
 		// Introduzco los datos
-		directivo = new Directivo(getResources().getDrawable(
-				R.drawable.ariannahuffington), "Arianna Huffington",
-				"Presidenta");
-		arraydir.add(directivo);
-		directivo = new Directivo(getResources()
-				.getDrawable(R.drawable.corinna), "Princesa Corinna", "CEO");
-		arraydir.add(directivo);
-		directivo = new Directivo(getResources().getDrawable(
-				R.drawable.hillaryclinton), "Hillary Clinton", "Tesorera");
-		arraydir.add(directivo);
-		directivo = new Directivo(getResources().getDrawable(R.drawable.bono),
-				"Bono el de U2", "Amenizador");
-		arraydir.add(directivo);
-		directivo = new Directivo(getResources().getDrawable(
-				R.drawable.carmenmairena), "Carmen de Mairena",
-				"Directora RRHH");
-		arraydir.add(directivo);*/
+		propiedad = new Propiedad("Av. Rivadavia","Una descripcion", 5,
+				"Venta", 100000, 150, 5,
+				3, 300, "Belgrano", "Casa", getResources().getDrawable(R.drawable.casa1), 1);
+		arrayProp.add(propiedad);	
+		
+		propiedad = new Propiedad("Cosquin","Una descripcion", 5,
+				"Venta", 100000, 150, 5,
+				3, 300, "Belgrano", "Casa", getResources().getDrawable(R.drawable.casa2), 2);
+		arrayProp.add(propiedad);	
 
+		propiedad = new Propiedad("J. L. Suarez","Una descripcion", 5,
+				"Venta", 100000, 150, 5,
+				3, 300, "Belgrano", "Casa", getResources().getDrawable(R.drawable.casa3), 3);
+		arrayProp.add(propiedad);	
+		
 		// Creo el adapter personalizado
-	//	AdapterDirectivos adapter = new AdapterDirectivos(this, arraydir);
+		AdapterPropiedad adapter = new AdapterPropiedad(this, arrayProp);
 
 		// Lo aplico
-	//	lista.setAdapter(adapter);
+		listaPropiedades.setAdapter(adapter);
 	}
 
 	@Override
