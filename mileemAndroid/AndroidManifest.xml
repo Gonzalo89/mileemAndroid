@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="9"
         android:targetSdkVersion="19" />
 
     <application
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.g7.mileemandroid.Activites.ListingPropiedadesActivity"
+            android:name="com.g7.mileemandroid.Activites.ListaPropiedadesActivity"
             android:label="@string/title_activity_listing_propiedades" >
         </activity>
     </application>

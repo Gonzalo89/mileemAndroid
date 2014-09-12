@@ -1,15 +1,14 @@
 package com.g7.mileemandroid;
 
 
-import com.g7.mileemandroid.R;
-import com.g7.mileemandroid.Activites.ListingPropiedadesActivity;
-
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.g7.mileemandroid.Activites.ListaPropiedadesActivity;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -44,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
     
     public void buscarPropiedades(View view) {
     	
-    	Intent intent = new Intent(this, ListingPropiedadesActivity.class);
+    	Intent intent = new Intent(this, ListaPropiedadesActivity.class);
     	String message = "Mensaje a el Listing";
     	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);
