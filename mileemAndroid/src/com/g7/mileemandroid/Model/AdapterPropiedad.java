@@ -55,10 +55,15 @@ public class AdapterPropiedad extends BaseAdapter {
         //Rellenamos la fotografía
         ImageView foto = (ImageView) v.findViewById(R.id.imagenPropiedad);
         foto.setImageDrawable(propiedad.getFoto());
-        //Rellenamos el nombre
+        //Rellenamos el textos
         TextView nombre = (TextView) v.findViewById(R.id.direccionLista);
-        nombre.setText(propiedad.getDireccion());
-        // Retornamos la vista
+        nombre.setText(propiedad.getDireccion());        
+        TextView superficie = (TextView) v.findViewById(R.id.superficieLista);
+        superficie.setText(Integer.toString(propiedad.getSuperficie())+"m2");
+        TextView precio = (TextView) v.findViewById(R.id.precioLista);
+        precio.setText("$"+Integer.toString(propiedad.getPrecio()));       
+        TextView ambientes = (TextView) v.findViewById(R.id.ambientesLista);
+        ambientes.setText("Amb: " +propiedad.getAmbientes());      
         return v;
     }
 
