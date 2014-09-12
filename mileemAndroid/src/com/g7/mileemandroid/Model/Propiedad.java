@@ -1,11 +1,14 @@
 package com.g7.mileemandroid.Model;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.graphics.drawable.Drawable;
 
 public class Propiedad {
 
 	private String direccion;
-	private String Descripcion;
+	private String descripcion;
 	private int antiguedad;
 	private String tipoOperacion;
 	private int precio;
@@ -16,14 +19,15 @@ public class Propiedad {
 	private String barrio;
 	private String tipoPropiedad;
 	private Drawable foto;
-	protected long id;
+	private long id;
+	protected static long contador;
 	
 	public Propiedad(String direccion, String descripcion, int antiguedad,
 			String tipoOperacion, int precio, int superficie, int ambientes,
 			int dormitorios, int expensas, String barrio, String tipoPropiedad, Drawable foto, long id) {
 		super();
 		this.direccion = direccion;
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 		this.antiguedad = antiguedad;
 		this.tipoOperacion = tipoOperacion;
 		this.precio = precio;
@@ -34,7 +38,32 @@ public class Propiedad {
 		this.barrio = barrio;
 		this.tipoPropiedad = tipoPropiedad;
 		this.foto = foto;
-		this.id=id;
+		this.id = ++Propiedad.contador;
+	}
+	
+	public Propiedad(JSONObject json) {
+		String dirFoto;
+		try {
+	//		dirFoto = json.getString("thum"); //FIXME
+	//		Drawable foto = Drawable.createFromPath(dirFoto);
+			long id = ++Propiedad.contador;
+					
+			this.direccion = json.getString("direccion");
+			this.descripcion = json.getString("descripcion");
+			this.antiguedad = json.getInt("antiguedad");
+			this.tipoOperacion = json.getString("operacion");
+			this.precio = json.getInt("precio");
+			this.superficie = json.getInt("superficie");
+			this.ambientes = json.getInt("ambientes");
+			this.dormitorios = json.getInt("dormitorios");
+			this.expensas = json.getInt("expensas");
+			this.barrio = json.getString("barrio");
+			this.tipoPropiedad = json.getString("tipo_propiedad");
+			this.foto = null; //FIXME
+			this.id=id;				
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String getDireccion() {
@@ -46,11 +75,11 @@ public class Propiedad {
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 	public int getAntiguedad() {
