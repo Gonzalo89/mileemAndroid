@@ -1,5 +1,6 @@
 package com.g7.mileemandroid.Model;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,10 +45,19 @@ public class Propiedad {
 	public Propiedad(JSONObject json) {
 		String dirFoto;
 		try {
-	//		dirFoto = json.getString("thum"); //FIXME
-	//		Drawable foto = Drawable.createFromPath(dirFoto);
-			long id = ++Propiedad.contador;
-					
+			JSONArray jsonFotos = json.getJSONArray("fotos");
+			this.foto = null;
+			
+			if (jsonFotos.length() >= 1) {
+				JSONObject jsonFoto = jsonFotos.getJSONObject(0);
+				JSONObject jsonNombre = jsonFoto.getJSONObject("nombre");
+				JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
+				dirFoto = jsonThumb.getString("url");
+				Drawable foto = Drawable.createFromPath("http://"+Constantes.IPSERVER+":3000/public"+ dirFoto); //FIXME /public  harcodeado
+				this.foto = foto; 
+			}
+						
+			long id = ++Propiedad.contador;					
 			this.direccion = json.getString("direccion");
 			this.descripcion = json.getString("descripcion");
 			this.antiguedad = json.getInt("antiguedad");
@@ -59,7 +69,7 @@ public class Propiedad {
 			this.expensas = json.getInt("expensas");
 			this.barrio = json.getString("barrio");
 			this.tipoPropiedad = json.getString("tipo_propiedad");
-			this.foto = null; //FIXME
+			
 			this.id=id;				
 		} catch (JSONException e) {
 			e.printStackTrace();

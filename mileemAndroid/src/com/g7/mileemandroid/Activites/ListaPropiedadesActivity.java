@@ -10,6 +10,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
@@ -49,8 +50,10 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		HttpClient httpclient = new DefaultHttpClient();
 		httpclient.getParams().setParameter(
 				CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-		HttpPost httppost = new HttpPost("http://" + Constantes.IPSERVER
-				+ ":80");
+//		HttpPost httppost = new HttpPost("http://" + Constantes.IPSERVER
+//				+ ":3000/propiedads/mostrarJson");
+		HttpGet httpget = new HttpGet("http://" + Constantes.IPSERVER
+				+ ":3000/api/mostrarJson");
 		// +"127.0.0.1/index.php");
 		// MultipartEntity mpEntity = new MultipartEntity();
 		// mpEntity.addPart("jsonString", new StringBody(json));
@@ -60,7 +63,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		HttpResponse resp = null;
 		String respuesta = null;
 		try {
-			resp = httpclient.execute(httppost);
+			//resp = httpclient.execute(httppost);
+			resp = httpclient.execute(httpget);
 			HttpEntity ent = resp.getEntity();// y obtenemos una respuesta
 			respuesta = EntityUtils.toString(ent);
 			Log.d("Mileem", "Respuesta ListaProp: " + respuesta);
