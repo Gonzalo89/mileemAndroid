@@ -39,50 +39,51 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_propiedades);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
 		ArrayList<Propiedad> arrayProp = new ArrayList<Propiedad>();
 		Propiedad propiedad;
 
-		// Lectura de JSON
-
-		// 1. create HttpClient
-		HttpClient httpclient = new DefaultHttpClient();
-		httpclient.getParams().setParameter(
-				CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-//		HttpPost httppost = new HttpPost("http://" + Constantes.IPSERVER
-//				+ ":3000/propiedads/mostrarJson");
-		HttpGet httpget = new HttpGet("http://" + Constantes.IPSERVER
-				+ ":3000/api/mostrarJson");
-		// +"127.0.0.1/index.php");
-		// MultipartEntity mpEntity = new MultipartEntity();
-		// mpEntity.addPart("jsonString", new StringBody(json));
-
-		// httppost.setEntity(mpEntity);
-
-		HttpResponse resp = null;
-		String respuesta = null;
-		try {
-			//resp = httpclient.execute(httppost);
-			resp = httpclient.execute(httpget);
-			HttpEntity ent = resp.getEntity();// y obtenemos una respuesta
-			respuesta = EntityUtils.toString(ent);
-			Log.d("Mileem", "Respuesta ListaProp: " + respuesta);
-			// Introduzco los datos No Harcodeados
-			JSONArray jsonArray = new JSONArray(respuesta);
-			JSONObject unJson = null;
-			for (int i = 0; i < jsonArray.length(); i++) {
-				unJson = jsonArray.getJSONObject(i);
-				propiedad = new Propiedad(unJson);
-				arrayProp.add(propiedad);
-			}
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+//		// Lectura de JSON
+//
+//		// 1. create HttpClient
+//		HttpClient httpclient = new DefaultHttpClient();
+//		httpclient.getParams().setParameter(
+//				CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+////		HttpPost httppost = new HttpPost("http://" + Constantes.IPSERVER
+////				+ ":3000/propiedads/mostrarJson");
+//		HttpGet httpget = new HttpGet("http://" + Constantes.IPSERVER
+//				+ ":3000/api/mostrarJson");
+//		// +"127.0.0.1/index.php");
+//		// MultipartEntity mpEntity = new MultipartEntity();
+//		// mpEntity.addPart("jsonString", new StringBody(json));
+//
+//		// httppost.setEntity(mpEntity);
+//
+//		HttpResponse resp = null;
+//		String respuesta = null;
+//		try {
+//			//resp = httpclient.execute(httppost);
+//			resp = httpclient.execute(httpget);
+//			HttpEntity ent = resp.getEntity();// y obtenemos una respuesta
+//			respuesta = EntityUtils.toString(ent);
+//			Log.d("Mileem", "Respuesta ListaProp: " + respuesta);
+//			// Introduzco los datos No Harcodeados
+//			JSONArray jsonArray = new JSONArray(respuesta);
+//			JSONObject unJson = null;
+//			for (int i = 0; i < jsonArray.length(); i++) {
+//				unJson = jsonArray.getJSONObject(i);
+//				propiedad = new Propiedad(unJson);
+//				arrayProp.add(propiedad);
+//			}
+//		} catch (ClientProtocolException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
 		
 		// Introduzco los datos Harcodeados
 		propiedad = new Propiedad("Av. Rivadavia", "Una descripcion", 5,
