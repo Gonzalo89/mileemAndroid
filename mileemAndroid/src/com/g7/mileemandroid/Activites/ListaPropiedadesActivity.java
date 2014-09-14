@@ -48,6 +48,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 	
 	private void cargarPropiedades() {
 		
+
 		ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
 		ArrayList<Propiedad> arrayProp = new ArrayList<Propiedad>();
 		Propiedad propiedad;
