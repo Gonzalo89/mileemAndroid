@@ -18,6 +18,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -38,7 +40,14 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_propiedades);
-
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		setTitle("  Propiedades Disponibles");
+		
+		cargarPropiedades();
+	}
+	
+	private void cargarPropiedades() {
+		
 		ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
 		ArrayList<Propiedad> arrayProp = new ArrayList<Propiedad>();
 		Propiedad propiedad;
@@ -73,6 +82,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+
 		
 /*		// Introduzco los datos Harcodeados
 		propiedad = new Propiedad("Av. Rivadavia", "Una descripcion", 5,
@@ -105,4 +115,45 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		return true;
 	}
 
+	public class PropiedadesTask extends AsyncTask<String, Void, String>{
+		
+	    Context context;
+
+	    public PropiedadesTask(Context c) {
+	        context = c;
+	    }
+
+	    @Override
+	    protected void onPreExecute() {
+	        super.onPreExecute();
+	    }
+
+	    @Override
+	    protected String doInBackground(String... aurl){
+	    String responseString="";
+	    HttpClient client = null;
+	    try {
+	         client = new DefaultHttpClient();  
+	         HttpGet get = new HttpGet("http://" + Constantes.IPSERVER + ":3000/api/mostrarJson");
+	         HttpResponse responseGet = client.execute(get);  
+	         HttpEntity resEntityGet = responseGet.getEntity();  
+	         if (resEntityGet != null) {  
+	             responseString = EntityUtils.toString(resEntityGet);
+	             Log.i("GET RESPONSE", responseString.trim());
+	         }
+	    } catch (Exception e) {
+	        Log.d("ANDRO_ASYNC_ERROR", "Error is "+e.toString());
+	    }
+	        Log.d("ANDRO_ASYNC_RESPONSE", responseString.trim());
+	        client.getConnectionManager().shutdown();
+	     return responseString.trim();
+
+	    }
+
+
+	    @Override
+	    protected void onPostExecute(String response) {
+	         super.onPostExecute(response); 
+	        }
+	}
 }
