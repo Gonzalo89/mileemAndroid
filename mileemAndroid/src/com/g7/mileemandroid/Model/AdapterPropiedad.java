@@ -54,7 +54,8 @@ public class AdapterPropiedad extends BaseAdapter {
         Propiedad propiedad = items.get(position);
         //Rellenamos la fotografía
         ImageView foto = (ImageView) v.findViewById(R.id.imagenPropiedad);
-        foto.setImageDrawable(propiedad.getFoto());
+ //     foto.setImageDrawable(propiedad.getFoto());
+        foto.setImageBitmap(propiedad.getFoto());
         //Rellenamos el textos
         TextView nombre = (TextView) v.findViewById(R.id.direccionLista);
         nombre.setText(propiedad.getDireccion());        

@@ -1,10 +1,17 @@
 package com.g7.mileemandroid.Model;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class Propiedad {
 
@@ -19,13 +26,14 @@ public class Propiedad {
 	private int expensas;
 	private String barrio;
 	private String tipoPropiedad;
-	private Drawable foto;
+	private Bitmap foto;
 	private long id;
 	protected static long contador;
 	
 	public Propiedad(String direccion, String descripcion, int antiguedad,
 			String tipoOperacion, int precio, int superficie, int ambientes,
-			int dormitorios, int expensas, String barrio, String tipoPropiedad, Drawable foto, long id) {
+			int dormitorios, int expensas, String barrio, String tipoPropiedad,
+			Bitmap foto, long id) {
 		super();
 		this.direccion = direccion;
 		this.descripcion = descripcion;
@@ -41,23 +49,39 @@ public class Propiedad {
 		this.foto = foto;
 		this.id = ++Propiedad.contador;
 	}
-	
+
 	public Propiedad(JSONObject json) {
 		String dirFoto;
 		try {
 			JSONArray jsonFotos = json.getJSONArray("fotos");
 			this.foto = null;
-			
+
 			if (jsonFotos.length() >= 1) {
 				JSONObject jsonFoto = jsonFotos.getJSONObject(0);
 				JSONObject jsonNombre = jsonFoto.getJSONObject("nombre");
 				JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
 				dirFoto = jsonThumb.getString("url");
-				Drawable foto = Drawable.createFromPath("http://"+Constantes.IPSERVER+":3000/public"+ dirFoto); //FIXME /public  harcodeado
-				this.foto = foto; 
+
+				String imageUrl = "http://" + Constantes.IPSERVER + ":3000"
+						+ dirFoto;
+				URL url;
+				try {
+					url = new URL(imageUrl);
+					HttpURLConnection connection = (HttpURLConnection) url
+							.openConnection();
+					InputStream is = connection.getInputStream();
+					Bitmap img = BitmapFactory.decodeStream(is);
+
+					this.foto = img;
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 			}
-						
-			long id = ++Propiedad.contador;					
+
+			long id = ++Propiedad.contador;
 			this.direccion = json.getString("direccion");
 			this.descripcion = json.getString("descripcion");
 			this.antiguedad = json.getInt("antiguedad");
@@ -69,8 +93,8 @@ public class Propiedad {
 			this.expensas = json.getInt("expensas");
 			this.barrio = json.getString("barrio");
 			this.tipoPropiedad = json.getString("tipo_propiedad");
-			
-			this.id=id;				
+
+			this.id = id;
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -172,11 +196,11 @@ public class Propiedad {
 		this.id = id;
 	}
 
-	public Drawable getFoto() {
+	public Bitmap getFoto() {
 		return foto;
 	}
 
-	public void setFoto(Drawable foto) {
+	public void setFoto(Bitmap foto) {
 		this.foto = foto;
 	}
 	

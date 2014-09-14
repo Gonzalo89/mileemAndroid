@@ -11,7 +11,6 @@ import org.apache.http.HttpVersion;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
@@ -48,22 +47,13 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 
 		// 1. create HttpClient
 		HttpClient httpclient = new DefaultHttpClient();
-		httpclient.getParams().setParameter(
-				CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-//		HttpPost httppost = new HttpPost("http://" + Constantes.IPSERVER
-//				+ ":3000/propiedads/mostrarJson");
+		httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 		HttpGet httpget = new HttpGet("http://" + Constantes.IPSERVER
 				+ ":3000/api/mostrarJson");
-		// +"127.0.0.1/index.php");
-		// MultipartEntity mpEntity = new MultipartEntity();
-		// mpEntity.addPart("jsonString", new StringBody(json));
-
-		// httppost.setEntity(mpEntity);
-
+		
 		HttpResponse resp = null;
 		String respuesta = null;
 		try {
-			//resp = httpclient.execute(httppost);
 			resp = httpclient.execute(httpget);
 			HttpEntity ent = resp.getEntity();// y obtenemos una respuesta
 			respuesta = EntityUtils.toString(ent);
@@ -84,7 +74,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			e.printStackTrace();
 		}
 		
-		// Introduzco los datos Harcodeados
+/*		// Introduzco los datos Harcodeados
 		propiedad = new Propiedad("Av. Rivadavia", "Una descripcion", 5,
 				"Venta", 100000, 150, 5, 3, 300, "Belgrano", "Casa",
 				getResources().getDrawable(R.drawable.casa1), 155);
@@ -98,7 +88,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		propiedad = new Propiedad("J. L. Suarez", "Una descripcion", 5,
 				"Venta", 100000, 150, 5, 3, 300, "Belgrano", "Casa",
 				getResources().getDrawable(R.drawable.casa3), 157);
-		arrayProp.add(propiedad);
+		arrayProp.add(propiedad);*/
 
 		// Creo el adapter personalizado
 		AdapterPropiedad adapter = new AdapterPropiedad(this, arrayProp);
