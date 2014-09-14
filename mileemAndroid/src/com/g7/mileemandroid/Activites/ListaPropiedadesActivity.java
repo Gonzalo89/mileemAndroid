@@ -40,7 +40,14 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_propiedades);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+		setTitle("  Propiedades Disponibles");
+		
+		cargarPropiedades();
+	}
+	
+	private void cargarPropiedades() {
+		
+		// Lista Hardcodeada
 		ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
 		ArrayList<Propiedad> arrayProp = new ArrayList<Propiedad>();
 		Propiedad propiedad;
