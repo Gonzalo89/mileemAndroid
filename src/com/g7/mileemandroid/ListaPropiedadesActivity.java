@@ -1,22 +1,10 @@
 package com.g7.mileemandroid;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpVersion;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.widget.ListView;
 
@@ -31,34 +19,7 @@ public class ListaPropiedadesActivity extends Activity {
 		ArrayList<Propiedad> arrayProp = new ArrayList<Propiedad>();
 		Propiedad propiedad;
 
-	//Intento de leer JSON sin exito
-		/* 	
-		// 1. create HttpClient
-		HttpClient httpclient = new DefaultHttpClient();
-		httpclient.getParams().setParameter(
-				CoreProtocolPNames.PROTOCOL_VERSION,
-				HttpVersion.HTTP_1_1);
-		HttpPost httppost = new HttpPost("http://"
-				+ Constantes.IPSERVER + ":3000/propiedads.json");
-	//	MultipartEntity mpEntity = new MultipartEntity();
-	//	mpEntity.addPart("jsonString", new StringBody(json));
-
-	//	httppost.setEntity(mpEntity);
-
-		HttpResponse resp = null;
-		try {
-			resp = httpclient.execute(httppost);
-			HttpEntity ent = resp.getEntity();// y obtenemos una respuesta
-			String text = EntityUtils.toString(ent);
-			Log.d("Mileem", "Respuesta ListaProp: " + text);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
-
-	
-		// Introduzco los datos Harcodeados
+		// Introduzco los datos
 		propiedad = new Propiedad("Av. Rivadavia","Una descripcion", 5,
 				"Venta", 100000, 150, 5,
 				3, 300, "Belgrano", "Casa", getResources().getDrawable(R.drawable.casa1), 1);
