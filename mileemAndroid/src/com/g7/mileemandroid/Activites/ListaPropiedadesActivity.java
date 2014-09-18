@@ -37,6 +37,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 	static InputStream is = null;
 	static JSONObject jObj = null;
 	static String json = "";
+	private ProgressDialog loadingSpinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,10 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		setTitle("  Propiedades Disponibles");
 		
 		String url = "http://" + Constantes.IPSERVER + ":3000/api/mostrarJson";
+		loadingSpinner = new ProgressDialog(this);
+		loadingSpinner.setMessage("Procesando...");
+		loadingSpinner.setCancelable(false);
+		loadingSpinner.show();
 		new PropiedadesTask(this).execute( url );
 	}
 
@@ -89,6 +94,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return arrayProp;
 	}
@@ -96,23 +103,23 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
     private class PropiedadesTask extends AsyncTask<String, Void, String> {
     	
     	Context context;
-        ProgressDialog loadingSpinner;
+        
     	
     	public PropiedadesTask( Context context ) {
             this.context = context;
-            loadingSpinner = new ProgressDialog(this.context);
+   //         
         }
     	
        @Override
        protected String doInBackground(String... urls) {
              
-    	   loadingSpinner.show();
+   // 	   loadingSpinner.show();
            // params comes from the execute() call: params[0] is the url.
            try {
         	   	return downloadJson( urls[0]);
 	   		} catch (ClientProtocolException e) {
 	   			e.printStackTrace();
-	   		} catch (IOException e) {
+	   		} catch (Exception e) {
 	   			e.printStackTrace();
 	   		}
 		return null;
@@ -126,7 +133,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
     	   AdapterPropiedad adapter = new AdapterPropiedad( (Activity) this.context , propiedades);
     	   ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
     	   listaPropiedades.setAdapter(adapter);
-    	   loadingSpinner.cancel();
+    	   loadingSpinner.dismiss();
       }
    }
 }
