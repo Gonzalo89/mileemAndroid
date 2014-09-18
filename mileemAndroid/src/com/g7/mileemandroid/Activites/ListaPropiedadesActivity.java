@@ -18,6 +18,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,6 +37,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 	static InputStream is = null;
 	static JSONObject jObj = null;
 	static String json = "";
+	private ProgressDialog loadingSpinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,70 +46,12 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setTitle("  Propiedades Disponibles");
 		
-		cargarPropiedades();
-	}
-	
-	private void cargarPropiedades() {
-		
-
-		ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
-		ArrayList<Propiedad> arrayProp = new ArrayList<Propiedad>();
-		Propiedad propiedad;
-
-		// Lectura de JSON
-
-		// 1. create HttpClient
-		HttpClient httpclient = new DefaultHttpClient();
-		httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-		HttpGet httpget = new HttpGet("http://" + Constantes.IPSERVER
-				+ ":3000/api/mostrarJson");
-		
-		HttpResponse resp = null;
-		String respuesta = null;
-		try {
-			resp = httpclient.execute(httpget);
-			HttpEntity ent = resp.getEntity();// y obtenemos una respuesta
-			respuesta = EntityUtils.toString(ent);
-			Log.d("Mileem", "Respuesta ListaProp: " + respuesta);
-			// Introduzco los datos No Harcodeados
-			JSONArray jsonArray = new JSONArray(respuesta);
-			JSONObject unJson = null;
-			for (int i = 0; i < jsonArray.length(); i++) {
-				unJson = jsonArray.getJSONObject(i);
-				propiedad = new Propiedad(unJson);
-				arrayProp.add(propiedad);
-			}
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-
-		
-/*		// Introduzco los datos Harcodeados
-		propiedad = new Propiedad("Av. Rivadavia", "Una descripcion", 5,
-				"Venta", 100000, 150, 5, 3, 300, "Belgrano", "Casa",
-				getResources().getDrawable(R.drawable.casa1), 155);
-		arrayProp.add(propiedad);
-
-		propiedad = new Propiedad("Cosquin", "Una descripcion", 5, "Venta",
-				100000, 150, 5, 3, 300, "Belgrano", "Casa", getResources()
-						.getDrawable(R.drawable.casa2), 156);
-		arrayProp.add(propiedad);
-
-		propiedad = new Propiedad("J. L. Suarez", "Una descripcion", 5,
-				"Venta", 100000, 150, 5, 3, 300, "Belgrano", "Casa",
-				getResources().getDrawable(R.drawable.casa3), 157);
-		arrayProp.add(propiedad);*/
-
-		// Creo el adapter personalizado
-		AdapterPropiedad adapter = new AdapterPropiedad(this, arrayProp);
-
-		// Lo aplico
-		listaPropiedades.setAdapter(adapter);
-		
+		String url = "http://" + Constantes.IPSERVER + ":3000/api/mostrarJson";
+		loadingSpinner = new ProgressDialog(this);
+		loadingSpinner.setMessage("Procesando...");
+		loadingSpinner.setCancelable(false);
+		loadingSpinner.show();
+		new PropiedadesTask(this).execute( url );
 	}
 
 	@Override
@@ -115,46 +60,82 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.lista_propiedades, menu);
 		return true;
 	}
-
-	public class PropiedadesTask extends AsyncTask<String, Void, String>{
+	
+	private String downloadJson( String url ) throws ClientProtocolException, IOException {
 		
-	    Context context;
+   		HttpClient httpclient = new DefaultHttpClient();
+		httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+		HttpGet httpget = new HttpGet( url );
+		
+		HttpResponse resp = null;
+		String stringJson = null;
+		
+		resp = httpclient.execute(httpget);
+		HttpEntity ent = resp.getEntity();// y obtenemos una respuesta
+		stringJson = EntityUtils.toString(ent);
+		Log.d("Mileem", "Respuesta ListaProp: " + stringJson);
+		return stringJson;
+	}
+	
+	private ArrayList<Propiedad> parsearPropiedadesJson ( String json ) {
+		
+		ArrayList<Propiedad> arrayProp = null;
+   		JSONArray jsonArray = null;
+   		Propiedad propiedad = null;
+		try {
+			jsonArray = new JSONArray( json );
+			JSONObject unJson = null;
+			
+			arrayProp = new ArrayList<Propiedad>();
+			for (int i = 0; i < jsonArray.length(); i++) {
+				unJson = jsonArray.getJSONObject(i);
+				propiedad = new Propiedad(unJson);
+				arrayProp.add(propiedad);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return arrayProp;
+	}
 
-	    public PropiedadesTask(Context c) {
-	        context = c;
-	    }
-
-	    @Override
-	    protected void onPreExecute() {
-	        super.onPreExecute();
-	    }
-
-	    @Override
-	    protected String doInBackground(String... aurl){
-	    String responseString="";
-	    HttpClient client = null;
-	    try {
-	         client = new DefaultHttpClient();  
-	         HttpGet get = new HttpGet("http://" + Constantes.IPSERVER + ":3000/api/mostrarJson");
-	         HttpResponse responseGet = client.execute(get);  
-	         HttpEntity resEntityGet = responseGet.getEntity();  
-	         if (resEntityGet != null) {  
-	             responseString = EntityUtils.toString(resEntityGet);
-	             Log.i("GET RESPONSE", responseString.trim());
-	         }
-	    } catch (Exception e) {
-	        Log.d("ANDRO_ASYNC_ERROR", "Error is "+e.toString());
-	    }
-	        Log.d("ANDRO_ASYNC_RESPONSE", responseString.trim());
-	        client.getConnectionManager().shutdown();
-	     return responseString.trim();
-
-	    }
-
-
-	    @Override
-	    protected void onPostExecute(String response) {
-	         super.onPostExecute(response); 
-	        }
+    private class PropiedadesTask extends AsyncTask<String, Void, String> {
+    	
+    	Context context;
+        
+    	
+    	public PropiedadesTask( Context context ) {
+            this.context = context;
+   //         
+        }
+    	
+       @Override
+       protected String doInBackground(String... urls) {
+             
+   // 	   loadingSpinner.show();
+           // params comes from the execute() call: params[0] is the url.
+           try {
+        	   	return downloadJson( urls[0]);
+	   		} catch (ClientProtocolException e) {
+	   			e.printStackTrace();
+	   		} catch (Exception e) {
+	   			e.printStackTrace();
+	   		}
+		return null;
+       }
+       
+       // onPostExecute displays the results of the AsyncTask.
+       @Override
+		protected void onPostExecute(String result) {
+			ArrayList<Propiedad> propiedades = parsearPropiedadesJson(result);
+			if (propiedades != null) {
+				AdapterPropiedad adapter = new AdapterPropiedad(
+						(Activity) this.context, propiedades);
+				ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
+				listaPropiedades.setAdapter(adapter);
+			}
+			loadingSpinner.dismiss();
+		}
 	}
 }
