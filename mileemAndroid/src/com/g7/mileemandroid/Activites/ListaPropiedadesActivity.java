@@ -127,13 +127,15 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
        
        // onPostExecute displays the results of the AsyncTask.
        @Override
-       protected void onPostExecute(String result) {
-    	   
-    	   ArrayList<Propiedad> propiedades = parsearPropiedadesJson( result );
-    	   AdapterPropiedad adapter = new AdapterPropiedad( (Activity) this.context , propiedades);
-    	   ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
-    	   listaPropiedades.setAdapter(adapter);
-    	   loadingSpinner.dismiss();
-      }
-   }
+		protected void onPostExecute(String result) {
+			ArrayList<Propiedad> propiedades = parsearPropiedadesJson(result);
+			if (propiedades != null) {
+				AdapterPropiedad adapter = new AdapterPropiedad(
+						(Activity) this.context, propiedades);
+				ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
+				listaPropiedades.setAdapter(adapter);
+			}
+			loadingSpinner.dismiss();
+		}
+	}
 }
