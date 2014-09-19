@@ -9,7 +9,7 @@
     tools:context="com.g7.mileemandroid.Activites.DetallePropiedad" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/imagenDetalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -46,8 +46,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/direccionDetalle"
-        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignLeft="@+id/imagenDetalle"
         android:layout_marginBottom="16dp"
         android:text="@string/Superficie" />
+
+    <android.widget.Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/precioDetalle"
+        android:layout_marginLeft="37dp"
+        android:layout_toRightOf="@+id/imagenDetalle"
+        android:onClick="onClickVerFotos"
+        android:text="Ver Fotos" />
 
 </RelativeLayout>

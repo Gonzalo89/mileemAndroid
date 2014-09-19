@@ -34,8 +34,16 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name="com.g7.mileemandroid.Activites.DetallePropiedad"
+            android:name=".Activites.DetallePropiedad"
             android:label="@string/title_activity_detalle_propiedad" >
+        </activity>
+        <activity
+            android:name=".Activites.FotosCarrousel"
+            android:label="@string/title_activity_fotos_corrousel" >
+        </activity>
+        <activity
+            android:name="com.g7.mileemandroid.Activites.FotosSlide"
+            android:label="@string/title_activity_fotos_slide" >
         </activity>
     </application>
 

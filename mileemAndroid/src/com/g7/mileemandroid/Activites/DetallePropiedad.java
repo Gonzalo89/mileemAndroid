@@ -1,9 +1,12 @@
 package com.g7.mileemandroid.Activites;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.g7.mileemandroid.R;
@@ -18,6 +21,11 @@ public class DetallePropiedad extends ActionBarActivity {
 		
 		Propiedad propiedad = (Propiedad)getIntent().getExtras().getSerializable("Propiedad");
 		
+		if(propiedad.getCantFotos() > 0){
+			ImageView imagenView = (ImageView)findViewById(R.id.imagenDetalle);
+			imagenView.setImageBitmap(propiedad.getFotos()[0]);			
+		}
+
 		
 		TextView superficieView = (TextView)findViewById(R.id.superficieDetalle);
 		superficieView.setText("Superficie: " + propiedad.getSuperficie() + "m2");
@@ -49,5 +57,10 @@ public class DetallePropiedad extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void onClickVerFotos(View view) {
+    	Intent intent = new Intent(this, FotosSlide.class);
+    	startActivity(intent);
 	}
 }
