@@ -2,6 +2,7 @@ package com.g7.mileemandroid.Model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,7 +14,7 @@ import org.json.JSONObject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class Propiedad {
+public class Propiedad implements Serializable{
 
 	private String direccion;
 	private String descripcion;
@@ -33,7 +34,7 @@ public class Propiedad {
 	public Propiedad(String direccion, String descripcion, int antiguedad,
 			String tipoOperacion, int precio, int superficie, int ambientes,
 			int dormitorios, int expensas, String barrio, String tipoPropiedad,
-			Bitmap foto, long id) {
+			Bitmap foto) {
 		super();
 		this.direccion = direccion;
 		this.descripcion = descripcion;
