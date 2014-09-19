@@ -2,6 +2,7 @@ package com.g7.mileemandroid.Model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,7 +14,7 @@ import org.json.JSONObject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class Propiedad {
+public class Propiedad implements Serializable{
 
 	private String direccion;
 	private String descripcion;
@@ -26,14 +27,15 @@ public class Propiedad {
 	private int expensas;
 	private String barrio;
 	private String tipoPropiedad;
-	private Bitmap foto;
+	private Bitmap[] fotos;
+	private int cantFotos;
 	private long id;
 	protected static long contador;
 	
 	public Propiedad(String direccion, String descripcion, int antiguedad,
 			String tipoOperacion, int precio, int superficie, int ambientes,
 			int dormitorios, int expensas, String barrio, String tipoPropiedad,
-			Bitmap foto, long id) {
+			Bitmap[] fotos) {
 		super();
 		this.direccion = direccion;
 		this.descripcion = descripcion;
@@ -46,38 +48,44 @@ public class Propiedad {
 		this.expensas = expensas;
 		this.barrio = barrio;
 		this.tipoPropiedad = tipoPropiedad;
-		this.foto = foto;
+		this.fotos = fotos;
 		this.id = ++Propiedad.contador;
-	}
-
+	}	
+	
 	public Propiedad(JSONObject json) {
 		String dirFoto;
 		try {
 			JSONArray jsonFotos = json.getJSONArray("fotos");
-			this.foto = null;
+			this.fotos = null;
 
 			if (jsonFotos.length() >= 1) {
-				JSONObject jsonFoto = jsonFotos.getJSONObject(0);
-				JSONObject jsonNombre = jsonFoto.getJSONObject("nombre");
-				JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
-				dirFoto = jsonThumb.getString("url");
+				this.cantFotos = jsonFotos.length();
+				this.fotos = new Bitmap[this.cantFotos];
+				
+				for(int i = 0; i< this.cantFotos; i++){
+					JSONObject jsonFoto = jsonFotos.getJSONObject(i);
+					JSONObject jsonNombre = jsonFoto.getJSONObject("nombre");
+					JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
+					dirFoto = jsonThumb.getString("url");
 
-				String imageUrl = "http://" + Constantes.IPSERVER + ":3000"
-						+ dirFoto;
-				URL url;
-				try {
-					url = new URL(imageUrl);
-					HttpURLConnection connection = (HttpURLConnection) url
-							.openConnection();
-					InputStream is = connection.getInputStream();
-					Bitmap img = BitmapFactory.decodeStream(is);
+					String imageUrl = "http://" + Constantes.IPSERVER + ":3000"
+							+ dirFoto;
+					URL url;
+					try {
+						url = new URL(imageUrl);
+						HttpURLConnection connection = (HttpURLConnection) url
+								.openConnection();
+						InputStream is = connection.getInputStream();
+						Bitmap img = BitmapFactory.decodeStream(is);
+						this.fotos[i] = img;	
 
-					this.foto = img;
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+					} catch (MalformedURLException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}					
 				}
+	
 
 			}
 
@@ -99,6 +107,19 @@ public class Propiedad {
 			e.printStackTrace();
 		}
 	}
+	
+	
+/*	//TODO Arreglar para poder serializar foto sin que pinche
+	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+		// write 'this' to 'out'...
+
+	}
+	//TODO Arreglar para poder serializar foto sin que pinche
+	private void readObject(java.io.ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		// populate the fields of 'this' from the data in 'in'...
+	}*/
+	
 	
 	public String getDireccion() {
 		return direccion;
@@ -196,13 +217,22 @@ public class Propiedad {
 		this.id = id;
 	}
 
-	public Bitmap getFoto() {
-		return foto;
+	public Bitmap[] getFotos() {
+		return fotos;
 	}
 
-	public void setFoto(Bitmap foto) {
-		this.foto = foto;
+	public void setFoto(Bitmap[] foto) {
+		this.fotos = foto;
 	}
+
+	public int getCantFotos() {
+		return cantFotos;
+	}
+
+	public void setCantFotos(int cantFotos) {
+		this.cantFotos = cantFotos;
+	}
+	
 	
 		
 }

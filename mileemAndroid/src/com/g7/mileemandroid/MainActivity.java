@@ -42,9 +42,8 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     
-    public void buscarPropiedades(View view) {
-    	
-    	Intent intent = new Intent(this, ListaPropiedadesActivity.class);
+    public void buscarPropiedades(View view) {    	
+    	Intent intent = new Intent(this, ListaPropiedadesActivity.class);    
     	String message = "Mensaje a el Listing";
     	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);

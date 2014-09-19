@@ -9,5 +9,13 @@
     <string name="Precio">Precio</string>
     <string name="Superficie">Superficie</string>
     <string name="Ambientes">Ambientes</string>
+    <string name="title_activity_detalle_propiedad">DetallePropiedad</string>
+    <string name="title_activity_fotos_corrousel">FotosCorrousel</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_fotos_slide">FotosSlide</string>
+    <string name="String">></string>
+    <string name="Anterior">&lt;</string>
 
 </resources>

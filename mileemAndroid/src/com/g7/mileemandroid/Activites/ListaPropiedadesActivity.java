@@ -4,6 +4,7 @@ package com.g7.mileemandroid.Activites;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -21,11 +22,15 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.g7.mileemandroid.R;
@@ -38,13 +43,15 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 	static JSONObject jObj = null;
 	static String json = "";
 	private ProgressDialog loadingSpinner;
+	private ListView listaPropiedades;
+	private ArrayList<Propiedad> propiedades;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_propiedades);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		setTitle("  Propiedades Disponibles");
+		setTitle("  Propiedades Disponibles");		
 		
 		String url = "http://" + Constantes.IPSERVER + ":3000/api/mostrarJson";
 		loadingSpinner = new ProgressDialog(this);
@@ -54,12 +61,34 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		new PropiedadesTask(this).execute( url );
 	}
 
+
+	protected void verDetalle(Long idProp) {
+    	Intent intent = new Intent(this, DetallePropiedad.class);    	
+    	Propiedad unaPropiedad = this.buscarPropiedad(idProp);
+    	intent.putExtra("Propiedad",unaPropiedad);
+    	startActivity(intent);			
+	}
+
+
+	private Propiedad buscarPropiedad(Long idProp) {
+		Propiedad resultado = null;
+		Iterator<Propiedad> it = propiedades.iterator();
+		while(it.hasNext()) {
+			resultado = it.next();
+			if(resultado.getId() == idProp)
+				return resultado;
+		}
+		return null;
+	}
+
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.lista_propiedades, menu);
 		return true;
 	}
+
 	
 	private String downloadJson( String url ) throws ClientProtocolException, IOException {
 		
@@ -99,21 +128,17 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		}
 		return arrayProp;
 	}
-
     private class PropiedadesTask extends AsyncTask<String, Void, String> {
     	
     	Context context;
         
     	
     	public PropiedadesTask( Context context ) {
-            this.context = context;
-   //         
+            this.context = context;         
         }
     	
        @Override
        protected String doInBackground(String... urls) {
-             
-   // 	   loadingSpinner.show();
            // params comes from the execute() call: params[0] is the url.
            try {
         	   	return downloadJson( urls[0]);
@@ -125,15 +150,25 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		return null;
        }
        
-       // onPostExecute displays the results of the AsyncTask.
-       @Override
+		// onPostExecute displays the results of the AsyncTask.
+		@Override
 		protected void onPostExecute(String result) {
-			ArrayList<Propiedad> propiedades = parsearPropiedadesJson(result);
+			propiedades = parsearPropiedadesJson(result);
 			if (propiedades != null) {
 				AdapterPropiedad adapter = new AdapterPropiedad(
 						(Activity) this.context, propiedades);
-				ListView listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
+				listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
 				listaPropiedades.setAdapter(adapter);
+				listaPropiedades
+						.setOnItemClickListener(new OnItemClickListener() {
+							@Override
+							public void onItemClick(AdapterView<?> a, View v,
+									int position, long id) {
+								Long idProp = ((Propiedad) a.getAdapter()
+										.getItem(position)).getId();
+								verDetalle(idProp);
+							}
+						});
 			}
 			loadingSpinner.dismiss();
 		}
