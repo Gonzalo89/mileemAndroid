@@ -106,14 +106,11 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
         
     	
     	public PropiedadesTask( Context context ) {
-            this.context = context;
-   //         
+            this.context = context;   
         }
     	
        @Override
        protected String doInBackground(String... urls) {
-             
-   // 	   loadingSpinner.show();
            // params comes from the execute() call: params[0] is the url.
            try {
         	   	return downloadJson( urls[0]);
