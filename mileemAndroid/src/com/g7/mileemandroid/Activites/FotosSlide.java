@@ -1,5 +1,6 @@
 package com.g7.mileemandroid.Activites;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -12,36 +13,36 @@ import android.widget.ImageView;
 import android.widget.ViewSwitcher.ViewFactory;
 
 import com.g7.mileemandroid.R;
+import com.g7.mileemandroid.Model.Propiedad;
+import com.g7.mileemandroid.Model.PropiedadSingleton;
 
 public class FotosSlide extends ActionBarActivity {
-	
-	   private ImageSwitcher imageSwitcher;
-	   
-	    private int[] gallery = {R.drawable.casa1, R.drawable.casa2, R.drawable.casa3};
-	     
-	    private int position = 1;
+	private ImageSwitcher imageSwitcher;
+	private int position = 0;
+	private Propiedad propiedad = PropiedadSingleton.getPropiedad();
+	private int cantFotos = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fotos_slide);
-		
-		 imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher);
-         
-	        imageSwitcher.setFactory(new ViewFactory() {
-	              
-	             public View makeView() 
-	             {
-	                 return new ImageView(FotosSlide.this);
-	             } 
-	         });
-	 
-	         // Set animations
-	         Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-	         Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
-	         imageSwitcher.setInAnimation(fadeIn);
-	         imageSwitcher.setOutAnimation(fadeOut); 
-	         imageSwitcher.setImageResource(R.drawable.casa1);
+		cantFotos = propiedad.getCantFotos();
+		imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher);
+		imageSwitcher.setFactory(new ViewFactory() {
+
+			public View makeView() {
+				return new ImageView(FotosSlide.this);
+			}
+		});
+
+		// Set animations
+		Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+		Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+		imageSwitcher.setInAnimation(fadeIn);
+		imageSwitcher.setOutAnimation(fadeOut);
+		if (cantFotos > 0)
+			imageSwitcher.setImageDrawable(new BitmapDrawable(propiedad
+					.getFotos()[position]));
 	}
 
 	@Override
@@ -62,13 +63,14 @@ public class FotosSlide extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void onClickSiguiente(View view) {
-		imageSwitcher.setImageResource(gallery[position]);
-        position++;
-        if (position == 3)
-        {
-            position = 0;
-        }
+		// imageSwitcher.setImageResource(gallery[position]);
+		position++;
+		if (position == cantFotos) {
+			position = 0;
+		}
+		imageSwitcher.setImageDrawable(new BitmapDrawable(
+				propiedad.getFotos()[position]));
 	}
 }

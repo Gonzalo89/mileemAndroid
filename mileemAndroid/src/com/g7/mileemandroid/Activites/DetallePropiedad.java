@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.g7.mileemandroid.R;
 import com.g7.mileemandroid.Model.Propiedad;
+import com.g7.mileemandroid.Model.PropiedadSingleton;
 
 public class DetallePropiedad extends ActionBarActivity {
 
@@ -19,7 +20,7 @@ public class DetallePropiedad extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detalle_propiedad);
 		
-		Propiedad propiedad = (Propiedad)getIntent().getExtras().getSerializable("Propiedad");
+		Propiedad propiedad = PropiedadSingleton.getPropiedad();
 		
 		if(propiedad.getCantFotos() > 0){
 			ImageView imagenView = (ImageView)findViewById(R.id.imagenDetalle);

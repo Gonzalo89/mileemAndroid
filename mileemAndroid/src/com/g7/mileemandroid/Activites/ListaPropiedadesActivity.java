@@ -37,6 +37,7 @@ import com.g7.mileemandroid.R;
 import com.g7.mileemandroid.Model.AdapterPropiedad;
 import com.g7.mileemandroid.Model.Constantes;
 import com.g7.mileemandroid.Model.Propiedad;
+import com.g7.mileemandroid.Model.PropiedadSingleton;
 
 public class ListaPropiedadesActivity extends ActionBarActivity {
 	static InputStream is = null;
@@ -65,7 +66,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 	protected void verDetalle(Long idProp) {
     	Intent intent = new Intent(this, DetallePropiedad.class);    	
     	Propiedad unaPropiedad = this.buscarPropiedad(idProp);
-    	intent.putExtra("Propiedad",unaPropiedad);
+    	PropiedadSingleton.setPropiedad(unaPropiedad);
     	startActivity(intent);			
 	}
 

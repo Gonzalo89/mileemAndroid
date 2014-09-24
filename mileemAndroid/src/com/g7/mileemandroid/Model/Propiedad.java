@@ -2,7 +2,6 @@ package com.g7.mileemandroid.Model;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,7 +13,7 @@ import org.json.JSONObject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class Propiedad implements Serializable{
+public class Propiedad {
 
 	private String direccion;
 	private String descripcion;
@@ -57,9 +56,9 @@ public class Propiedad implements Serializable{
 		try {
 			JSONArray jsonFotos = json.getJSONArray("fotos");
 			this.fotos = null;
-
+			this.cantFotos = jsonFotos.length();
+			
 			if (jsonFotos.length() >= 1) {
-				this.cantFotos = jsonFotos.length();
 				this.fotos = new Bitmap[this.cantFotos];
 				
 				for(int i = 0; i< this.cantFotos; i++){
@@ -107,19 +106,6 @@ public class Propiedad implements Serializable{
 			e.printStackTrace();
 		}
 	}
-	
-	
-/*	//TODO Arreglar para poder serializar foto sin que pinche
-	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
-		// write 'this' to 'out'...
-
-	}
-	//TODO Arreglar para poder serializar foto sin que pinche
-	private void readObject(java.io.ObjectInputStream in) throws IOException,
-			ClassNotFoundException {
-		// populate the fields of 'this' from the data in 'in'...
-	}*/
-	
 	
 	public String getDireccion() {
 		return direccion;
