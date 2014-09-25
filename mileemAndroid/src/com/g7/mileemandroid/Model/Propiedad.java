@@ -29,7 +29,7 @@ public class Propiedad {
 	private Bitmap[] fotos;
 	private int cantFotos;
 	private long id;
-	protected static long contador;
+	protected static long contador = 0;
 	
 	public Propiedad(String direccion, String descripcion, int antiguedad,
 			String tipoOperacion, int precio, int superficie, int ambientes,
