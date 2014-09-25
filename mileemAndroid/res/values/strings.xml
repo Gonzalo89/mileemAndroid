@@ -17,5 +17,6 @@
     <string name="title_activity_fotos_slide">FotosSlide</string>
     <string name="String">></string>
     <string name="Anterior">&lt;</string>
+    <string name="title_activity_mapa">MapaActivity</string>
 
 </resources>
