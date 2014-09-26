@@ -70,7 +70,8 @@ public class FotosSlide extends ActionBarActivity {
 		if (position == cantFotos) {
 			position = 0;
 		}
-		imageSwitcher.setImageDrawable(new BitmapDrawable(
-				propiedad.getFotos()[position]));
+		if (propiedad.getFotos() != null)
+			imageSwitcher.setImageDrawable(new BitmapDrawable(propiedad
+					.getFotos()[position]));
 	}
 }
