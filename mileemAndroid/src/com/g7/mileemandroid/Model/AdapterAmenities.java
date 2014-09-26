@@ -1,6 +1,6 @@
 package com.g7.mileemandroid.Model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,12 +12,12 @@ import android.widget.TextView;
 
 import com.g7.mileemandroid.R;
 
-public class AdapterDetallePropiedad extends BaseAdapter {
+public class AdapterAmenities extends BaseAdapter {
 
     protected Activity activity;
-    protected ArrayList<AtributoPropiedad> items;	
+    protected List<String> items;	
 	
-    public AdapterDetallePropiedad(Activity activity, ArrayList<AtributoPropiedad> items) {
+    public AdapterAmenities(Activity activity, List<String> items) {
 		this.activity = activity;
 		this.items = items;
 	}
@@ -34,29 +34,26 @@ public class AdapterDetallePropiedad extends BaseAdapter {
 
  
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
- 
+    public View getView(int position, View convertView, ViewGroup parent) { 
         // Generamos una convertView por motivos de eficiencia
         View v = convertView;
  
         //Asociamos el layout de la lista que hemos creado
         if(convertView == null){
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inf.inflate(R.layout.itemdetallepropiedad, null);
+            v = inf.inflate(R.layout.itemamenitie, null);
         }
  
         // Creamos un objeto AtributoPropiedad
-        AtributoPropiedad atPropiedad = items.get(position);
+        String unaAmenitie = items.get(position);
        //Rellenamos la fotografía
-        TextView nombre = (TextView) v.findViewById(R.id.itemDetalleNombre);
-        nombre.setText(atPropiedad.getNombre());        
-        TextView valor = (TextView) v.findViewById(R.id.itemDetalleValor);
-        valor.setText(atPropiedad.getValor());  
+        TextView nombre = (TextView) v.findViewById(R.id.itemamenitie);
+        nombre.setText(unaAmenitie);
         return v;
     }
 
 	@Override
 	public long getItemId(int position) {
-		return items.get(position).getId();
+		return position; 
 	}
 }

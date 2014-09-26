@@ -10,37 +10,61 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.g7.mileemandroid.R;
+import com.g7.mileemandroid.Model.AdapterAmenities;
 import com.g7.mileemandroid.Model.AdapterDetallePropiedad;
 import com.g7.mileemandroid.Model.AtributoPropiedad;
 import com.g7.mileemandroid.Model.Propiedad;
 import com.g7.mileemandroid.Model.PropiedadSingleton;
 
 public class DetallePropiedad extends ActionBarActivity {
-
+	private Propiedad propiedad;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detalle_propiedad);
 		
-		Propiedad propiedad = PropiedadSingleton.getPropiedad();
+		this.propiedad = PropiedadSingleton.getPropiedad();
 		
 		if(propiedad.getCantFotos() > 0){
 			ImageView imagenView = (ImageView)findViewById(R.id.imagenDetalle);
 			imagenView.setImageBitmap(propiedad.getFotos()[0]);			
 		}
 		
-		ArrayList<AtributoPropiedad> listaAtributos = new ArrayList<AtributoPropiedad>();
+		String moneda = null;
+		if(propiedad.getMoneda().compareTo("Pesos") == 0) 
+			moneda = "$";
+		else
+			moneda = "u$s";
 		
-		listaAtributos.add(new AtributoPropiedad("Superficie", propiedad.getSuperficie() + "m2"));
-		listaAtributos.add(new AtributoPropiedad("Ambientes" , Integer.toString(propiedad.getAmbientes())));
-		listaAtributos.add(new AtributoPropiedad("Dormitorios", Integer.toString(propiedad.getDormitorios())));
+		TextView dir = (TextView)findViewById(R.id.direccionDetalle);
+        dir.setText(propiedad.getDireccion() + " " + propiedad.getNumero()); 
+        TextView precio = (TextView)findViewById(R.id.precioDetalle);
+        precio.setText(moneda + Integer.toString(propiedad.getPrecio())); 
+        
+        ListView listAmenities = (ListView)findViewById(R.id.listAmenities);
+        AdapterAmenities aAmenities = new AdapterAmenities(this, propiedad.getAmenities()); 
+        listAmenities.setAdapter(aAmenities);
+        
+        TextView descripcion = (TextView)findViewById(R.id.descripcionDetalle);
+        descripcion.setText(propiedad.getDescripcion());        
+		
+		ArrayList<AtributoPropiedad> listaAtributos = new ArrayList<AtributoPropiedad>();
+
 		listaAtributos.add(new AtributoPropiedad("Barrio", propiedad.getBarrio()));
+		listaAtributos.add(new AtributoPropiedad("Superficie", propiedad.getSuperficie() + "m2"));
+		listaAtributos.add(new AtributoPropiedad("Sup. no Cubierta",  propiedad.getSupNCubierta() + "m2"));
+		listaAtributos.add(new AtributoPropiedad("Ambientes" , Integer.toString(propiedad.getAmbientes())));
+		listaAtributos.add(new AtributoPropiedad("Dormitorios", Integer.toString(propiedad.getDormitorios())));		
 		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " años"));
 		listaAtributos.add(new AtributoPropiedad("Tipo Operación",propiedad.getTipoOperacion()));
 		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
-		listaAtributos.add(new AtributoPropiedad("Expensas", "$" + propiedad.getExpensas()));
+		listaAtributos.add(new AtributoPropiedad("Expensas", moneda + propiedad.getExpensas()));
+		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
 	
 		ListView listView = (ListView) findViewById(R.id.listViewDetalle);
 		AdapterDetallePropiedad adapter = new AdapterDetallePropiedad(this, listaAtributos);
@@ -70,7 +94,11 @@ public class DetallePropiedad extends ActionBarActivity {
 	}
 	
 	public void onClickVerFotos(View view) {
-    	Intent intent = new Intent(this, FotosSlide.class);
-    	startActivity(intent);
+		if(this.propiedad.getFotos() != null) {
+	    	Intent intent = new Intent(this, FotosSlide.class);
+	    	startActivity(intent);			
+		}else {
+			Toast.makeText(this, "No hay fotos cargadas", Toast.LENGTH_SHORT).show();
+		}
 	}
 }
