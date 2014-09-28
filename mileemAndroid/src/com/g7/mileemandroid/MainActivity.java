@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.g7.mileemandroid.Activites.ListaPropiedadesActivity;
+import com.g7.mileemandroid.Activites.MapaActivity;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -47,5 +48,13 @@ public class MainActivity extends ActionBarActivity {
     	String message = "Mensaje a el Listing";
     	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);
+    	
+    	// Para testear el mapa
+//		Intent intent = new Intent(this, MapaActivity.class);
+//		intent.putExtra("Latitud", "-34.6");
+//		intent.putExtra("Longitud","-58.45");
+//		intent.putExtra("Direccion", "Direccion completa!");
+//		intent.putExtra("Descripcion", "descripcion :)");
+//		startActivity(intent);
     }
 }

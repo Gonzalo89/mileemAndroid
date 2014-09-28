@@ -13,36 +13,49 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MapaActivity extends ActionBarActivity {
 
-	static final LatLng staticLocation = new LatLng(53.551, 9.993);
 	private GoogleMap map;
+	private String latitud;
+	private String longitud;
+	private String direccion;
+	private String descripcion;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mapa);
+        setTitle("  Localización");
+        
+		// Load Parameters
+		latitud = getIntent().getStringExtra("Latitud");
+		longitud = getIntent().getStringExtra("Longitud");
+		direccion = getIntent().getStringExtra("Direccion");
+		descripcion = getIntent().getStringExtra("Descripcion");
 		
-		// Initialize Map
+		// Initialize Map and position
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+		LatLng position = new LatLng( Double.parseDouble(latitud), Double.parseDouble(longitud) );
 		    
-	if (map!=null){
-		Marker testMarker = map.addMarker(new MarkerOptions()
-		          .position(staticLocation)
-		          .title("Posiscion Hardcodeada")
-		          .snippet("Kiel is cool - descripcion")
-		          .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
-	}
+		// Add Map Marker
+		if (map!=null){
+			map.addMarker(new MarkerOptions()
+			   .position(position)
+			   .title(direccion)
+			   .snippet(descripcion));
+		}
 	
-    // Move the camera instantly to staticLocation with a zoom of 15.
-    map.moveCamera(CameraUpdateFactory.newLatLngZoom(staticLocation, 15));
-
-    // Zoom in, animating the camera.
-    map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+	    // Move the camera instantly to position with a zoom of 15.
+	    map.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15));
+	
+	    // Zoom in, animating the camera.
+	    map.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
 		    
 	}
 

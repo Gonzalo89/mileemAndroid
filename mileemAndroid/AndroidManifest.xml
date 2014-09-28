@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
 	<uses-permission android:name="android.permission.INTERNET"/>
@@ -56,11 +56,11 @@
         </activity>
         <activity
             android:name="com.g7.mileemandroid.Activites.MapaActivity"
-            android:label="@string/title_activity_mapa"
-            android:parentActivityName=".Activites.DetallePropiedad" >
+            android:label="@string/title_activity_mapa">
+            <!-- android:parentActivityName=".Activites.DetallePropiedad" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.g7.mileemandroid.Activites.DetallePropiedad" />
+                android:value="com.g7.mileemandroid.Activites.DetallePropiedad" /> -->
         </activity>
         
 		<meta-data
@@ -69,7 +69,7 @@
 
         <meta-data
 		    android:name="com.google.android.maps.v2.API_KEY"
-		    android:value="AIzaSyD5yhpGGwOGo5bWFfNwfohwRXzGysS9nxo"/>
+		    android:value="AIzaSyBztJqIWcXpLu3jfLhTlWxG0bax2vQvm3g"/>
         
     </application>
 
