@@ -163,10 +163,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 				listaPropiedades
 						.setOnItemClickListener(new OnItemClickListener() {
 							@Override
-							public void onItemClick(AdapterView<?> a, View v,
-									int position, long id) {
-								Long idProp = ((Propiedad) a.getAdapter()
-										.getItem(position)).getId();
+							public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+								Long idProp = ((Propiedad) a.getAdapter().getItem(position)).getId();
 								verDetalle(idProp);
 							}
 						});
