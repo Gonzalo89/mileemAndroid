@@ -1,7 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -10,54 +13,67 @@
 
     <ImageView
         android:id="@+id/imagenDetalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:onClick="onClickVerFotos"
         android:src="@drawable/ic_launcher" />
-
-    <TextView
-        android:id="@+id/precioDetalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ambientesDetalle"
-        android:layout_below="@+id/ambientesDetalle"
-        android:layout_marginTop="62dp"
-        android:text="@string/Precio" />
-
-    <TextView
-        android:id="@+id/ambientesDetalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/direccionDetalle"
-        android:layout_below="@+id/direccionDetalle"
-        android:layout_marginTop="52dp"
-        android:text="@string/Ambientes" />
 
     <TextView
         android:id="@+id/direccionDetalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/superficieDetalle"
-        android:layout_centerVertical="true"
-        android:text="@string/Direccion" />
+        android:layout_marginTop="5sp"
+        android:text="TextView"
+        android:textStyle="bold"
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/superficieDetalle"
+        android:id="@+id/precioDetalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/direccionDetalle"
-        android:layout_alignLeft="@+id/imagenDetalle"
-        android:layout_marginBottom="16dp"
-        android:text="@string/Superficie" />
+        android:text="TextView"
+        android:textStyle="bold"
+        android:textSize="20sp" />
 
-    <android.widget.Button
-        android:id="@+id/button1"
+    <ListView
+        android:id="@+id/listViewDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5sp"
+        android:layout_weight="1" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/precioDetalle"
-        android:layout_marginLeft="37dp"
-        android:layout_toRightOf="@+id/imagenDetalle"
-        android:onClick="onClickVerFotos"
-        android:text="Ver Fotos" />
+        android:layout_marginTop="10sp"
+        android:text="@string/Amenities"
+        android:textStyle="bold" />
 
-</RelativeLayout>
+    <ListView
+        android:id="@+id/listAmenities"
+        android:layout_marginTop="1sp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:text="@string/descripcion"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/descripcionDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="1sp"
+        android:textSize="15sp" />
+
+</LinearLayout>

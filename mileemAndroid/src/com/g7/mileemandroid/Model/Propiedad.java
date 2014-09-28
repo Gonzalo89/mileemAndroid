@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,12 +28,18 @@ public class Propiedad {
 	private int expensas;
 	private String barrio;
 	private String tipoPropiedad;
+	private int supNCubierta;
+	private int numero;
+	private String piso ;
+	private String departamento;
+	private String moneda;
+	private List<String> amenities;	
 	private Bitmap[] fotos;
 	private int cantFotos;
 	private long id;
-	protected static long contador;
+	protected static long contador = 0;
 	
-	public Propiedad(String direccion, String descripcion, int antiguedad,
+/*	public Propiedad(String direccion, String descripcion, int antiguedad,
 			String tipoOperacion, int precio, int superficie, int ambientes,
 			int dormitorios, int expensas, String barrio, String tipoPropiedad,
 			Bitmap[] fotos) {
@@ -49,7 +57,7 @@ public class Propiedad {
 		this.tipoPropiedad = tipoPropiedad;
 		this.fotos = fotos;
 		this.id = ++Propiedad.contador;
-	}	
+	}	*/
 	
 	public Propiedad(JSONObject json) {
 		String dirFoto;
@@ -61,7 +69,7 @@ public class Propiedad {
 			if (jsonFotos.length() >= 1) {
 				this.fotos = new Bitmap[this.cantFotos];
 				
-				for(int i = 0; i< this.cantFotos; i++){
+				for(int i = 0; i < this.cantFotos; i++){
 					JSONObject jsonFoto = jsonFotos.getJSONObject(i);
 					JSONObject jsonNombre = jsonFoto.getJSONObject("nombre");
 					JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
@@ -84,24 +92,51 @@ public class Propiedad {
 						e.printStackTrace();
 					}					
 				}
-	
-
 			}
 
 			long id = ++Propiedad.contador;
-			this.direccion = json.getString("direccion");
-			this.descripcion = json.getString("descripcion");
-			this.antiguedad = json.getInt("antiguedad");
-			this.tipoOperacion = json.getString("operacion");
-			this.precio = json.getInt("precio");
-			this.superficie = json.getInt("superficie");
-			this.ambientes = json.getInt("ambientes");
-			this.dormitorios = json.getInt("dormitorios");
-			this.expensas = json.getInt("expensas");
-			this.barrio = json.getString("barrio");
-			this.tipoPropiedad = json.getString("tipo_propiedad");
-
 			this.id = id;
+			
+			JSONArray jsonAmenities = json.getJSONArray("amenities");
+			this.amenities = new ArrayList<String>();
+
+			for (int i = 0; i < jsonAmenities.length(); i++) {
+				this.amenities.add(jsonAmenities.getJSONObject(i).getString(
+						"nombre"));
+			}
+			
+			if (!json.isNull("direccion"))
+				this.direccion = json.getString("direccion");
+			if (!json.isNull("descripcion"))
+				this.descripcion = json.getString("descripcion");
+			if (!json.isNull("antiguedad"))
+				this.antiguedad = json.getInt("antiguedad");
+			if (!json.isNull("operacion"))
+				this.tipoOperacion = json.getString("operacion");
+			if (!json.isNull("precio"))
+				this.precio = json.getInt("precio");
+			if (!json.isNull("superficie"))
+				this.superficie = json.getInt("superficie");
+			if (!json.isNull("ambientes"))
+				this.ambientes = json.getInt("ambientes");
+			if (!json.isNull("dormitorios"))
+				this.dormitorios = json.getInt("dormitorios");
+			if (!json.isNull("expensas"))
+				this.expensas = json.getInt("expensas");
+			if (!json.isNull("barrio"))
+				this.barrio = json.getString("barrio");
+			if (!json.isNull("tipo_propiedad"))
+				this.tipoPropiedad = json.getString("tipo_propiedad");
+			if (!json.isNull("numero"))
+				this.numero = json.getInt("numero");
+			if (!json.isNull("piso"))
+				this.piso = json.getString("piso");
+			if (!json.isNull("departamento"))
+				this.departamento = json.getString("departamento");
+			if (!json.isNull("moneda"))
+				this.moneda = json.getString("moneda");
+			if (!json.isNull("superficie_nc"))
+				this.supNCubierta = json.getInt("superficie_nc");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -218,7 +253,53 @@ public class Propiedad {
 	public void setCantFotos(int cantFotos) {
 		this.cantFotos = cantFotos;
 	}
+
+	public int getSupNCubierta() {
+		return supNCubierta;
+	}
+
+	public void setSupNCubierta(int supNCubierta) {
+		this.supNCubierta = supNCubierta;
+	}
+
+	public String getPiso() {
+		return piso;
+	}
+
+	public void setPiso(String piso) {
+		this.piso = piso;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+	public String getMoneda() {
+		return moneda;
+	}
+
+	public void setMoneda(String moneda) {
+		this.moneda = moneda;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public List<String> getAmenities() {
+		return amenities;
+	}
+
+	public void setAmenities(List<String> amenities) {
+		this.amenities = amenities;
+	}
 	
-	
-		
 }
