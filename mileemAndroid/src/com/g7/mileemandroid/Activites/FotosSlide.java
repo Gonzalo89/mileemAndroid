@@ -3,7 +3,6 @@ package com.g7.mileemandroid.Activites;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +42,7 @@ public class FotosSlide extends ActionBarActivity {
 		imageSwitcher.setOutAnimation(fadeOut);
 		if (cantFotos > 0) {
 			imageSwitcher.setImageDrawable(new BitmapDrawable(propiedad
-					.getFotos()[position]));
+					.getFotosCompleta()[position]));
 		}
 	}
 
@@ -72,8 +71,8 @@ public class FotosSlide extends ActionBarActivity {
 		if (position == cantFotos) {
 			position = 0;
 		}
-		if (propiedad.getFotos() != null)
+		if (propiedad.getFotosCompleta() != null)
 			imageSwitcher.setImageDrawable(new BitmapDrawable(propiedad
-					.getFotos()[position]));
+					.getFotosCompleta()[position]));
 	}
 }

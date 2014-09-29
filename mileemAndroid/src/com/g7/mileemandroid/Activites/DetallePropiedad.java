@@ -33,7 +33,7 @@ public class DetallePropiedad extends ActionBarActivity {
 		
 		if(propiedad.getCantFotos() > 0){
 			ImageView imagenView = (ImageView)findViewById(R.id.imagenDetalle);
-			imagenView.setImageBitmap(propiedad.getFotos()[0]);			
+			imagenView.setImageBitmap(propiedad.getFotosThumb()[0]);			
 		}
 		
 		String moneda = null;
@@ -95,7 +95,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	}
 	
 	public void onClickVerFotos(View view) {
-		if(this.propiedad.getFotos() != null) {
+		if(this.propiedad.getFotosThumb() != null) {
 	    	Intent intent = new Intent(this, FotosSlide.class);
 	    	startActivity(intent);			
 		}else {

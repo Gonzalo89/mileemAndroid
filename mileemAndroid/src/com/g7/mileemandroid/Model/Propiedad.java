@@ -39,7 +39,8 @@ public class Propiedad implements Serializable{
 	private String departamento;
 	private String moneda;
 	private List<String> amenities;	
-	private Bitmap[] fotos;
+	private Bitmap[] fotosThumb;
+	private Bitmap[] fotosCompleta;
 	private int cantFotos;
 	private String latitud;
 	private String longitud;
@@ -67,37 +68,54 @@ public class Propiedad implements Serializable{
 	}	*/
 	
 	public Propiedad(JSONObject json) {
-		String dirFoto;
+		String dirFotoThumb;
+		String dirFotoCompleta;
 		try {
 			JSONArray jsonFotos = json.getJSONArray("fotos");
-			this.fotos = null;
+			this.fotosThumb = null;
+			this.fotosCompleta = null;
+			
 			this.cantFotos = jsonFotos.length();
 			
 			if (jsonFotos.length() >= 1) {
-				this.fotos = new Bitmap[this.cantFotos];
+				this.fotosThumb = new Bitmap[this.cantFotos];
+				this.fotosCompleta = new Bitmap[this.cantFotos];
 				
-				for(int i = 0; i < this.cantFotos; i++){
+				for(int i = 0; i < this.cantFotos; i++) {
 					JSONObject jsonFoto = jsonFotos.getJSONObject(i);
 					JSONObject jsonNombre = jsonFoto.getJSONObject("nombre");
 					JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
-					dirFoto = jsonThumb.getString("url");
-
-					String imageUrl = "http://" + Constantes.IPSERVER + ":3000"
-							+ dirFoto;
-					URL url;
+					dirFotoThumb = jsonThumb.getString("url");
+					dirFotoCompleta = jsonNombre.getString("url");
+					String imageUrlThumb = "http://" + Constantes.IPSERVER + ":3000"
+							+ dirFotoThumb;
+					String imageUrlCompleta = "http://" + Constantes.IPSERVER + ":3000"
+							+ dirFotoCompleta;
+					URL url;					
 					try {
-						url = new URL(imageUrl);
+						//Obtengo fotoThumb						
+						url = new URL(imageUrlThumb);
 						HttpURLConnection connection = (HttpURLConnection) url
 								.openConnection();
 						InputStream is = connection.getInputStream();
 						Bitmap img = BitmapFactory.decodeStream(is);
-						this.fotos[i] = img;	
+						this.fotosThumb[i] = img;	
 
+						//Obtengo fotoCompleta
+						url = new URL(imageUrlCompleta);
+						HttpURLConnection connection2 = (HttpURLConnection) url
+								.openConnection();
+						InputStream is2 = connection2.getInputStream();
+						Bitmap img2 = BitmapFactory.decodeStream(is2);
+						this.fotosCompleta[i] = img2;	
+						
 					} catch (MalformedURLException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
 						e.printStackTrace();
-					}					
+					}		
+					
+					
 				}
 			}
 
@@ -249,12 +267,12 @@ public class Propiedad implements Serializable{
 		this.id = id;
 	}
 
-	public Bitmap[] getFotos() {
-		return fotos;
+	public Bitmap[] getFotosThumb() {
+		return fotosThumb;
 	}
 
 	public void setFoto(Bitmap[] foto) {
-		this.fotos = foto;
+		this.fotosThumb = foto;
 	}
 
 	public int getCantFotos() {
@@ -327,6 +345,10 @@ public class Propiedad implements Serializable{
 
 	public void setLongitud(String longitud) {
 		this.longitud = longitud;
+	}
+
+	public Bitmap[] getFotosCompleta() {
+		return fotosCompleta;
 	}
 	
 }
