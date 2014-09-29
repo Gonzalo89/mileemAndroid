@@ -3,6 +3,7 @@ package com.g7.mileemandroid.Activites;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,9 +41,10 @@ public class FotosSlide extends ActionBarActivity {
 		Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
 		imageSwitcher.setInAnimation(fadeIn);
 		imageSwitcher.setOutAnimation(fadeOut);
-		if (cantFotos > 0)
+		if (cantFotos > 0) {
 			imageSwitcher.setImageDrawable(new BitmapDrawable(propiedad
 					.getFotos()[position]));
+		}
 	}
 
 	@Override

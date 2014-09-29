@@ -41,6 +41,8 @@ public class Propiedad implements Serializable{
 	private List<String> amenities;	
 	private Bitmap[] fotos;
 	private int cantFotos;
+	private String latitud;
+	private String longitud;
 	private long id;
 	protected static long contador = 0;
 	
@@ -142,6 +144,10 @@ public class Propiedad implements Serializable{
 				this.moneda = json.getString("moneda");
 			if (!json.isNull("superficie_nc"))
 				this.supNCubierta = json.getInt("superficie_nc");
+			if (!json.isNull("latitude"))
+				this.latitud = json.getString("latitude");
+			if (!json.isNull("longitude"))
+				this.longitud = json.getString("longitude");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -305,6 +311,22 @@ public class Propiedad implements Serializable{
 
 	public void setAmenities(List<String> amenities) {
 		this.amenities = amenities;
+	}
+
+	public String getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
+	}
+
+	public String getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
 	}
 	
 }

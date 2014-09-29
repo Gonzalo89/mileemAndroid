@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -100,5 +101,19 @@ public class DetallePropiedad extends ActionBarActivity {
 		}else {
 			Toast.makeText(this, "No hay fotos cargadas", Toast.LENGTH_SHORT).show();
 		}
+	}
+	
+	public void onClickVerEnMapa(View view) {
+		Log.d("Mapa", "Click en botonMapaDetalle");
+		if(this.propiedad.getLatitud() != null && this.propiedad.getLatitud() != null) {			
+			Intent intent = new Intent(this, MapaActivity.class);
+			intent.putExtra("Latitud", propiedad.getLatitud());
+			intent.putExtra("Longitud", propiedad.getLongitud());
+			intent.putExtra("Direccion", propiedad.getDireccion());
+			intent.putExtra("Descripcion", propiedad.getDescripcion());
+			startActivity(intent);		
+		}else {
+			Toast.makeText(this, "No hay latitud/longitud cargada", Toast.LENGTH_SHORT).show();
+		}		
 	}
 }
