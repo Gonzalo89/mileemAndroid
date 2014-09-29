@@ -105,7 +105,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	
 	public void onClickVerEnMapa(View view) {
 		Log.d("Mapa", "Click en botonMapaDetalle");
-		if(this.propiedad.getLatitud() != null && this.propiedad.getLatitud() != null) {			
+/*		if(this.propiedad.getLatitud() != null && this.propiedad.getLatitud() != null) {			
 			Intent intent = new Intent(this, MapaActivity.class);
 			intent.putExtra("Latitud", propiedad.getLatitud());
 			intent.putExtra("Longitud", propiedad.getLongitud());
@@ -114,6 +114,6 @@ public class DetallePropiedad extends ActionBarActivity {
 			startActivity(intent);		
 		}else {
 			Toast.makeText(this, "No hay latitud/longitud cargada", Toast.LENGTH_SHORT).show();
-		}		
+		}*/		
 	}
 }
