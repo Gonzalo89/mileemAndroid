@@ -40,9 +40,10 @@ public class FotosSlide extends ActionBarActivity {
 		Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
 		imageSwitcher.setInAnimation(fadeIn);
 		imageSwitcher.setOutAnimation(fadeOut);
-		if (cantFotos > 0)
+		if (cantFotos > 0) {
 			imageSwitcher.setImageDrawable(new BitmapDrawable(propiedad
-					.getFotos()[position]));
+					.getFotosCompleta()[position]));
+		}
 	}
 
 	@Override
@@ -70,8 +71,8 @@ public class FotosSlide extends ActionBarActivity {
 		if (position == cantFotos) {
 			position = 0;
 		}
-		if (propiedad.getFotos() != null)
+		if (propiedad.getFotosCompleta() != null)
 			imageSwitcher.setImageDrawable(new BitmapDrawable(propiedad
-					.getFotos()[position]));
+					.getFotosCompleta()[position]));
 	}
 }
