@@ -1,5 +1,6 @@
 package com.g7.mileemandroid.Model;
 
 public class Constantes {
-	public static String IPSERVER = "192.168.1.38";
+	public static String IPSERVER = "10.0.3.38";
+	public static String DIRJSON = "http://young-tundra-9853.herokuapp.com/propiedads.json";
 }
