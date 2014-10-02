@@ -2,6 +2,7 @@ package com.g7.mileemandroid.Model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,8 +16,12 @@ import org.json.JSONObject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class Propiedad {
+public class Propiedad implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String direccion;
 	private String descripcion;
 	private int antiguedad;
