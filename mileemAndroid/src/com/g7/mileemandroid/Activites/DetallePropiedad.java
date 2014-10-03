@@ -2,6 +2,7 @@ package com.g7.mileemandroid.Activites;
 
 import java.util.ArrayList;
 
+import android.app.ActionBar.LayoutParams;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -9,7 +10,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +54,7 @@ public class DetallePropiedad extends ActionBarActivity {
         ListView listAmenities = (ListView)findViewById(R.id.listAmenities);
         AdapterAmenities aAmenities = new AdapterAmenities(this, propiedad.getAmenities()); 
         listAmenities.setAdapter(aAmenities);
+        setListViewHeightBasedOnChildren(listAmenities);
         
         TextView descripcion = (TextView)findViewById(R.id.descripcionDetalle);
         descripcion.setText(propiedad.getDescripcion());        
@@ -72,6 +77,7 @@ public class DetallePropiedad extends ActionBarActivity {
 		listView.setAdapter(adapter);
 		
 		
+		setListViewHeightBasedOnChildren(listView);		
 
 	}
 
@@ -103,6 +109,31 @@ public class DetallePropiedad extends ActionBarActivity {
 		}
 	}
 	
+	/**** Method for Setting the Height of the ListView dynamically.
+	 **** Hack to fix the issue of not showing all the items of the ListView
+	 **** when placed inside a ScrollView  ****/
+	public static void setListViewHeightBasedOnChildren(ListView listView) {
+	    ListAdapter listAdapter = listView.getAdapter();
+	    if (listAdapter == null)
+	        return;
+
+	    int desiredWidth = MeasureSpec.makeMeasureSpec(listView.getWidth(), MeasureSpec.UNSPECIFIED);
+	    int totalHeight = 0;
+	    View view = null;
+	    for (int i = 0; i < listAdapter.getCount(); i++) {
+	        view = listAdapter.getView(i, view, listView);
+	        if (i == 0)
+	            view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, LayoutParams.WRAP_CONTENT));
+
+	        view.measure(desiredWidth, MeasureSpec.UNSPECIFIED);
+	        totalHeight += view.getMeasuredHeight();
+	    }
+	    ViewGroup.LayoutParams params = listView.getLayoutParams();
+	    params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+	    listView.setLayoutParams(params);
+	    listView.requestLayout();
+	}	
+	
 	public void onClickVerEnMapa(View view) {
 		Log.d("Mapa", "Click en botonMapaDetalle");
 /*		if(this.propiedad.getLatitud() != null && this.propiedad.getLatitud() != null) {			
@@ -116,4 +147,6 @@ public class DetallePropiedad extends ActionBarActivity {
 			Toast.makeText(this, "No hay latitud/longitud cargada", Toast.LENGTH_SHORT).show();
 		}*/		
 	}
+	
+	
 }
