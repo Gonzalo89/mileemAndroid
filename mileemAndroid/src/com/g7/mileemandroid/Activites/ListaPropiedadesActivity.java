@@ -30,6 +30,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -54,7 +55,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setTitle("  Propiedades Disponibles");		
 		
-		String url = "http://" + Constantes.IPSERVER + ":3000/api/mostrarJson";
+		//String url = "http://" + Constantes.IPSERVER + ":3000/api/mostrarJson";
+		String url = Constantes.DIRJSON;
 		loadingSpinner = new ProgressDialog(this);
 		loadingSpinner.setMessage("Procesando...");
 		loadingSpinner.setCancelable(false);
@@ -168,6 +170,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 								verDetalle(idProp);
 							}
 						});
+			} else {
+				Toast.makeText(this.context, "Error al conectarse al servidor", Toast.LENGTH_SHORT).show();
 			}
 			loadingSpinner.dismiss();
 		}
