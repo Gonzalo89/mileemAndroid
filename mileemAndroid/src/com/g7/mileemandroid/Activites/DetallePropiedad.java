@@ -61,8 +61,8 @@ public class DetallePropiedad extends ActionBarActivity {
 		listaAtributos.add(new AtributoPropiedad("Sup. no Cubierta",  propiedad.getSupNCubierta() + "m2"));
 		listaAtributos.add(new AtributoPropiedad("Ambientes" , Integer.toString(propiedad.getAmbientes())));
 		listaAtributos.add(new AtributoPropiedad("Dormitorios", Integer.toString(propiedad.getDormitorios())));		
-		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " años"));
-		listaAtributos.add(new AtributoPropiedad("Tipo Operación",propiedad.getTipoOperacion()));
+		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " aï¿½os"));
+		listaAtributos.add(new AtributoPropiedad("Tipo Operaciï¿½n",propiedad.getTipoOperacion()));
 		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
 		listaAtributos.add(new AtributoPropiedad("Expensas", moneda + propiedad.getExpensas()));
 		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
@@ -105,7 +105,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	
 	public void onClickVerEnMapa(View view) {
 		Log.d("Mapa", "Click en botonMapaDetalle");
-/*		if(this.propiedad.getLatitud() != null && this.propiedad.getLatitud() != null) {			
+		if( this.propiedad.getLatitud() != null && this.propiedad.getLongitud() != null ) {			
 			Intent intent = new Intent(this, MapaActivity.class);
 			intent.putExtra("Latitud", propiedad.getLatitud());
 			intent.putExtra("Longitud", propiedad.getLongitud());
@@ -113,7 +113,7 @@ public class DetallePropiedad extends ActionBarActivity {
 			intent.putExtra("Descripcion", propiedad.getDescripcion());
 			startActivity(intent);		
 		}else {
-			Toast.makeText(this, "No hay latitud/longitud cargada", Toast.LENGTH_SHORT).show();
-		}*/		
+			Toast.makeText(this, "No hay localizaciÃ³n cargada", Toast.LENGTH_SHORT).show();
+		}		
 	}
 }
