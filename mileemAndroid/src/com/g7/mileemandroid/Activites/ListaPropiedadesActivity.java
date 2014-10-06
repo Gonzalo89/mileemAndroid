@@ -122,8 +122,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				unJson = jsonArray.getJSONObject(i);
 				propiedad = new Propiedad(unJson);
-				if(propiedad.esCorrecto())
-					arrayProp.add(propiedad);
+				arrayProp.add(propiedad);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
