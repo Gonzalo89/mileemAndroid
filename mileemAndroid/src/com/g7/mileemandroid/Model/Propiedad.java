@@ -44,6 +44,7 @@ public class Propiedad implements Serializable{
 	private int cantFotos;
 	private String latitud;
 	private String longitud;
+	private boolean esCorrecto = false;
 	private long id;
 	protected static long contador = 0;
 	
@@ -66,106 +67,114 @@ public class Propiedad implements Serializable{
 		this.fotos = fotos;
 		this.id = ++Propiedad.contador;
 	}	*/
-	
+
 	public Propiedad(JSONObject json) {
 		String dirFotoThumb;
 		String dirFotoCompleta;
-		try {
-			JSONArray jsonFotos = json.getJSONArray("fotos");
-			this.fotosThumb = null;
-			this.fotosCompleta = null;
-			
-			this.cantFotos = jsonFotos.length();
-			
-			if (jsonFotos.length() >= 1) {
-				this.fotosThumb = new Bitmap[this.cantFotos];
-				this.fotosCompleta = new Bitmap[this.cantFotos];
-				
-				for(int i = 0; i < this.cantFotos; i++) {
-					JSONObject jsonFoto = jsonFotos.getJSONObject(i);
-					JSONObject jsonNombre = jsonFoto.getJSONObject("nombre");
-					JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
-					dirFotoThumb = jsonThumb.getString("url");
-					dirFotoCompleta = jsonNombre.getString("url");
-					String imageUrlThumb =  Constantes.DIRSERVER	+ dirFotoThumb;
-					String imageUrlCompleta = Constantes.DIRSERVER	+ dirFotoCompleta;
-					URL url;					
-					try {
-						//Obtengo fotoThumb						
-						url = new URL(imageUrlThumb);
-						HttpURLConnection connection = (HttpURLConnection) url
-								.openConnection();
-						InputStream is = connection.getInputStream();
-						Bitmap img = BitmapFactory.decodeStream(is);
-						this.fotosThumb[i] = img;	
+		if (!json.isNull("fotos")) {// FIXME Si no son corchetes vacios (se hace
+									// porque a veces se envian corchetes vacios
+									// por error del lado del servidor)
+			try {
+				JSONArray jsonFotos = json.getJSONArray("fotos");
+				this.fotosThumb = null;
+				this.fotosCompleta = null;
 
-						//Obtengo fotoCompleta
-						url = new URL(imageUrlCompleta);
-						HttpURLConnection connection2 = (HttpURLConnection) url
-								.openConnection();
-						InputStream is2 = connection2.getInputStream();
-						Bitmap img2 = BitmapFactory.decodeStream(is2);
-						this.fotosCompleta[i] = img2;	
-						
-					} catch (MalformedURLException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}		
-					
-					
+				this.cantFotos = jsonFotos.length();
+
+				if (jsonFotos.length() >= 1) {
+					this.fotosThumb = new Bitmap[this.cantFotos];
+					this.fotosCompleta = new Bitmap[this.cantFotos];
+
+					for (int i = 0; i < this.cantFotos; i++) {
+						JSONObject jsonFoto = jsonFotos.getJSONObject(i);
+						JSONObject jsonNombre = jsonFoto
+								.getJSONObject("nombre");
+						JSONObject jsonThumb = jsonNombre
+								.getJSONObject("thumb");
+						dirFotoThumb = jsonThumb.getString("url");
+						dirFotoCompleta = jsonNombre.getString("url");
+						String imageUrlThumb = Constantes.DIRSERVER
+								+ dirFotoThumb;
+						String imageUrlCompleta = Constantes.DIRSERVER
+								+ dirFotoCompleta;
+						URL url;
+						try {
+							// Obtengo fotoThumb
+							url = new URL(imageUrlThumb);
+							HttpURLConnection connection = (HttpURLConnection) url
+									.openConnection();
+							InputStream is = connection.getInputStream();
+							Bitmap img = BitmapFactory.decodeStream(is);
+							this.fotosThumb[i] = img;
+
+							// Obtengo fotoCompleta
+							url = new URL(imageUrlCompleta);
+							HttpURLConnection connection2 = (HttpURLConnection) url
+									.openConnection();
+							InputStream is2 = connection2.getInputStream();
+							Bitmap img2 = BitmapFactory.decodeStream(is2);
+							this.fotosCompleta[i] = img2;
+
+						} catch (MalformedURLException e) {
+							e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+
 				}
-			}
 
-			long id = ++Propiedad.contador;
-			this.id = id;
-			
-			JSONArray jsonAmenities = json.getJSONArray("amenities");
-			this.amenities = new ArrayList<String>();
+				long id = ++Propiedad.contador;
+				this.id = id;
 
-			for (int i = 0; i < jsonAmenities.length(); i++) {
-				this.amenities.add(jsonAmenities.getJSONObject(i).getString(
-						"nombre"));
+				JSONArray jsonAmenities = json.getJSONArray("amenities");
+				this.amenities = new ArrayList<String>();
+
+				for (int i = 0; i < jsonAmenities.length(); i++) {
+					this.amenities.add(jsonAmenities.getJSONObject(i)
+							.getString("nombre"));
+				}
+
+				if (!json.isNull("direccion"))
+					this.direccion = json.getString("direccion");
+				if (!json.isNull("descripcion"))
+					this.descripcion = json.getString("descripcion");
+				if (!json.isNull("antiguedad"))
+					this.antiguedad = json.getInt("antiguedad");
+				if (!json.isNull("operacion"))
+					this.tipoOperacion = json.getString("operacion");
+				if (!json.isNull("precio"))
+					this.precio = json.getInt("precio");
+				if (!json.isNull("superficie"))
+					this.superficie = json.getInt("superficie");
+				if (!json.isNull("ambientes"))
+					this.ambientes = json.getInt("ambientes");
+				if (!json.isNull("dormitorios"))
+					this.dormitorios = json.getInt("dormitorios");
+				if (!json.isNull("expensas"))
+					this.expensas = json.getInt("expensas");
+				if (!json.isNull("barrio"))
+					this.barrio = json.getString("barrio");
+				if (!json.isNull("tipo_propiedad"))
+					this.tipoPropiedad = json.getString("tipo_propiedad");
+				if (!json.isNull("numero"))
+					this.numero = json.getInt("numero");
+				if (!json.isNull("piso"))
+					this.piso = json.getString("piso");
+				if (!json.isNull("departamento"))
+					this.departamento = json.getString("departamento");
+				if (!json.isNull("moneda"))
+					this.moneda = json.getString("moneda");
+				if (!json.isNull("superficie_nc"))
+					this.supNCubierta = json.getInt("superficie_nc");
+				if (!json.isNull("latitude"))
+					this.latitud = json.getString("latitude");
+				if (!json.isNull("longitude"))
+					this.longitud = json.getString("longitude");
+				this.esCorrecto = true;
+			} catch (JSONException e) {
+				e.printStackTrace();
 			}
-			
-			if (!json.isNull("direccion"))
-				this.direccion = json.getString("direccion");
-			if (!json.isNull("descripcion"))
-				this.descripcion = json.getString("descripcion");
-			if (!json.isNull("antiguedad"))
-				this.antiguedad = json.getInt("antiguedad");
-			if (!json.isNull("operacion"))
-				this.tipoOperacion = json.getString("operacion");
-			if (!json.isNull("precio"))
-				this.precio = json.getInt("precio");
-			if (!json.isNull("superficie"))
-				this.superficie = json.getInt("superficie");
-			if (!json.isNull("ambientes"))
-				this.ambientes = json.getInt("ambientes");
-			if (!json.isNull("dormitorios"))
-				this.dormitorios = json.getInt("dormitorios");
-			if (!json.isNull("expensas"))
-				this.expensas = json.getInt("expensas");
-			if (!json.isNull("barrio"))
-				this.barrio = json.getString("barrio");
-			if (!json.isNull("tipo_propiedad"))
-				this.tipoPropiedad = json.getString("tipo_propiedad");
-			if (!json.isNull("numero"))
-				this.numero = json.getInt("numero");
-			if (!json.isNull("piso"))
-				this.piso = json.getString("piso");
-			if (!json.isNull("departamento"))
-				this.departamento = json.getString("departamento");
-			if (!json.isNull("moneda"))
-				this.moneda = json.getString("moneda");
-			if (!json.isNull("superficie_nc"))
-				this.supNCubierta = json.getInt("superficie_nc");
-			if (!json.isNull("latitude"))
-				this.latitud = json.getString("latitude");
-			if (!json.isNull("longitude"))
-				this.longitud = json.getString("longitude");
-		} catch (JSONException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -347,6 +356,10 @@ public class Propiedad implements Serializable{
 
 	public Bitmap[] getFotosCompleta() {
 		return fotosCompleta;
+	}
+
+	public boolean esCorrecto() {
+		return esCorrecto;
 	}
 	
 }
