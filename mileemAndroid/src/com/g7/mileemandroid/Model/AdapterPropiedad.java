@@ -63,11 +63,13 @@ public class AdapterPropiedad extends BaseAdapter {
         TextView superficie = (TextView) v.findViewById(R.id.superficieLista);
         superficie.setText(Integer.toString(propiedad.getSuperficie())+"m2");
         TextView precio = (TextView) v.findViewById(R.id.precioLista);
-        String moneda = null;
-        if(propiedad.getMoneda().compareTo("Pesos") == 0)
-        	moneda = "$";
-        else
-        	moneda = "u$s";
+        String moneda = "$";
+        if(propiedad.getMoneda() != null) {
+            if(propiedad.getMoneda().compareTo("Pesos") == 0)
+            	moneda = "$";
+            else
+            	moneda = "u$s";        	
+        }
         precio.setText(moneda +propiedad.getPrecio());       
         TextView ambientes = (TextView) v.findViewById(R.id.ambientesLista);
         ambientes.setText("Amb: " +propiedad.getAmbientes());      
