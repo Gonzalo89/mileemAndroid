@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.g7.mileemandroid.Activites.FiltrosActivity;
 import com.g7.mileemandroid.Activites.ListaPropiedadesActivity;
 import com.g7.mileemandroid.Activites.MapaActivity;
 
@@ -44,7 +45,8 @@ public class MainActivity extends ActionBarActivity {
     }
     
     public void buscarPropiedades(View view) {    	
-    	Intent intent = new Intent(this, ListaPropiedadesActivity.class);    
+    	Intent intent = new Intent(this, ListaPropiedadesActivity.class); 
+    //	Intent intent = new Intent(this, FiltrosActivity.class);
     	String message = "Mensaje a el Listing";
     	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);

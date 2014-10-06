@@ -20,5 +20,6 @@
     <string name="title_activity_mapa">MapaActivity</string>
     <string name="Amenities">Amenities:</string>
     <string name="descripcion">Descripción:</string>
+    <string name="title_activity_filtros">FiltrosActivity</string>
 
 </resources>
