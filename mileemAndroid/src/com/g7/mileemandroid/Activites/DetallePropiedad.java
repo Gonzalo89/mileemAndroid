@@ -69,7 +69,7 @@ public class DetallePropiedad extends ActionBarActivity {
 		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " años"));
 		listaAtributos.add(new AtributoPropiedad("Tipo Operación",propiedad.getTipoOperacion()));
 		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
-		listaAtributos.add(new AtributoPropiedad("Expensas", moneda + propiedad.getExpensas()));
+		listaAtributos.add(new AtributoPropiedad("Expensas", "$" + propiedad.getExpensas()));
 			
 		ListView listView = (ListView) findViewById(R.id.listViewDetalle);
 		AdapterDetallePropiedad adapter = new AdapterDetallePropiedad(this, listaAtributos);

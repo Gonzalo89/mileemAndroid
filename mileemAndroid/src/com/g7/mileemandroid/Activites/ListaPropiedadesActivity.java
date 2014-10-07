@@ -131,7 +131,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		}
 		return arrayProp;
 	}
-    private class PropiedadesTask extends AsyncTask<String, Void, String> {
+    private class PropiedadesTask extends AsyncTask<String, Void, ArrayList<Propiedad>> {
     	
     	Context context;
         
@@ -141,10 +141,10 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
         }
     	
        @Override
-       protected String doInBackground(String... urls) {
+       protected ArrayList<Propiedad> doInBackground(String... urls) {
            // params comes from the execute() call: params[0] is the url.
-           try {
-        	   	return downloadJson( urls[0]);
+           try {        	   
+        	   	return  parsearPropiedadesJson(downloadJson( urls[0]));
 	   		} catch (ClientProtocolException e) {
 	   			e.printStackTrace();
 	   		} catch (Exception e) {
@@ -155,8 +155,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
        
 		// onPostExecute displays the results of the AsyncTask.
 		@Override
-		protected void onPostExecute(String result) {
-			propiedades = parsearPropiedadesJson(result);
+		protected void onPostExecute(ArrayList<Propiedad> result) {
+			propiedades = result;
 			if (propiedades != null) {
 				AdapterPropiedad adapter = new AdapterPropiedad(
 						(Activity) this.context, propiedades);
