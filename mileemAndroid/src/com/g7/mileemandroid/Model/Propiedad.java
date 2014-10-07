@@ -87,8 +87,8 @@ public class Propiedad implements Serializable{
 					JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
 					dirFotoThumb = jsonThumb.getString("url");
 					dirFotoCompleta = jsonNombre.getString("url");
-					String imageUrlThumb = "http://" + Constantes.DIRSERVER + dirFotoThumb;
-					String imageUrlCompleta = "http://" + Constantes.IPSERVER + dirFotoCompleta;
+					String imageUrlThumb =  Constantes.DIRSERVER	+ dirFotoThumb;
+					String imageUrlCompleta = Constantes.DIRSERVER	+ dirFotoCompleta;
 					URL url;					
 					try {
 						//Obtengo fotoThumb						

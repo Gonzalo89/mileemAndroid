@@ -68,9 +68,8 @@ public class AdapterPropiedad extends BaseAdapter {
             if(propiedad.getMoneda().compareTo("Pesos") == 0)
             	moneda = "$";
             else
-            	moneda = "u$s";      	
+            	moneda = "u$s";        	
         }
-
         precio.setText(moneda +propiedad.getPrecio());       
         TextView ambientes = (TextView) v.findViewById(R.id.ambientesLista);
         ambientes.setText("Amb: " +propiedad.getAmbientes());      

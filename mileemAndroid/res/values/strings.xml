@@ -21,5 +21,8 @@
     <string name="Amenities">Amenities:</string>
     <string name="descripcion">Descripción:</string>
     <string name="title_activity_filtros">FiltrosActivity</string>
+    <string name="Alquiler">Alquiler</string>
+    <string name="Compra">Compra</string>
+    <string name="AlquilerTemporal">Alq. Temp.</string>
 
 </resources>

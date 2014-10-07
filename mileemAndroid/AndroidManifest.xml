@@ -44,7 +44,11 @@
         </activity>
         <activity
             android:name=".Activites.DetallePropiedad"
-            android:label="@string/title_activity_detalle_propiedad" >
+            android:label="@string/title_activity_detalle_propiedad" 
+            android:parentActivityName=".Activites.ListaPropiedadesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g7.mileemandroid.Activites.ListaPropiedadesActivity" />
         </activity>
         <activity
             android:name=".Activites.FotosCarrousel"
@@ -55,15 +59,12 @@
             android:label="@string/title_activity_fotos_slide" >
         </activity>
         <activity
-            android:name=".Activites.MapaActivity"
-            android:label="@string/title_activity_mapa" >
-
-            <!--
+            android:name="com.g7.mileemandroid.Activites.MapaActivity"
+            android:label="@string/title_activity_mapa"
             android:parentActivityName=".Activites.DetallePropiedad" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.g7.mileemandroid.Activites.DetallePropiedad" />
-            -->
+                android:value="com.g7.mileemandroid.Activites.DetallePropiedad" /> 
         </activity>
 
         <meta-data

@@ -9,7 +9,7 @@
     tools:context="com.g7.mileemandroid.Activites.FiltrosActivity" >
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/sBarrio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp" />

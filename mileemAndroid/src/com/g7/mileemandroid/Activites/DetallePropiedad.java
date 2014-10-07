@@ -69,9 +69,8 @@ public class DetallePropiedad extends ActionBarActivity {
 		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " años"));
 		listaAtributos.add(new AtributoPropiedad("Tipo Operación",propiedad.getTipoOperacion()));
 		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
-		listaAtributos.add(new AtributoPropiedad("Expensas", moneda + propiedad.getExpensas()));
-		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
-	
+		listaAtributos.add(new AtributoPropiedad("Expensas", "$" + propiedad.getExpensas()));
+			
 		ListView listView = (ListView) findViewById(R.id.listViewDetalle);
 		AdapterDetallePropiedad adapter = new AdapterDetallePropiedad(this, listaAtributos);
 		listView.setAdapter(adapter);
@@ -136,7 +135,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	
 	public void onClickVerEnMapa(View view) {
 		Log.d("Mapa", "Click en botonMapaDetalle");
-/*		if(this.propiedad.getLatitud() != null && this.propiedad.getLatitud() != null) {			
+		if( this.propiedad.getLatitud() != null && this.propiedad.getLongitud() != null ) {			
 			Intent intent = new Intent(this, MapaActivity.class);
 			intent.putExtra("Latitud", propiedad.getLatitud());
 			intent.putExtra("Longitud", propiedad.getLongitud());
@@ -144,8 +143,8 @@ public class DetallePropiedad extends ActionBarActivity {
 			intent.putExtra("Descripcion", propiedad.getDescripcion());
 			startActivity(intent);		
 		}else {
-			Toast.makeText(this, "No hay latitud/longitud cargada", Toast.LENGTH_SHORT).show();
-		}*/		
+			Toast.makeText(this, "No hay localizaciÃ³n cargada", Toast.LENGTH_SHORT).show();
+		}		
 	}
 	
 	

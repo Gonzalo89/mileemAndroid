@@ -24,7 +24,7 @@ public class FiltrosActivity extends ActionBarActivity {
 		miArray.add("Elemento3");
 		ArrayAdapter<String> adapter = new ArrayAdapter(getBaseContext(),android.R.layout.simple_spinner_item, miArray);
 		
-		spinner = (Spinner)findViewById(R.id.spinner1);
+		spinner = (Spinner)findViewById(R.id.sBarrio);
 		 
 		adapter.setDropDownViewResource(
 		        android.R.layout.simple_spinner_dropdown_item);
