@@ -33,7 +33,7 @@
         android:id="@+id/sBarrio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp" />
+        android:layout_marginTop="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,6 +47,7 @@
             android:layout_marginRight="0dp"
             android:layout_weight="1"
             android:maxLines="1"
+            android:onClick="onClickAlquiler"
             android:text="@string/Alquiler" />
 
         <Button
@@ -57,6 +58,7 @@
             android:layout_marginRight="0dp"
             android:layout_weight="1"
             android:maxLines="1"
+            android:onClick="onClickCompra"
             android:text="@string/Compra" />
 
         <Button
@@ -67,6 +69,7 @@
             android:layout_marginRight="0dp"
             android:layout_weight="1.30"
             android:maxLines="1"
+            android:onClick="onClickATemporal"
             android:text="@string/AlquilerTemporal" />
 
     </LinearLayout>
@@ -77,13 +80,13 @@
 
         <Spinner
             android:id="@+id/sTPropiedad"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="2" />
 
         <Spinner
             android:id="@+id/sAmbientes"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
@@ -93,8 +96,9 @@
         android:id="@+id/buscarButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="17sp"
         android:onClick="buscarPropiedades"
+        android:layout_marginTop="30sp"
         android:text="Buscar Propiedades" />
 
 </LinearLayout>

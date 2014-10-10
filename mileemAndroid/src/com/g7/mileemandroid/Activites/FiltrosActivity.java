@@ -22,7 +22,7 @@ public class FiltrosActivity extends ActionBarActivity {
 		miArray.add("Elemento1");
 		miArray.add("Elemento2");
 		miArray.add("Elemento3");
-		ArrayAdapter<String> adapter = new ArrayAdapter(getBaseContext(),android.R.layout.simple_spinner_item, miArray);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(),android.R.layout.simple_spinner_item, miArray);
 		
 		spinner = (Spinner)findViewById(R.id.sBarrio);
 		 

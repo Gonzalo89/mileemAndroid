@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tPropiedadd_array">
+        <item>Tipo Prop.</item>
+        <item>Casa</item>
+        <item>Departamento</item>
+        <item>PH</item>
+        <item>Countries y Barrios Cerrados</item>
+        <item>Terrenos y Lotes</item>
+        <item>Quinta</item>
+        <item>Campos y Chacras</item>
+        <item>Galpones, Depositos y Edificios Ind.</item>
+        <item>Cocheras</item>
+        <item>Negocios y Fondos de Comercio</item>
+        <item>Oficinas</item>
+        <item>Consultorios</item>
+        <item>Bovedas, Nichos y Parcelas</item>
+        <item>Locales Comerciales</item>     
+    </string-array>
+</resources>

@@ -37,6 +37,7 @@ import android.widget.ListView;
 import com.g7.mileemandroid.R;
 import com.g7.mileemandroid.Model.AdapterPropiedad;
 import com.g7.mileemandroid.Model.Constantes;
+import com.g7.mileemandroid.Model.FiltroSingleton;
 import com.g7.mileemandroid.Model.Propiedad;
 import com.g7.mileemandroid.Model.PropiedadSingleton;
 
@@ -56,7 +57,18 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		setTitle("  Propiedades Disponibles");		
 		
 		//String url = "http://" + Constantes.IPSERVER + ":3000/api/mostrarJson";
-		String url = Constantes.DIRJSON;
+		String url = Constantes.DIRSERVER + Constantes.DIRFILTRO;
+		FiltroSingleton filtro = FiltroSingleton.getInstance();
+		url += "operacionid=" + filtro.getOperacion();
+		
+		if(filtro.getBarrio() != 0)
+			url += "&barrioid="+ filtro.getBarrio();
+		if(filtro.gettPropiedad() != 0)
+			url += "&tipoPropiedadId="+ filtro.gettPropiedad();
+		if(filtro.getAmbientes() != 0)
+			url += "&ambientesid="+ filtro.getAmbientes();		
+
+		
 		loadingSpinner = new ProgressDialog(this);
 		loadingSpinner.setMessage("Procesando...");
 		loadingSpinner.setCancelable(false);
