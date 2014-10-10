@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -32,6 +33,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("  Mileem");
+        Button bBuscar = (Button)findViewById(R.id.buscarButton);
+        bBuscar.setBackgroundColor(Color.RED);
         bATemporal = (Button)findViewById(R.id.bATemporal);
         bCompra = (Button)findViewById(R.id.bCompra);
         bAlquiler = (Button)findViewById(R.id.bAlquiler);
