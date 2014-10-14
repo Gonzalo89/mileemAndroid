@@ -1,9 +1,6 @@
 package com.g7.mileemandroid;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -42,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
         
 		ArrayAdapter<CharSequence> aBarrio = ArrayAdapter.createFromResource(this,
 				R.array.barrios_array, android.R.layout.simple_spinner_item);
-		Spinner sBarrio = (Spinner)findViewById(R.id.sBarrio);		 
+		Spinner sBarrio = (Spinner)findViewById(R.id.sPrecio);		 
 		aBarrio.setDropDownViewResource(
 		        android.R.layout.simple_spinner_dropdown_item);		 
 		sBarrio.setAdapter(aBarrio);
@@ -121,19 +118,22 @@ public class MainActivity extends ActionBarActivity {
     public void onClickAlquiler(View v) {
     	bAlquiler.setSelected(true);
     	bATemporal.setSelected(false);
-    	bCompra.setSelected(false);    	
+    	bCompra.setSelected(false);
+    	FiltroSingleton.getInstance().setOperacion(2);//TODO No harcodear numeros
     }
  
     public void onClickATemporal(View v) {
     	bAlquiler.setSelected(false);
     	bATemporal.setSelected(true);
-    	bCompra.setSelected(false);    	
+    	bCompra.setSelected(false);
+    	FiltroSingleton.getInstance().setOperacion(3);
     }
 
     public void onClickCompra(View v) {
     	bAlquiler.setSelected(false);
     	bATemporal.setSelected(false);
-    	bCompra.setSelected(true);    	
+    	bCompra.setSelected(true);
+    	FiltroSingleton.getInstance().setOperacion(1);
     }
     
     public void buscarPropiedades(View view) {    	

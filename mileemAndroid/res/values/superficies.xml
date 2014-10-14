@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sup_cubierta_array">
+        <item>Sup. Cubierta</item>
+        <item>0m2 – 49m2</item>
+        <item>50m2 – 99m2</item>
+        <item>100m2 – 199m2</item>
+        <item>mayor a 200m2</item>
+    </string-array>     
+</resources>

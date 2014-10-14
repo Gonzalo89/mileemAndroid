@@ -24,5 +24,7 @@
     <string name="Alquiler">Alquiler</string>
     <string name="Compra">Compra</string>
     <string name="AlquilerTemporal">Alq. Temp.</string>
+    <string name="BuscarPropiedades">Buscar Propiedades</string>
+    <string name="Filtros">Filtros</string>
 
 </resources>

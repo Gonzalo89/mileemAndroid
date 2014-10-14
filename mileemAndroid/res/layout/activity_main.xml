@@ -30,7 +30,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <Spinner
-        android:id="@+id/sBarrio"
+        android:id="@+id/sPrecio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp" />
@@ -38,17 +38,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/bAlquiler"
-            style="android:buttonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="0dp"
-            android:layout_weight="1"
-            android:maxLines="1"
-            android:onClick="onClickAlquiler"
-            android:text="@string/Alquiler" />
 
         <Button
             android:id="@+id/bCompra"
@@ -60,6 +49,17 @@
             android:maxLines="1"
             android:onClick="onClickCompra"
             android:text="@string/Compra" />
+
+        <Button
+            android:id="@+id/bAlquiler"
+            style="android:buttonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:onClick="onClickAlquiler"
+            android:text="@string/Alquiler" />
 
         <Button
             android:id="@+id/bATemporal"
@@ -97,8 +97,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="17sp"
-        android:onClick="buscarPropiedades"
         android:layout_marginTop="30sp"
-        android:text="Buscar Propiedades" />
+        android:onClick="buscarPropiedades"
+        android:text="@string/BuscarPropiedades" />
 
 </LinearLayout>

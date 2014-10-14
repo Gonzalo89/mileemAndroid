@@ -2,5 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.g7.mileemandroid.ListaPropiedadesActivity" >
-
+    <item android:id="@+id/MnuFiltro" android:title="@string/Filtros"
+          android:icon="@android:drawable/ic_menu_preferences"></item>
 </menu>

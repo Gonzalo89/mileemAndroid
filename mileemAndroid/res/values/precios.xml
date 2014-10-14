@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="precios_array">
+        <item>Precio</item>
+        <item>$0 - $99.999</item>
+        <item>$100.000 - $499.999</item>
+        <item>$500.000 - $899.999</item>
+        <item>mayor a $900.000</item>
+    </string-array>        
+</resources>
