@@ -18,9 +18,6 @@ import android.graphics.BitmapFactory;
 
 public class Propiedad implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String direccion;
 	private String descripcion;
@@ -87,6 +84,8 @@ public class Propiedad implements Serializable{
 					JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
 					dirFotoThumb = jsonThumb.getString("url");
 					dirFotoCompleta = jsonNombre.getString("url");
+		//			String imageUrlThumb =  "http://" + Constantes.IPSERVER	+ dirFotoThumb;
+		//			String imageUrlCompleta = "http://" + Constantes.IPSERVER	+ dirFotoCompleta;
 					String imageUrlThumb =  Constantes.DIRSERVER	+ dirFotoThumb;
 					String imageUrlCompleta = Constantes.DIRSERVER	+ dirFotoCompleta;
 					URL url;					

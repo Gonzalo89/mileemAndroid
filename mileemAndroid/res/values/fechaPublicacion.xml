@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fecha_publicacion_array">
+        <item>Fecha Publicación</item>
+        <item>Última semana</item>
+        <item>Último mes </item>
+        <item>Últimos 3 meses</item>
+        <item>Últimos 6 meses</item>
+    </string-array>     
+</resources>
