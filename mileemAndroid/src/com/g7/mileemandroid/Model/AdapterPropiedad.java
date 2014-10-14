@@ -57,6 +57,8 @@ public class AdapterPropiedad extends BaseAdapter {
  //     foto.setImageDrawable(propiedad.getFoto());
         if(propiedad.getCantFotos() > 0)
         	foto.setImageBitmap(propiedad.getFotosThumb()[0]);
+        else
+        	foto.setImageResource(R.drawable.ic_launcher);
         //Rellenamos el textos
         TextView nombre = (TextView) v.findViewById(R.id.direccionLista);
         nombre.setText(propiedad.getDireccion());        
