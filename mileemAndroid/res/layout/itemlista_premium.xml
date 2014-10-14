@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minHeight="50dp" 
+    android:background="#6495ed" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imagenPropiedad"
+        android:orientation="vertical" >
+        
+<!--         <TextView
+                android:id="@+id/direccionLista"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:text="@string/Direccion" />
+		
+		<TextView
+                android:id="@+id/superficieLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:text="@string/Superficie" />
+
+        <TextView
+                android:id="@+id/ambientesLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Ambientes" /> -->
+
+        <TextView
+            android:id="@+id/direccionLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Direccion"
+            android:textColor="#f0ffff"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/superficieLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Superficie" />
+
+        <TextView
+            android:id="@+id/ambientesLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ambientes" />
+
+        <TextView
+            android:id="@+id/precioLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio"
+            android:textColor="#a52a2a"
+            android:textSize="15sp" />
+        
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imagenPropiedad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/linearLayout1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_launcher" />
+
+</RelativeLayout>
