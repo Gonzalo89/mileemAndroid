@@ -23,13 +23,14 @@ public class Propiedad implements Serializable{
 	private String descripcion;
 	private int antiguedad;
 	private String tipoOperacion;
+	private String tipoPropiedad;
+	private String tipoPublicacion;
 	private int precio;
 	private int superficie;
 	private int ambientes;
 	private int dormitorios;
 	private int expensas;
 	private String barrio;
-	private String tipoPropiedad;
 	private int supNCubierta;
 	private int numero;
 	private String piso ;
@@ -163,6 +164,11 @@ public class Propiedad implements Serializable{
 				this.latitud = json.getString("latitude");
 			if (!json.isNull("longitude"))
 				this.longitud = json.getString("longitude");
+			if (!json.isNull("tipo_publicacion"))
+				this.tipoPublicacion = json.getString("tipo_publicacion");
+			else
+				this.tipoPublicacion = "Gratuita";
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -314,6 +320,10 @@ public class Propiedad implements Serializable{
 
 	public int getNumero() {
 		return numero;
+	}
+	
+	public String getTipoPublicacion() {
+		return tipoPublicacion;
 	}
 
 	public void setNumero(int numero) {
