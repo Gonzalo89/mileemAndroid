@@ -2,25 +2,97 @@ package com.g7.mileemandroid;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 
 import com.g7.mileemandroid.Activites.ListaPropiedadesActivity;
-import com.g7.mileemandroid.Activites.MapaActivity;
+import com.g7.mileemandroid.Model.FiltroSingleton;
 
 
 public class MainActivity extends ActionBarActivity {
-
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+	private Button bAlquiler;
+	private Button bCompra;
+	private Button bATemporal;
 	
-    @Override
+    @Override 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("  Mileem");
+        Button bBuscar = (Button)findViewById(R.id.buscarButton);
+        bBuscar.setBackgroundColor(Color.RED);
+        bATemporal = (Button)findViewById(R.id.bATemporal);
+        bCompra = (Button)findViewById(R.id.bCompra);
+        bAlquiler = (Button)findViewById(R.id.bAlquiler);
+        bAlquiler.setSelected(true);
+        
+		ArrayAdapter<CharSequence> aBarrio = ArrayAdapter.createFromResource(this,
+				R.array.barrios_array, android.R.layout.simple_spinner_item);
+		Spinner sBarrio = (Spinner)findViewById(R.id.sPrecio);		 
+		aBarrio.setDropDownViewResource(
+		        android.R.layout.simple_spinner_dropdown_item);		 
+		sBarrio.setAdapter(aBarrio);
+		sBarrio.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+		    public void onItemSelected(AdapterView<?> parent, View view, 
+		            int pos, long id) {
+		       Log.d("Barrio", "Barrio id: "+ id);
+		       FiltroSingleton.getInstance().setBarrio(id);
+		    }
+			@Override
+		    public void onNothingSelected(AdapterView<?> parent) {
+		        // Another interface callback
+		    }			
+		} );
+		
+		ArrayAdapter<CharSequence> aTProp = ArrayAdapter.createFromResource(this,
+				R.array.tPropiedadd_array, android.R.layout.simple_spinner_item);
+		Spinner sTPropiedad = (Spinner)findViewById(R.id.sTPropiedad);		 
+		aTProp.setDropDownViewResource(
+		        android.R.layout.simple_spinner_dropdown_item);		 
+		sTPropiedad.setAdapter(aTProp);	
+		sTPropiedad.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+		    public void onItemSelected(AdapterView<?> parent, View view, 
+		            int pos, long id) {
+		       Log.d("T. Propiedad", "T. Prop id: "+ id);
+		       FiltroSingleton.getInstance().settPropiedad(id);
+		    }
+			@Override
+		    public void onNothingSelected(AdapterView<?> parent) {
+		        // Another interface callback
+		    }			
+		} );
+
+		ArrayAdapter<CharSequence> aAmbientes = ArrayAdapter.createFromResource(this,
+				R.array.ambientes_array, android.R.layout.simple_spinner_item);
+		Spinner sAmbientes = (Spinner)findViewById(R.id.sAmbientes);		 
+		aAmbientes.setDropDownViewResource(
+		        android.R.layout.simple_spinner_dropdown_item);		 
+		sAmbientes.setAdapter(aAmbientes);
+		sAmbientes.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+		    public void onItemSelected(AdapterView<?> parent, View view, 
+		            int pos, long id) {
+		       Log.d("Ambientes", "Ambientes id: "+ id);
+		       FiltroSingleton.getInstance().setAmbientes(id);
+		    }
+			@Override
+		    public void onNothingSelected(AdapterView<?> parent) {
+		        // Another interface callback
+		    }			
+		} );		
     }
 
 
@@ -43,8 +115,30 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     
+    public void onClickAlquiler(View v) {
+    	bAlquiler.setSelected(true);
+    	bATemporal.setSelected(false);
+    	bCompra.setSelected(false);
+    	FiltroSingleton.getInstance().setOperacion(2);//TODO No harcodear numeros
+    }
+ 
+    public void onClickATemporal(View v) {
+    	bAlquiler.setSelected(false);
+    	bATemporal.setSelected(true);
+    	bCompra.setSelected(false);
+    	FiltroSingleton.getInstance().setOperacion(3);
+    }
+
+    public void onClickCompra(View v) {
+    	bAlquiler.setSelected(false);
+    	bATemporal.setSelected(false);
+    	bCompra.setSelected(true);
+    	FiltroSingleton.getInstance().setOperacion(1);
+    }
+    
     public void buscarPropiedades(View view) {    	
-    	Intent intent = new Intent(this, ListaPropiedadesActivity.class);    
+    	Intent intent = new Intent(this, ListaPropiedadesActivity.class); 
+    //	Intent intent = new Intent(this, FiltrosActivity.class);
     	String message = "Mensaje a el Listing";
     	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);

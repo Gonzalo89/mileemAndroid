@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ import android.widget.ListView;
 import com.g7.mileemandroid.R;
 import com.g7.mileemandroid.Model.AdapterPropiedad;
 import com.g7.mileemandroid.Model.Constantes;
+import com.g7.mileemandroid.Model.FiltroSingleton;
 import com.g7.mileemandroid.Model.Propiedad;
 import com.g7.mileemandroid.Model.PropiedadSingleton;
 
@@ -55,8 +57,24 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setTitle("  Propiedades Disponibles");		
 		
-		//String url = "http://" + Constantes.IPSERVER + ":3000/api/mostrarJson";
-		String url = Constantes.DIRJSON;
+		//String url = "http://" + Constantes.IPSERVER + Constantes.DIRFILTRO;
+		String url = Constantes.DIRSERVER + Constantes.DIRFILTRO;
+		FiltroSingleton filtro = FiltroSingleton.getInstance();
+		url += "operacionId=" + filtro.getOperacion();
+		
+		if(filtro.getBarrio() != 0)
+			url += "&barrioId="+ filtro.getBarrio();
+		if(filtro.gettPropiedad() != 0)
+			url += "&tipoPropiedadId="+ filtro.gettPropiedad();
+		if(filtro.getAmbientes() != 0)
+			url += "&codAmb="+ filtro.getAmbientes();		
+		if(filtro.getPrecio() != 0)
+			url += "&codPrecio="+ filtro.getPrecio();
+		if(filtro.getOrden() != 0)
+			url += "&codOrd="+ filtro.getOrden();
+		if(filtro.getFechaPublicacion() != 0)
+			url += "&codFecha="+ filtro.getFechaPublicacion();		
+		
 		loadingSpinner = new ProgressDialog(this);
 		loadingSpinner.setMessage("Procesando...");
 		loadingSpinner.setCancelable(false);
@@ -92,6 +110,18 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.MnuFiltro:
+			Log.d("Boton", "Apreto menu filtro");
+			Intent intent = new Intent(this, FiltrosActivity.class);
+			startActivity(intent);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 	
 	private String downloadJson( String url ) throws ClientProtocolException, IOException {
 		
@@ -131,7 +161,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		}
 		return arrayProp;
 	}
-    private class PropiedadesTask extends AsyncTask<String, Void, String> {
+    private class PropiedadesTask extends AsyncTask<String, Void, ArrayList<Propiedad>> {
     	
     	Context context;
         
@@ -141,10 +171,10 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
         }
     	
        @Override
-       protected String doInBackground(String... urls) {
+       protected ArrayList<Propiedad> doInBackground(String... urls) {
            // params comes from the execute() call: params[0] is the url.
-           try {
-        	   	return downloadJson( urls[0]);
+           try {        	   
+        	   	return  parsearPropiedadesJson(downloadJson( urls[0]));
 	   		} catch (ClientProtocolException e) {
 	   			e.printStackTrace();
 	   		} catch (Exception e) {
@@ -155,8 +185,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
        
 		// onPostExecute displays the results of the AsyncTask.
 		@Override
-		protected void onPostExecute(String result) {
-			propiedades = parsearPropiedadesJson(result);
+		protected void onPostExecute(ArrayList<Propiedad> result) {
+			propiedades = result;
 			if (propiedades != null) {
 				AdapterPropiedad adapter = new AdapterPropiedad(
 						(Activity) this.context, propiedades);
