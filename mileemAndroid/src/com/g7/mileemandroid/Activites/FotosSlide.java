@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.ViewSwitcher.ViewFactory;
 
 import com.g7.mileemandroid.R;
@@ -31,7 +32,11 @@ public class FotosSlide extends ActionBarActivity {
 		imageSwitcher.setFactory(new ViewFactory() {
 
 			public View makeView() {
-				return new ImageView(FotosSlide.this);
+				ImageView iv = new ImageView(FotosSlide.this);
+		//		iv.setScaleType(ScaleType.CENTER);
+				iv.setAdjustViewBounds(true);
+
+				return iv;
 			}
 		});
 
