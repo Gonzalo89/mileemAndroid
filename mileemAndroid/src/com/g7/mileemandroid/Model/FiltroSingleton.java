@@ -89,4 +89,17 @@ public class FiltroSingleton {
 		this.tPropiedad = 0;
 		this.ambientes = 0;
 	}
+	
+	public void resetFiltroSecundario() {
+		this.precio = 0;
+		this.supCubierta = 0;
+		this.fechaPublicacion = 0;
+		this.orden = 0;
+	}
+
+	public void resetAll() {
+		this.resetFiltroPrimario();
+		this.resetFiltroSecundario();
+		
+	}
 }

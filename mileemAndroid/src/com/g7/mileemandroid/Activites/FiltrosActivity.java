@@ -22,6 +22,7 @@ public class FiltrosActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_filtros);
+		FiltroSingleton.getInstance().resetFiltroSecundario();
         Button bBuscar = (Button)findViewById(R.id.filtroBuscar);
         bBuscar.setBackgroundColor(Color.BLUE);
         bBuscar.setTextColor(Color.WHITE);
@@ -102,12 +103,12 @@ public class FiltrosActivity extends ActionBarActivity {
 		} );		
 	}
 
-	@Override
+/*	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.filtros, menu);
 		return true;
-	}
+	}*/
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
