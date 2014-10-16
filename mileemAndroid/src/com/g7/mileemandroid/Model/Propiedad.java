@@ -25,6 +25,7 @@ public class Propiedad implements Serializable{
 	private String tipoOperacion;
 	private String tipoPropiedad;
 	private String tipoPublicacion;
+	private int tipoPublicacionId;
 	private int precio;
 	private int superficie;
 	private int ambientes;
@@ -150,6 +151,8 @@ public class Propiedad implements Serializable{
 				this.latitud = json.getString("latitude");
 			if (!json.isNull("longitude"))
 				this.longitud = json.getString("longitude");
+			if (!json.isNull("tipo_publicacion_id"))
+				this.tipoPublicacionId = json.getInt("tipo_publicacion_id");
 			if (!json.isNull("tipo_publicacion"))
 				this.tipoPublicacion = json.getString("tipo_publicacion");
 			else
@@ -342,6 +345,18 @@ public class Propiedad implements Serializable{
 
 	public Bitmap[] getFotosCompleta() {
 		return fotosCompleta;
+	}
+
+	public int getTipoPublicacionId() {
+		return tipoPublicacionId;
+	}
+
+	public void setTipoPublicacionId(int tipoPublicacionId) {
+		this.tipoPublicacionId = tipoPublicacionId;
+	}
+
+	public void setTipoPublicacion(String tipoPublicacion) {
+		this.tipoPublicacion = tipoPublicacion;
 	}
 	
 }
