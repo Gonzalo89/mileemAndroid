@@ -19,7 +19,9 @@
         android:id="@+id/imagenDetalle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
         android:layout_weight="1"
+        android:minHeight="100sp"
         android:onClick="onClickVerFotos"
         android:src="@drawable/ic_launcher" />
 

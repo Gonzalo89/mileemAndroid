@@ -3,14 +3,12 @@ package com.g7.mileemandroid.Activites;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.ViewSwitcher.ViewFactory;
 
 import com.g7.mileemandroid.R;
@@ -51,12 +49,12 @@ public class FotosSlide extends ActionBarActivity {
 		}
 	}
 
-	@Override
+/*	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.fotos_slide, menu);
 		return true;
-	}
+	}*/
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
