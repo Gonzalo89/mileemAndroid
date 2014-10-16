@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:minHeight="50dp" 
+    android:minHeight="60dp" 
     android:background="#dedede" >
 
     <LinearLayout
@@ -46,7 +46,7 @@
             android:id="@+id/superficieLista"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="superficie" />
+            android:text="Superficie" />
 
         <TextView
             android:id="@+id/ambientesLista"
@@ -69,6 +69,7 @@
         android:layout_alignBottom="@+id/linearLayout1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:minWidth="106dp"
         android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>

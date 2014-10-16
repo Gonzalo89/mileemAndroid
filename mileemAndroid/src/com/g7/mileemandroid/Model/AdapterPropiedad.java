@@ -16,9 +16,9 @@ import android.widget.TextView;
 public class AdapterPropiedad extends BaseAdapter {
 
 	private static int TYPE_COUNT = 3;
-	private static final int ID_TYPE_GRATUITA = 1;
-	private static final int ID_TYPE_BASICA = 2;
-	private static final int ID_TYPE_PREMIUM = 3;
+	private static final int ID_TYPE_GRATUITA = 0;
+	private static final int ID_TYPE_BASICA = 1;
+	private static final int ID_TYPE_PREMIUM = 2;
 	private static final String TYPE_GRATUITA = "Gratuita";
 	private static final String TYPE_BASICA = "Básica";
 	private static final String TYPE_PREMIUM = "Premium";
