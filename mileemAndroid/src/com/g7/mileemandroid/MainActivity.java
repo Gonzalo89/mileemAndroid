@@ -27,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("  Mileem");
+        FiltroSingleton.getInstance().resetAll();
         Button bBuscar = (Button)findViewById(R.id.buscarButton);
         bBuscar.setBackgroundColor(Color.BLUE);
         bBuscar.setTextColor(Color.WHITE);
@@ -99,7 +100,7 @@ public class MainActivity extends ActionBarActivity {
 		    public void onItemSelected(AdapterView<?> parent, View view, 
 		            int pos, long id) {
 		       Log.d("TOperacion", "TOperacion id: "+ id);
-		       FiltroSingleton.getInstance().setAmbientes(id);
+		       FiltroSingleton.getInstance().setOperacion(id);
 		    }
 			@Override
 		    public void onNothingSelected(AdapterView<?> parent) {
@@ -109,12 +110,12 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    @Override
+ /*   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

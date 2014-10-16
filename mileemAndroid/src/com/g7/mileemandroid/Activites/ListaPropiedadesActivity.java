@@ -83,6 +83,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		loadingSpinner.setMessage("Procesando...");
 		loadingSpinner.setCancelable(false);
 		loadingSpinner.show();
+		Log.d("Envio", "Pericion: " + url);
 		new PropiedadesTask(this).execute( url );
 	}
 
