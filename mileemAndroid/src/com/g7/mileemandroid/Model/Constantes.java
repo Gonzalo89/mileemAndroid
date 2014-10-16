@@ -5,4 +5,5 @@ public class Constantes {
 	public static String DIRJSON = "http://young-tundra-9853.herokuapp.com/api/mostrarjson";
 	public static String DIRSERVER = "http://young-tundra-9853.herokuapp.com";	
 	public static String DIRFILTRO = "/propiedads/filtro.json?";
+	public static boolean WEB = true;
 }

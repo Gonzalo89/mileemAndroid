@@ -56,9 +56,13 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_lista_propiedades);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setTitle("  Propiedades Disponibles");		
+		String url = "";
 		
-		//String url = "http://" + Constantes.IPSERVER + Constantes.DIRFILTRO;
-		String url = Constantes.DIRSERVER + Constantes.DIRFILTRO;
+		if(Constantes.WEB)
+			url = Constantes.DIRSERVER + Constantes.DIRFILTRO;
+		else
+			url = "http://" + Constantes.IPSERVER + Constantes.DIRFILTRO;
+		
 		FiltroSingleton filtro = FiltroSingleton.getInstance();
 		url += "operacionId=" + filtro.getOperacion();
 		
