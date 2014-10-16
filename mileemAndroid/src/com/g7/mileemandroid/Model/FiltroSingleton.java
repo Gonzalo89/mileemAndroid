@@ -5,7 +5,7 @@ public class FiltroSingleton {
 	private long barrio = 0;
 	private long tPropiedad = 0;
 	private long ambientes = 0;
-	private long operacion = 2; //para que empiece elegido alquiler
+	private long operacion = 0;
 	private long precio = 0;
 	private long supCubierta = 0;
 	private long fechaPublicacion = 0;
@@ -82,5 +82,13 @@ public class FiltroSingleton {
 	public void setOrden(long orden) {
 		this.orden = orden;
 	}
+	
+	public void resetFiltroPrimario() {
+		this.barrio = 0;
+		this.operacion = 0;
+		this.tPropiedad = 0;
+		this.ambientes = 0;
+	}
+	
 
 }

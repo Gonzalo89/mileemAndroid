@@ -64,8 +64,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			url = "http://" + Constantes.IPSERVER + Constantes.DIRFILTRO;
 		
 		FiltroSingleton filtro = FiltroSingleton.getInstance();
-		url += "operacionId=" + filtro.getOperacion();
-		
+		if(filtro.getOperacion() != 0)
+			url += "&operacionId=" + filtro.getOperacion();		
 		if(filtro.getBarrio() != 0)
 			url += "&barrioId="+ filtro.getBarrio();
 		if(filtro.gettPropiedad() != 0)
