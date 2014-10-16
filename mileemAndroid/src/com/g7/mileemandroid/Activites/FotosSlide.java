@@ -41,7 +41,7 @@ public class FotosSlide extends ActionBarActivity {
 		imageSwitcher.setInAnimation(fadeIn);
 		imageSwitcher.setOutAnimation(fadeOut);
 		if (cantFotos > 0) {
-			imageSwitcher.setImageDrawable(new BitmapDrawable(propiedad
+			imageSwitcher.setImageDrawable(new BitmapDrawable(this.getResources(), propiedad
 					.getFotosCompleta()[position]));
 		}
 	}
@@ -72,7 +72,7 @@ public class FotosSlide extends ActionBarActivity {
 			position = 0;
 		}
 		if (propiedad.getFotosCompleta() != null)
-			imageSwitcher.setImageDrawable(new BitmapDrawable(propiedad
+			imageSwitcher.setImageDrawable(new BitmapDrawable(this.getResources(), propiedad
 					.getFotosCompleta()[position]));
 	}
 }
