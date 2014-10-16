@@ -44,26 +44,6 @@ public class Propiedad implements Serializable{
 	private long id;
 	protected static long contador = 0;
 	
-/*	public Propiedad(String direccion, String descripcion, int antiguedad,
-			String tipoOperacion, int precio, int superficie, int ambientes,
-			int dormitorios, int expensas, String barrio, String tipoPropiedad,
-			Bitmap[] fotos) {
-		super();
-		this.direccion = direccion;
-		this.descripcion = descripcion;
-		this.antiguedad = antiguedad;
-		this.tipoOperacion = tipoOperacion;
-		this.precio = precio;
-		this.superficie = superficie;
-		this.ambientes = ambientes;
-		this.dormitorios = dormitorios;
-		this.expensas = expensas;
-		this.barrio = barrio;
-		this.tipoPropiedad = tipoPropiedad;
-		this.fotos = fotos;
-		this.id = ++Propiedad.contador;
-	}	*/
-	
 	public Propiedad(JSONObject json) {
 		String dirFotoThumb;
 		String dirFotoCompleta;
@@ -84,10 +64,16 @@ public class Propiedad implements Serializable{
 					JSONObject jsonThumb = jsonNombre.getJSONObject("thumb");
 					dirFotoThumb = jsonThumb.getString("url");
 					dirFotoCompleta = jsonNombre.getString("url");
-		//			String imageUrlThumb =  "http://" + Constantes.IPSERVER	+ dirFotoThumb;
-		//			String imageUrlCompleta = "http://" + Constantes.IPSERVER	+ dirFotoCompleta;
-					String imageUrlThumb =  Constantes.DIRSERVER	+ dirFotoThumb;
-					String imageUrlCompleta = Constantes.DIRSERVER	+ dirFotoCompleta;
+					String imageUrlThumb = "";
+					String imageUrlCompleta = "";					
+					if (Constantes.WEB) {
+						imageUrlThumb =  Constantes.DIRSERVER	+ dirFotoThumb;
+						imageUrlCompleta = Constantes.DIRSERVER	+ dirFotoCompleta;						
+					} else {
+						imageUrlThumb =  "http://" + Constantes.IPSERVER	+ dirFotoThumb;
+						imageUrlCompleta = "http://" + Constantes.IPSERVER	+ dirFotoCompleta;					
+					}
+
 					URL url;					
 					try {
 						//Obtengo fotoThumb						
