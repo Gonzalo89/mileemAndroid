@@ -28,7 +28,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         setTitle("  Mileem");
         Button bBuscar = (Button)findViewById(R.id.buscarButton);
-        bBuscar.setBackgroundColor(Color.RED);
+        bBuscar.setBackgroundColor(Color.BLUE);
+        bBuscar.setTextColor(Color.WHITE);
         
 		ArrayAdapter<CharSequence> aBarrio = ArrayAdapter.createFromResource(this,
 				R.array.barrios_array, android.R.layout.simple_spinner_item);

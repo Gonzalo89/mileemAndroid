@@ -23,7 +23,8 @@ public class FiltrosActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_filtros);
         Button bBuscar = (Button)findViewById(R.id.filtroBuscar);
-        bBuscar.setBackgroundColor(Color.RED);
+        bBuscar.setBackgroundColor(Color.BLUE);
+        bBuscar.setTextColor(Color.WHITE);
 		ArrayAdapter<CharSequence> aPrecio = ArrayAdapter.createFromResource(this,
 				R.array.precios_array, android.R.layout.simple_spinner_item);
 		Spinner sPrecio = (Spinner)findViewById(R.id.sPrecio);		 
