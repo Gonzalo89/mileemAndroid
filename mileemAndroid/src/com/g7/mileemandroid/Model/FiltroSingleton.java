@@ -89,6 +89,4 @@ public class FiltroSingleton {
 		this.tPropiedad = 0;
 		this.ambientes = 0;
 	}
-	
-
 }
