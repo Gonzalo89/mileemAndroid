@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tOperaciones_array">
+        <item>T. Operación</item>
+        <item>Compra</item>
+        <item>Alquiler</item>
+        <item>A. Temportal</item> 
+    </string-array>       
+</resources>

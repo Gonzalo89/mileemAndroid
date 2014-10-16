@@ -35,44 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp" />
 
-    <LinearLayout
+    <Spinner
+        android:id="@+id/sTOperacion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/bCompra"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_weight="1"
-            android:maxLines="1"
-            android:onClick="onClickCompra"
-            android:text="@string/Compra" />
-
-        <Button
-            android:id="@+id/bAlquiler"
-            style="android:buttonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="0dp"
-            android:layout_weight="1"
-            android:maxLines="1"
-            android:onClick="onClickAlquiler"
-            android:text="@string/Alquiler" />
-
-        <Button
-            android:id="@+id/bATemporal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_weight="1.30"
-            android:maxLines="1"
-            android:onClick="onClickATemporal"
-            android:text="@string/AlquilerTemporal" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"

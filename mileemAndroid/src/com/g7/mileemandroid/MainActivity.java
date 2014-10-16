@@ -21,9 +21,6 @@ import com.g7.mileemandroid.Model.FiltroSingleton;
 
 public class MainActivity extends ActionBarActivity {
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-	private Button bAlquiler;
-	private Button bCompra;
-	private Button bATemporal;
 	
     @Override 
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +29,6 @@ public class MainActivity extends ActionBarActivity {
         setTitle("  Mileem");
         Button bBuscar = (Button)findViewById(R.id.buscarButton);
         bBuscar.setBackgroundColor(Color.RED);
-        bATemporal = (Button)findViewById(R.id.bATemporal);
-        bCompra = (Button)findViewById(R.id.bCompra);
-        bAlquiler = (Button)findViewById(R.id.bAlquiler);
-        bAlquiler.setSelected(true);
         
 		ArrayAdapter<CharSequence> aBarrio = ArrayAdapter.createFromResource(this,
 				R.array.barrios_array, android.R.layout.simple_spinner_item);
@@ -92,6 +85,25 @@ public class MainActivity extends ActionBarActivity {
 		    public void onNothingSelected(AdapterView<?> parent) {
 		        // Another interface callback
 		    }			
+		} );
+		
+		ArrayAdapter<CharSequence> aTOperaciones = ArrayAdapter.createFromResource(this,
+				R.array.tOperaciones_array, android.R.layout.simple_spinner_item);
+		Spinner sTOperaciones = (Spinner)findViewById(R.id.sTOperacion);		 
+		aTOperaciones.setDropDownViewResource(
+		        android.R.layout.simple_spinner_dropdown_item);		 
+		sTOperaciones.setAdapter(aTOperaciones);
+		sTOperaciones.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+		    public void onItemSelected(AdapterView<?> parent, View view, 
+		            int pos, long id) {
+		       Log.d("TOperacion", "TOperacion id: "+ id);
+		       FiltroSingleton.getInstance().setAmbientes(id);
+		    }
+			@Override
+		    public void onNothingSelected(AdapterView<?> parent) {
+		        // Another interface callback
+		    }			
 		} );		
     }
 
@@ -113,28 +125,7 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-    
-    public void onClickAlquiler(View v) {
-    	bAlquiler.setSelected(true);
-    	bATemporal.setSelected(false);
-    	bCompra.setSelected(false);
-    	FiltroSingleton.getInstance().setOperacion(2);//TODO No harcodear numeros
-    }
- 
-    public void onClickATemporal(View v) {
-    	bAlquiler.setSelected(false);
-    	bATemporal.setSelected(true);
-    	bCompra.setSelected(false);
-    	FiltroSingleton.getInstance().setOperacion(3);
-    }
-
-    public void onClickCompra(View v) {
-    	bAlquiler.setSelected(false);
-    	bATemporal.setSelected(false);
-    	bCompra.setSelected(true);
-    	FiltroSingleton.getInstance().setOperacion(1);
-    }
+    }  
     
     public void buscarPropiedades(View view) {    	
     	Intent intent = new Intent(this, ListaPropiedadesActivity.class); 
