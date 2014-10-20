@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickContactar"
-            android:src="@drawable/ic_action_user" />
+            android:src="@drawable/ic_action_email" />
 
         <ImageButton
             android:id="@+id/contactoCompartir"
@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickPhoneCall"
-            android:src="@drawable/ic_action_share" />
+            android:src="@drawable/ic_action_call" />
 
     </LinearLayout>
 

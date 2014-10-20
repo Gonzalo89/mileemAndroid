@@ -69,8 +69,8 @@ public class DetallePropiedad extends ActionBarActivity {
 		listaAtributos.add(new AtributoPropiedad("Sup. no Cubierta",  propiedad.getSupNCubierta() + "m2"));
 		listaAtributos.add(new AtributoPropiedad("Ambientes" , Integer.toString(propiedad.getAmbientes())));
 		listaAtributos.add(new AtributoPropiedad("Dormitorios", Integer.toString(propiedad.getDormitorios())));		
-		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " aï¿½os"));
-		listaAtributos.add(new AtributoPropiedad("Tipo Operaciï¿½n",propiedad.getTipoOperacion()));
+		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " años"));
+		listaAtributos.add(new AtributoPropiedad("Tipo Operación",propiedad.getTipoOperacion()));
 		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
 		listaAtributos.add(new AtributoPropiedad("Expensas", "$" + propiedad.getExpensas()));
 			
@@ -150,7 +150,7 @@ public class DetallePropiedad extends ActionBarActivity {
 			intent.putExtra("Descripcion", propiedad.getDescripcion());
 			startActivity(intent);		
 		}else {
-			Toast.makeText(this, "No hay localizaciÃ³n cargada", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "No hay localización cargada", Toast.LENGTH_SHORT).show();
 		}		
 	}
 	
@@ -187,7 +187,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	public void onClickPhoneCall(View view) {
 		
 		  if (propiedad.getTelefono() == null) {
-		         Toast.makeText(this, "Telefono no disponible", Toast.LENGTH_SHORT).show();
+		         Toast.makeText(this, "Teléfono no disponible", Toast.LENGTH_SHORT).show();
 		         return;
 		  }
 		  
