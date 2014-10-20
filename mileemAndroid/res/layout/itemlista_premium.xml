@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+    	android:paddingLeft="10dip"
         android:layout_toRightOf="@+id/imagenPropiedad"
         android:orientation="vertical" >
         
@@ -50,7 +51,9 @@
         android:layout_alignBottom="@+id/linearLayout1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:minWidth="106dp"
+        android:minWidth="150dp"
+        android:maxWidth="150dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>
