@@ -113,6 +113,7 @@ public class Propiedad implements Serializable{
 			
 			JSONArray jsonAmenities = json.getJSONArray("amenities");
 			this.amenities = new ArrayList<String>();
+			
 			JSONObject jsonUser = json.getJSONObject("user");
 			if (!jsonUser.isNull("telefono"))
 				this.telefono = jsonUser.getString("telefono");

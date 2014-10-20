@@ -162,17 +162,22 @@ public class DetallePropiedad extends ActionBarActivity {
 		  }
 		  
 	      String[] TO = {propiedad.getEmail()};
-	      Intent emailIntent = new Intent(Intent.ACTION_SEND);
-	      emailIntent.setData(Uri.parse("mailto:"));
-	      emailIntent.setType("text/plain");
-
-	      emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+	      
+	      Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",propiedad.getEmail(), null));
 	      emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[Contacto Mileem]");
-	      emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+//	      startActivity(Intent.createChooser(emailIntent, "Enviar email..."));
+	      
+//	      Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+//	      emailIntent.setData(Uri.parse("mailto:"));
+//	      emailIntent.setType("text/plain");
+
+//	      emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//	      emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[Contacto Mileem]");
+//	      emailIntent.putExtra(Intent.EXTRA_TEXT, "");
 
 	      try {
-	         startActivity(Intent.createChooser(emailIntent, "Enviando email..."));
-	         finish();
+	         startActivity(Intent.createChooser(emailIntent, "Enviar email"));
+//	         finish();
 	         Log.i("Email Enviado", "");
 	      } catch (android.content.ActivityNotFoundException ex) {
 	         Toast.makeText(this, "No se encontraron clientes.", Toast.LENGTH_SHORT).show();
