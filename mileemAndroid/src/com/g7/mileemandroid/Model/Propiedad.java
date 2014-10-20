@@ -113,6 +113,11 @@ public class Propiedad implements Serializable{
 			
 			JSONArray jsonAmenities = json.getJSONArray("amenities");
 			this.amenities = new ArrayList<String>();
+			JSONObject jsonUser = json.getJSONObject("user");
+			if (!jsonUser.isNull("telefono"))
+				this.telefono = jsonUser.getString("telefono");
+			if (!jsonUser.isNull("email"))
+				this.email = jsonUser.getString("email");
 
 			for (int i = 0; i < jsonAmenities.length(); i++) {
 				this.amenities.add(jsonAmenities.getJSONObject(i).getString(
@@ -161,10 +166,6 @@ public class Propiedad implements Serializable{
 				this.tipoPublicacion = json.getString("tipo_publicacion");
 			else
 				this.tipoPublicacion = "Gratuita";
-			if (!json.isNull("telefono"))
-				this.telefono = json.getString("telefono");
-			if (!json.isNull("email"))
-				this.email = json.getString("email");
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
