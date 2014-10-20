@@ -45,10 +45,14 @@ public class Propiedad implements Serializable{
 	private String longitud;
 	private long id;
 	protected static long contador = 0;
+	private String telefono;
+	private String email;
 	
 	public Propiedad(JSONObject json) {
+		
 		String dirFotoThumb;
 		String dirFotoCompleta;
+		
 		try {
 			JSONArray jsonFotos = json.getJSONArray("fotos");
 			this.fotosThumb = null;
@@ -157,6 +161,10 @@ public class Propiedad implements Serializable{
 				this.tipoPublicacion = json.getString("tipo_publicacion");
 			else
 				this.tipoPublicacion = "Gratuita";
+			if (!json.isNull("telefono"))
+				this.telefono = json.getString("telefono");
+			if (!json.isNull("email"))
+				this.email = json.getString("email");
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -295,6 +303,12 @@ public class Propiedad implements Serializable{
 		return departamento;
 	}
 
+	public String getTelefono() {
+		return telefono;
+	}
+	public String getEmail() {
+		return email;
+	}
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}

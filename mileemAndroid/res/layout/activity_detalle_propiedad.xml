@@ -107,6 +107,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onClickContactar"
             android:src="@drawable/ic_action_user" />
 
         <ImageButton
@@ -115,6 +116,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onClickPhoneCall"
             android:src="@drawable/ic_action_share" />
 
     </LinearLayout>
