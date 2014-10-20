@@ -3,9 +3,13 @@ package com.g7.mileemandroid.Activites;
 import java.util.ArrayList;
 
 import android.app.ActionBar.LayoutParams;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.MeasureSpec;
@@ -24,6 +28,7 @@ import com.g7.mileemandroid.Model.Propiedad;
 import com.g7.mileemandroid.Model.PropiedadSingleton;
 
 public class DetallePropiedad extends ActionBarActivity {
+	
 	private Propiedad propiedad;
 	
 	@Override
@@ -64,8 +69,8 @@ public class DetallePropiedad extends ActionBarActivity {
 		listaAtributos.add(new AtributoPropiedad("Sup. no Cubierta",  propiedad.getSupNCubierta() + "m2"));
 		listaAtributos.add(new AtributoPropiedad("Ambientes" , Integer.toString(propiedad.getAmbientes())));
 		listaAtributos.add(new AtributoPropiedad("Dormitorios", Integer.toString(propiedad.getDormitorios())));		
-		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " años"));
-		listaAtributos.add(new AtributoPropiedad("Tipo Operación",propiedad.getTipoOperacion()));
+		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " aï¿½os"));
+		listaAtributos.add(new AtributoPropiedad("Tipo Operaciï¿½n",propiedad.getTipoOperacion()));
 		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
 		listaAtributos.add(new AtributoPropiedad("Expensas", "$" + propiedad.getExpensas()));
 			
@@ -73,9 +78,12 @@ public class DetallePropiedad extends ActionBarActivity {
 		AdapterDetallePropiedad adapter = new AdapterDetallePropiedad(this, listaAtributos);
 		listView.setAdapter(adapter);
 		
-		
 		setListViewHeightBasedOnChildren(listView);		
 
+		// Phone Call Listener
+		EndCallListener callListener = new EndCallListener();
+		TelephonyManager phoneManager = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+		phoneManager.listen(callListener, PhoneStateListener.LISTEN_CALL_STATE);
 	}
 
 /*	@Override
@@ -132,6 +140,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	}	
 	
 	public void onClickVerEnMapa(View view) {
+		
 		Log.d("Mapa", "Click en botonMapaDetalle");
 		if( this.propiedad.getLatitud() != null && this.propiedad.getLongitud() != null ) {			
 			Intent intent = new Intent(this, MapaActivity.class);
@@ -145,5 +154,72 @@ public class DetallePropiedad extends ActionBarActivity {
 		}		
 	}
 	
+	public void onClickContactar(View view) {
+
+		  if (propiedad.getEmail() == null) {
+		         Toast.makeText(this, "Email no disponible", Toast.LENGTH_SHORT).show();
+		         return;
+		  }
+		  
+	      String[] TO = {propiedad.getEmail()};
+	      
+	      Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",propiedad.getEmail(), null));
+	      emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[Contacto Mileem]");
+//	      startActivity(Intent.createChooser(emailIntent, "Enviar email..."));
+	      
+//	      Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+//	      emailIntent.setData(Uri.parse("mailto:"));
+//	      emailIntent.setType("text/plain");
+
+//	      emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//	      emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[Contacto Mileem]");
+//	      emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+
+	      try {
+	         startActivity(Intent.createChooser(emailIntent, "Enviar email"));
+//	         finish();
+	         Log.i("Email Enviado", "");
+	      } catch (android.content.ActivityNotFoundException ex) {
+	         Toast.makeText(this, "No se encontraron clientes.", Toast.LENGTH_SHORT).show();
+	      }
+	}
+	
+	public void onClickPhoneCall(View view) {
+		
+		  if (propiedad.getTelefono() == null) {
+		         Toast.makeText(this, "Telefono no disponible", Toast.LENGTH_SHORT).show();
+		         return;
+		  }
+		  
+		String urlPhone = "tel:" + propiedad.getTelefono();
+		Intent intent = new Intent( Intent.ACTION_CALL );
+		intent.setData( Uri.parse(urlPhone) );
+		this.startActivity(intent);
+	}
+	
+	
+	private class EndCallListener extends PhoneStateListener {
+	    
+		@Override
+	    public void onCallStateChanged(int state, String incomingNumber) {
+			
+	        if(TelephonyManager.CALL_STATE_RINGING == state) {
+	            Log.i("LOG_TAG", "RINGING, number: " + incomingNumber);
+	        }
+	        
+	        if(TelephonyManager.CALL_STATE_OFFHOOK == state) {
+	            //wait for phone to go offhook (probably set a boolean flag) so you know your app initiated the call.
+	            Log.i("LOG_TAG", "OFFHOOK");
+	        }
+	        
+	        if(TelephonyManager.CALL_STATE_IDLE == state) {
+	            //when this state occurs, and your flag is set, restart your app
+	            Log.i("LOG_TAG", "IDLE");
+	        }
+	    }
+	}
 	
 }
+	
+	
+

@@ -45,10 +45,14 @@ public class Propiedad implements Serializable{
 	private String longitud;
 	private long id;
 	protected static long contador = 0;
+	private String telefono;
+	private String email;
 	
 	public Propiedad(JSONObject json) {
+		
 		String dirFotoThumb;
 		String dirFotoCompleta;
+		
 		try {
 			JSONArray jsonFotos = json.getJSONArray("fotos");
 			this.fotosThumb = null;
@@ -109,6 +113,12 @@ public class Propiedad implements Serializable{
 			
 			JSONArray jsonAmenities = json.getJSONArray("amenities");
 			this.amenities = new ArrayList<String>();
+			
+			JSONObject jsonUser = json.getJSONObject("user");
+			if (!jsonUser.isNull("telefono"))
+				this.telefono = jsonUser.getString("telefono");
+			if (!jsonUser.isNull("email"))
+				this.email = jsonUser.getString("email");
 
 			for (int i = 0; i < jsonAmenities.length(); i++) {
 				this.amenities.add(jsonAmenities.getJSONObject(i).getString(
@@ -295,6 +305,12 @@ public class Propiedad implements Serializable{
 		return departamento;
 	}
 
+	public String getTelefono() {
+		return telefono;
+	}
+	public String getEmail() {
+		return email;
+	}
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
