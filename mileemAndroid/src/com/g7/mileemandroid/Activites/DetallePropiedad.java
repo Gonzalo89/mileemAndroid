@@ -64,15 +64,15 @@ public class DetallePropiedad extends ActionBarActivity {
 		
 		ArrayList<AtributoPropiedad> listaAtributos = new ArrayList<AtributoPropiedad>();
 
-		listaAtributos.add(new AtributoPropiedad("Barrio", propiedad.getBarrio()));
-		listaAtributos.add(new AtributoPropiedad("Superficie", propiedad.getSuperficie() + "m2"));
-		listaAtributos.add(new AtributoPropiedad("Sup. no Cubierta",  propiedad.getSupNCubierta() + "m2"));
-		listaAtributos.add(new AtributoPropiedad("Ambientes" , Integer.toString(propiedad.getAmbientes())));
-		listaAtributos.add(new AtributoPropiedad("Dormitorios", Integer.toString(propiedad.getDormitorios())));		
-		listaAtributos.add(new AtributoPropiedad("Antiguedad",propiedad.getAntiguedad() + " años"));
-		listaAtributos.add(new AtributoPropiedad("Tipo Operación",propiedad.getTipoOperacion()));
-		listaAtributos.add(new AtributoPropiedad("Tipo Propiedad",propiedad.getTipoPropiedad()));
-		listaAtributos.add(new AtributoPropiedad("Expensas", "$" + propiedad.getExpensas()));
+		listaAtributos.add(new AtributoPropiedad(getResources().getString(R.string.Barrio), propiedad.getBarrio()));
+		listaAtributos.add(new AtributoPropiedad(getResources().getString(R.string.Superficie), propiedad.getSuperficie() + getResources().getString(R.string.m2)));
+		listaAtributos.add(new AtributoPropiedad(getResources().getString(R.string.SuperficieNoCubierta),  propiedad.getSupNCubierta() + getResources().getString(R.string.m2)));
+		listaAtributos.add(new AtributoPropiedad(getResources().getString(R.string.Ambientes) , Integer.toString(propiedad.getAmbientes())));
+		listaAtributos.add(new AtributoPropiedad(getResources().getString(R.string.Dormitorios), Integer.toString(propiedad.getDormitorios())));		
+		listaAtributos.add(new AtributoPropiedad(getResources().getString(R.string.Antiguedad),propiedad.getAntiguedad() + " " +getResources().getString(R.string.anios)));
+		listaAtributos.add(new AtributoPropiedad(getResources().getString(R.string.TipoOperacion),propiedad.getTipoOperacion()));
+		listaAtributos.add(new AtributoPropiedad(getResources().getString(R.string.TipoPropiedad),propiedad.getTipoPropiedad()));
+		listaAtributos.add(new AtributoPropiedad(getResources().getString(R.string.Expensas), getResources().getString(R.string.SignoPesos) + propiedad.getExpensas()));
 			
 		ListView listView = (ListView) findViewById(R.id.listViewDetalle);
 		AdapterDetallePropiedad adapter = new AdapterDetallePropiedad(this, listaAtributos);
@@ -110,7 +110,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	    	Intent intent = new Intent(this, FotosSlide.class);
 	    	startActivity(intent);			
 		}else {
-			Toast.makeText(this, "No hay fotos cargadas", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, getResources().getString(R.string.NoHayFotosCargadas), Toast.LENGTH_SHORT).show();
 		}
 	}
 	
@@ -150,18 +150,18 @@ public class DetallePropiedad extends ActionBarActivity {
 			intent.putExtra("Descripcion", propiedad.getDescripcion());
 			startActivity(intent);		
 		}else {
-			Toast.makeText(this, "No hay localización cargada", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, getResources().getString(R.string.NoHayLocalizacionCargada), Toast.LENGTH_SHORT).show();
 		}		
 	}
 	
 	public void onClickContactar(View view) {
 
 		  if (propiedad.getEmail() == null) {
-		         Toast.makeText(this, "Email no disponible", Toast.LENGTH_SHORT).show();
+		         Toast.makeText(this, getResources().getString(R.string.EmailNoDisponible), Toast.LENGTH_SHORT).show();
 		         return;
 		  }
 		  
-	      String[] TO = {propiedad.getEmail()};
+	      //String[] TO = {propiedad.getEmail()};
 	      
 	      Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",propiedad.getEmail(), null));
 	      emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[Contacto Mileem]");
@@ -180,7 +180,7 @@ public class DetallePropiedad extends ActionBarActivity {
 //	         finish();
 	         Log.i("Email Enviado", "");
 	      } catch (android.content.ActivityNotFoundException ex) {
-	         Toast.makeText(this, "No se encontraron clientes.", Toast.LENGTH_SHORT).show();
+	         Toast.makeText(this, getResources().getString(R.string.NoSeEncontraronClientes), Toast.LENGTH_SHORT).show();
 	      }
 	}
 	

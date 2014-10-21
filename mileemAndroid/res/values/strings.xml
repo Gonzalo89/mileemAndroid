@@ -26,5 +26,19 @@
     <string name="AlquilerTemporal">Alq. Temp.</string>
     <string name="BuscarPropiedades">Buscar Propiedades</string>
     <string name="Filtros">Filtros</string>
+    <string name="SuperficieNoCubierta">Sup. no Cubierta</string>
+    <string name="Barrio">Barrio</string>    
+    <string name="Dormitorios">Dormitorios</string>
+    <string name="Antiguedad">Antigüedad</string>
+    <string name="TipoOperacion">Tipo Operación</string>
+    <string name="TipoPropiedad">Tipo Propiedad</string>
+    <string name="Expensas">Expensas</string>
+    <string name="SignoPesos">$</string>
+    <string name="anios">años</string>
+    <string name="m2">m2</string>
+    <string name="NoHayFotosCargadas">No hay fotos cargadas</string>
+    <string name="NoHayLocalizacionCargada">No hay localización cargada</string>
+    <string name="EmailNoDisponible">Email no disponible</string>
+    <string name="NoSeEncontraronClientes">No se encontraron clientes</string>   
 
 </resources>

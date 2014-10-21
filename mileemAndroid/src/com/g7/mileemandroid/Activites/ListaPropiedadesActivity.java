@@ -78,6 +78,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			url += "&codOrd="+ filtro.getOrden();
 		if(filtro.getFechaPublicacion() != 0)
 			url += "&codFecha="+ filtro.getFechaPublicacion();		
+		if(filtro.getSupCubierta() != 0)
+			url += "&codSup="+ filtro.getSupCubierta();	
 		
 		loadingSpinner = new ProgressDialog(this);
 		loadingSpinner.setMessage("Procesando...");
