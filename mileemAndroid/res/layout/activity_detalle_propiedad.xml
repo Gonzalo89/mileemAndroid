@@ -1,24 +1,21 @@
-<ScrollView
-  xmlns:android="http://schemas.android.com/apk/res/android" 
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false" >
   
 <LinearLayout    
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:scrollbars="vertical"
      >
 
     <ImageView
         android:id="@+id/imagenDetalle"
         android:layout_width="match_parent"
-        android:layout_height="150sp"
-         android:onClick="onClickVerFotos"
+        android:layout_height="180sp"
+        android:onClick="onClickVerFotos"
         android:scaleType="fitXY"
         android:src="@drawable/ic_launcher" />
 
@@ -43,6 +40,8 @@
 
     <ListView
         android:id="@+id/listViewDetalle"
+  	  	android:paddingLeft="@dimen/activity_horizontal_margin"
+    	android:paddingRight="@dimen/activity_horizontal_margin"        
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5sp"
@@ -51,6 +50,8 @@
 
     <TextView
         android:id="@+id/textView1"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+    	android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
@@ -59,6 +60,8 @@
 
     <ListView
         android:id="@+id/listAmenities"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+    	android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1sp"
@@ -67,6 +70,8 @@
 
     <TextView
         android:id="@+id/TextView01"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+    	android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
@@ -75,6 +80,8 @@
 
     <TextView
         android:id="@+id/descripcionDetalle"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+    	android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="1sp"

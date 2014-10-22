@@ -45,9 +45,9 @@ public class DetallePropiedad extends ActionBarActivity {
 		
 		String moneda = null;
 		if(propiedad.getMoneda().compareTo("Pesos") == 0) 
-			moneda = "$";
+			moneda = getResources().getString(R.string.SignoPesos);
 		else
-			moneda = "u$s";
+			moneda = getResources().getString(R.string.SignoDolares);
 		
 		TextView dir = (TextView)findViewById(R.id.direccionDetalle);
         dir.setText(propiedad.getDireccion() + " " + propiedad.getNumero()); 

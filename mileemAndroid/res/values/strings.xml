@@ -39,6 +39,7 @@
     <string name="NoHayFotosCargadas">No hay fotos cargadas</string>
     <string name="NoHayLocalizacionCargada">No hay localización cargada</string>
     <string name="EmailNoDisponible">Email no disponible</string>
-    <string name="NoSeEncontraronClientes">No se encontraron clientes</string>   
+    <string name="NoSeEncontraronClientes">No se encontraron clientes</string>
+    <string name="SignoDolares">u$s</string>   
 
 </resources>
