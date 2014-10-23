@@ -28,8 +28,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" 
-            android:screenOrientation="portrait">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,8 +38,8 @@
         </activity>
         <activity
             android:name=".Activites.ListaPropiedadesActivity"
-            android:label="@string/title_activity_listing_propiedades" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_listing_propiedades"
+            android:screenOrientation="portrait" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -48,9 +48,9 @@
         </activity>
         <activity
             android:name=".Activites.DetallePropiedad"
-            android:label="@string/title_activity_detalle_propiedad" 
-            android:parentActivityName=".Activites.ListaPropiedadesActivity" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_detalle_propiedad"
+            android:parentActivityName=".Activites.ListaPropiedadesActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g7.mileemandroid.Activites.ListaPropiedadesActivity" />
@@ -64,12 +64,12 @@
             android:label="@string/title_activity_fotos_slide" >
         </activity>
         <activity
-            android:name="com.g7.mileemandroid.Activites.MapaActivity"
+            android:name=".Activites.MapaActivity"
             android:label="@string/title_activity_mapa"
             android:parentActivityName=".Activites.DetallePropiedad" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.g7.mileemandroid.Activites.DetallePropiedad" /> 
+                android:value="com.g7.mileemandroid.Activites.DetallePropiedad" />
         </activity>
 
         <meta-data
@@ -80,9 +80,15 @@
             android:value="AIzaSyBztJqIWcXpLu3jfLhTlWxG0bax2vQvm3g" />
 
         <activity
-            android:name="com.g7.mileemandroid.Activites.FiltrosActivity"
-            android:label="@string/title_activity_filtros" 
-            android:screenOrientation="portrait">
+            android:name=".Activites.FiltrosActivity"
+            android:label="@string/title_activity_filtros"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="com.g7.mileemandroid.Activites.EmailFormActivity"
+            android:label="@string/title_activity_email_form"
+            android:parentActivityName="com.g7.mileemandroid.Activites.DetallePropiedad">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g7.mileemandroid.Activites.DetallePropiedad" />
         </activity>
     </application>
 

@@ -155,39 +155,31 @@ public class DetallePropiedad extends ActionBarActivity {
 	}
 	
 	public void onClickContactar(View view) {
-
-		  if (propiedad.getEmail() == null) {
-		         Toast.makeText(this, getResources().getString(R.string.EmailNoDisponible), Toast.LENGTH_SHORT).show();
-		         return;
-		  }
-		  
-	      //String[] TO = {propiedad.getEmail()};
-	      
-	      Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",propiedad.getEmail(), null));
-	      emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[Contacto Mileem]");
-//	      startActivity(Intent.createChooser(emailIntent, "Enviar email..."));
-	      
-//	      Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-//	      emailIntent.setData(Uri.parse("mailto:"));
-//	      emailIntent.setType("text/plain");
-
-//	      emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+		
+		Intent intent = new Intent(this, EmailFormActivity.class);
+		intent.putExtra("KEY_ANUNCIANTE", "Nombre Anunciante");
+		startActivity(intent);
+//
+//		  if (propiedad.getEmail() == null) {
+//		         Toast.makeText(this, getResources().getString(R.string.EmailNoDisponible), Toast.LENGTH_SHORT).show();
+//		         return;
+//		  }
+//		
+//	      Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",propiedad.getEmail(), null));
 //	      emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[Contacto Mileem]");
-//	      emailIntent.putExtra(Intent.EXTRA_TEXT, "");
-
-	      try {
-	         startActivity(Intent.createChooser(emailIntent, "Enviar email"));
-//	         finish();
-	         Log.i("Email Enviado", "");
-	      } catch (android.content.ActivityNotFoundException ex) {
-	         Toast.makeText(this, getResources().getString(R.string.NoSeEncontraronClientes), Toast.LENGTH_SHORT).show();
-	      }
+//
+//	      try {
+//	         startActivity(Intent.createChooser(emailIntent, "Enviar email"));
+//	         Log.i("Email Enviado", "");
+//	      } catch (android.content.ActivityNotFoundException ex) {
+//	         Toast.makeText(this, getResources().getString(R.string.NoSeEncontraronClientes), Toast.LENGTH_SHORT).show();
+//	      }
 	}
 	
 	public void onClickPhoneCall(View view) {
 		
 		  if (propiedad.getTelefono() == null) {
-		         Toast.makeText(this, "Teléfono no disponible", Toast.LENGTH_SHORT).show();
+		         Toast.makeText(this, "Telï¿½fono no disponible", Toast.LENGTH_SHORT).show();
 		         return;
 		  }
 		  
