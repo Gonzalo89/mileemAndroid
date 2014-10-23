@@ -38,7 +38,7 @@
         </activity>
         <activity
             android:name=".Activites.ListaPropiedadesActivity"
-            android:label="@string/title_activity_listing_propiedades" 
+            android:label="@string/title_activity_listing_propiedades"
             android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->

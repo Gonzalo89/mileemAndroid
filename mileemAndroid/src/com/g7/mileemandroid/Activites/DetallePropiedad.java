@@ -12,6 +12,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_detalle_propiedad);
 		
 		this.propiedad = PropiedadSingleton.getPropiedad();

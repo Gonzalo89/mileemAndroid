@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.ViewSwitcher.ViewFactory;
 
 import com.g7.mileemandroid.R;
@@ -24,7 +26,8 @@ public class FotosSlide extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fotos_slide);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity_fotos_slide);		
 		cantFotos = propiedad.getCantFotos();
 		imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher);
 		imageSwitcher.setFactory(new ViewFactory() {
@@ -32,7 +35,8 @@ public class FotosSlide extends ActionBarActivity {
 			public View makeView() {
 				ImageView iv = new ImageView(FotosSlide.this);
 		//		iv.setScaleType(ScaleType.CENTER);
-				iv.setAdjustViewBounds(true);
+				iv.setScaleType(ScaleType.FIT_XY);
+		//		iv.setAdjustViewBounds(true);
 
 				return iv;
 			}
