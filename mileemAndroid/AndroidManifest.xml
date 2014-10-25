@@ -85,7 +85,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".DetallePropiedadTabs"
+            android:name="com.g7.mileemandroid.Activites.DetallePropiedadTabs"
             android:label="@string/title_activity_detalle_propiedad_tabs" >
         </activity>
         <activity

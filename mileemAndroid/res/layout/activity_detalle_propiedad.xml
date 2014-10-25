@@ -15,7 +15,6 @@
         android:id="@+id/imagenDetalle"
         android:layout_width="match_parent"
         android:layout_height="180sp"
-        android:onClick="onClickVerFotos"
         android:scaleType="fitXY"
         android:src="@drawable/ic_launcher" />
 
