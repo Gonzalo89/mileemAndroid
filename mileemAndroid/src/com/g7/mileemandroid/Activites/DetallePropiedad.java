@@ -168,15 +168,15 @@ public class DetallePropiedad extends ActionBarActivity {
 	
 	public void onClickPhoneCall(View view) {
 		
-		  if (propiedad.getTelefono() == null) {
-		         Toast.makeText(this, "Tel√©fono no disponible", Toast.LENGTH_SHORT).show();
-		         return;
-		  }
-		  
-		String urlPhone = "tel:" + propiedad.getTelefono();
-		Intent intent = new Intent( Intent.ACTION_CALL );
-		intent.setData( Uri.parse(urlPhone) );
-		this.startActivity(intent);
+//		  if (propiedad.getTelefono() == null) {
+//		         Toast.makeText(this, "Teléfono no disponible", Toast.LENGTH_SHORT).show();
+//		         return;
+//		  }
+//		  
+//		String urlPhone = "tel:" + propiedad.getTelefono();
+//		Intent intent = new Intent( Intent.ACTION_CALL );
+//		intent.setData( Uri.parse(urlPhone) );
+//		this.startActivity(intent);
 	}
 	
 	

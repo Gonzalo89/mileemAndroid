@@ -25,7 +25,7 @@ public class MapaActivity extends ActionBarActivity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mapa);
-        setTitle("  Localizaci√≥n");
+        setTitle("  Localización");
         
 		// Load Parameters
 		latitud = getIntent().getStringExtra("Latitud");
