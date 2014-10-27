@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.View.MeasureSpec;
@@ -35,7 +37,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+//		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_detalle_propiedad);
 		
 		this.propiedad = PropiedadSingleton.getPropiedad();
@@ -88,14 +90,14 @@ public class DetallePropiedad extends ActionBarActivity {
 		phoneManager.listen(callListener, PhoneStateListener.LISTEN_CALL_STATE);
 	}
 
-/*	@Override
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.detalle_propiedad, menu);
 		return true;
-	}*/
+	}
 
-/*	@Override
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
@@ -105,7 +107,7 @@ public class DetallePropiedad extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}*/
+	}
 	
 	public void onClickVerFotos(View view) {
 		if(this.propiedad.getFotosThumb() != null) {
@@ -162,21 +164,6 @@ public class DetallePropiedad extends ActionBarActivity {
 		intent.putExtra("KEY_ANUNCIANTE", propiedad.getNombre() + " " + propiedad.getApellido());
 		intent.putExtra("KEY_EMAIL", propiedad.getEmail());
 		startActivity(intent);
-//
-//		  if (propiedad.getEmail() == null) {
-//		         Toast.makeText(this, getResources().getString(R.string.EmailNoDisponible), Toast.LENGTH_SHORT).show();
-//		         return;
-//		  }
-//		
-//	      Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",propiedad.getEmail(), null));
-//	      emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[Contacto Mileem]");
-//
-//	      try {
-//	         startActivity(Intent.createChooser(emailIntent, "Enviar email"));
-//	         Log.i("Email Enviado", "");
-//	      } catch (android.content.ActivityNotFoundException ex) {
-//	         Toast.makeText(this, getResources().getString(R.string.NoSeEncontraronClientes), Toast.LENGTH_SHORT).show();
-//	      }
 	}
 	
 	public void onClickPhoneCall(View view) {
