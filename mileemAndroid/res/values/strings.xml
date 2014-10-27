@@ -41,5 +41,6 @@
     <string name="EmailNoDisponible">Email no disponible</string>
     <string name="NoSeEncontraronClientes">No se encontraron clientes</string>
     <string name="title_activity_email_form">Contactar Anunciante</string>
+    <string name="SignoDolares">u$s</string>   
 
 </resources>

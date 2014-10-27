@@ -12,6 +12,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_detalle_propiedad);
 		
 		this.propiedad = PropiedadSingleton.getPropiedad();
@@ -45,9 +47,9 @@ public class DetallePropiedad extends ActionBarActivity {
 		
 		String moneda = null;
 		if(propiedad.getMoneda().compareTo("Pesos") == 0) 
-			moneda = "$";
+			moneda = getResources().getString(R.string.SignoPesos);
 		else
-			moneda = "u$s";
+			moneda = getResources().getString(R.string.SignoDolares);
 		
 		TextView dir = (TextView)findViewById(R.id.direccionDetalle);
         dir.setText(propiedad.getDireccion() + " " + propiedad.getNumero()); 
