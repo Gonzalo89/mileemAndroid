@@ -35,9 +35,9 @@ public class FotosSlide extends ActionBarActivity {
 			public View makeView() {
 				ImageView iv = new ImageView(FotosSlide.this);
 		//		iv.setScaleType(ScaleType.CENTER);
+				iv.setAdjustViewBounds(false);
 				iv.setScaleType(ScaleType.FIT_XY);
-		//		iv.setAdjustViewBounds(true);
-
+		
 				return iv;
 			}
 		});
