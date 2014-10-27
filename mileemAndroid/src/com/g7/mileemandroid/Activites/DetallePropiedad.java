@@ -157,7 +157,8 @@ public class DetallePropiedad extends ActionBarActivity {
 	public void onClickContactar(View view) {
 		
 		Intent intent = new Intent(this, EmailFormActivity.class);
-		intent.putExtra("KEY_ANUNCIANTE", "Nombre Anunciante");
+		intent.putExtra("KEY_ANUNCIANTE", propiedad.getNombre() + " " + propiedad.getApellido());
+		intent.putExtra("KEY_EMAIL", propiedad.getEmail());
 		startActivity(intent);
 //
 //		  if (propiedad.getEmail() == null) {
@@ -179,7 +180,7 @@ public class DetallePropiedad extends ActionBarActivity {
 	public void onClickPhoneCall(View view) {
 		
 		  if (propiedad.getTelefono() == null) {
-		         Toast.makeText(this, "Tel�fono no disponible", Toast.LENGTH_SHORT).show();
+		         Toast.makeText(this, "Teléfono no disponible", Toast.LENGTH_SHORT).show();
 		         return;
 		  }
 		  

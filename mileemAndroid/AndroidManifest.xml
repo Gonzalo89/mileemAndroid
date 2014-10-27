@@ -84,12 +84,14 @@
             android:label="@string/title_activity_filtros"
             android:screenOrientation="portrait" >
         </activity>
+        
         <activity android:name="com.g7.mileemandroid.Activites.EmailFormActivity"
             android:label="@string/title_activity_email_form"
             android:parentActivityName="com.g7.mileemandroid.Activites.DetallePropiedad">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g7.mileemandroid.Activites.DetallePropiedad" />
         </activity>
+        
     </application>
 
 </manifest>

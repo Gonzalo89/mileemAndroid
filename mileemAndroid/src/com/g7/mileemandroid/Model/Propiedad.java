@@ -47,6 +47,8 @@ public class Propiedad implements Serializable{
 	protected static long contador = 0;
 	private String telefono;
 	private String email;
+	private String nombre;
+	private String apellido;
 	
 	public Propiedad(JSONObject json) {
 		
@@ -114,17 +116,24 @@ public class Propiedad implements Serializable{
 			JSONArray jsonAmenities = json.getJSONArray("amenities");
 			this.amenities = new ArrayList<String>();
 			
+			// Usuario anunciante
 			JSONObject jsonUser = json.getJSONObject("user");
 			if (!jsonUser.isNull("telefono"))
 				this.telefono = jsonUser.getString("telefono");
 			if (!jsonUser.isNull("email"))
 				this.email = jsonUser.getString("email");
+			if (!jsonUser.isNull("nombre"))
+				this.nombre = jsonUser.getString("nombre");
+			if (!jsonUser.isNull("apellido"))
+				this.apellido = jsonUser.getString("apellido");
 
+			// Amenities
 			for (int i = 0; i < jsonAmenities.length(); i++) {
 				this.amenities.add(jsonAmenities.getJSONObject(i).getString(
 						"nombre"));
 			}
 			
+			// Datos propiedad
 			if (!json.isNull("direccion"))
 				this.direccion = json.getString("direccion");
 			if (!json.isNull("descripcion"))
@@ -373,6 +382,21 @@ public class Propiedad implements Serializable{
 
 	public void setTipoPublicacion(String tipoPublicacion) {
 		this.tipoPublicacion = tipoPublicacion;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 	
 }
