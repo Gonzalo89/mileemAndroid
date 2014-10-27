@@ -4,7 +4,7 @@
     tools:context="com.g7.mileemandroid.DetallePropiedad" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/emailEditText"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"/>

@@ -4,12 +4,12 @@
     <string name="app_name">MileemAndroid</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_listing_propiedades">ListingPropiedadesActivity</string>
+    <string name="title_activity_listing_propiedades">  Propiedades Disponibles</string>
     <string name="Direccion">Direccion</string>
     <string name="Precio">Precio</string>
     <string name="Superficie">Superficie</string>
     <string name="Ambientes">Ambientes</string>
-    <string name="title_activity_detalle_propiedad">DetallePropiedad</string>
+    <string name="title_activity_detalle_propiedad">  Detalle Propiedad</string>
     <string name="title_activity_fotos_corrousel">FotosCorrousel</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
@@ -27,7 +27,7 @@
     <string name="BuscarPropiedades">Buscar Propiedades</string>
     <string name="Filtros">Filtros</string>
     <string name="SuperficieNoCubierta">Sup. no Cubierta</string>
-    <string name="Barrio">Barrio</string>    
+    <string name="Barrio">Barrio</string>
     <string name="Dormitorios">Dormitorios</string>
     <string name="Antiguedad">Antigüedad</string>
     <string name="TipoOperacion">Tipo Operación</string>
@@ -40,6 +40,7 @@
     <string name="NoHayLocalizacionCargada">No hay localización cargada</string>
     <string name="EmailNoDisponible">Email no disponible</string>
     <string name="NoSeEncontraronClientes">No se encontraron clientes</string>
+    <string name="title_activity_email_form">Contactar Anunciante</string>
     <string name="SignoDolares">u$s</string>   
 
 </resources>
