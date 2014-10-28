@@ -1,59 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:minHeight="60dp" 
-    android:background="#6495ed" >
-
-    <LinearLayout
+    android:layout_height="wrap_content"
+    android:background="#ffd966">
+    
+    <!-- Imagen de la propiedad -->
+    <ImageView
+        android:id="@+id/imagenPropiedad"
+        android:layout_width="fill_parent"
+        android:layout_height="190sp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_launcher" />
+    
+    <!-- Texto de descripcion de la propiedad -->
+    <!-- Alineacion con respecto a imagen  -->
+   <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-    	android:paddingLeft="10dip"
-        android:layout_toRightOf="@+id/imagenPropiedad"
+        android:layout_below="@+id/imagenPropiedad"
         android:orientation="vertical" >
         
+        <!-- Precio de la propiedad -->
+        <TextView
+            android:id="@+id/precioLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:fontFamily="Verdana" />
+        
+        <!-- Direccion -->
         <TextView
             android:id="@+id/direccionLista"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Direccion"
-            android:textColor="#f0ffff"
-            android:textSize="20sp" />
-
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:fontFamily="Verdana" />
+        
+        <!-- Superficie (metros cuadrados) -->
         <TextView
-            android:id="@+id/superficieLista"
+            android:id="@+id/sSupCubierta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Superficie" />
-
+            android:text="Superficie"
+            android:textSize="14sp"
+            android:fontFamily="Verdana" />
+        
+        <!-- Ambientes -->
         <TextView
             android:id="@+id/ambientesLista"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ambientes" />
-
-        <TextView
-            android:id="@+id/precioLista"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#a52a2a"
-            android:text="Precio" />
-        
+            android:text="Ambientes"
+            android:textSize="14sp"
+            android:fontFamily="Verdana" />
     </LinearLayout>
-
+	
+    <!-- Estrella de la publicacion -->
     <ImageView
-        android:id="@+id/imagenPropiedad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/linearLayout1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:minWidth="150dp"
-        android:maxWidth="150dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/ic_launcher" />
-
+        android:id="@+id/imagenEstrella"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/linearLayout1"
+        android:layout_below="@+id/imagenPropiedad"
+        android:minWidth="106dp"
+        android:src="@drawable/yellow_star" />
 </RelativeLayout>

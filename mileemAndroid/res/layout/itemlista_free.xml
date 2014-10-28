@@ -1,72 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:minHeight="50dp"
-    android:orientation="horizontal" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    android:background="#ffd966" >
 
+    <!-- Imagen de la propiedad -->
     <ImageView
         android:id="@+id/imagenPropiedad"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80sp"
+        android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
-        android:minHeight="50dp"
         android:src="@drawable/ic_launcher" />
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:minHeight="50dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/imagenPropiedad"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/precioLista"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-    		android:paddingLeft="10dip"
-            android:orientation="horizontal" >
+            android:text="Precio"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/direccionLista"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-        		android:minHeight="25dp"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:text="@string/Direccion" />
-
-            <TextView
-                android:id="@+id/precioLista"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-        		android:minHeight="25dp"
-                android:text="@string/Precio" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/direccionLista"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-    	android:paddingLeft="10dip"
-            android:orientation="horizontal" >
+            android:text="Direccion"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/superficieLista"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-        		android:minHeight="25dp"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:text="@string/Superficie" />
+        <TextView
+            android:id="@+id/sSupCubierta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Superficie"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/ambientesLista"
-                android:layout_width="wrap_content"
-        		android:minHeight="25dp"
-                android:layout_height="wrap_content"
-                android:text="@string/Ambientes" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/ambientesLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ambientes"
+            android:textSize="12sp" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
