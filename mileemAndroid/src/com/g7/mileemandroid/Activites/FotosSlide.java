@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -34,10 +35,12 @@ public class FotosSlide extends ActionBarActivity {
 
 			public View makeView() {
 				ImageView iv = new ImageView(FotosSlide.this);
-		//		iv.setScaleType(ScaleType.CENTER);
-				iv.setAdjustViewBounds(false);
-				iv.setScaleType(ScaleType.FIT_XY);
-		
+				iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+			    LayoutParams params = new ImageSwitcher.LayoutParams(
+			      LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+
+			    iv.setLayoutParams(params);		
 				return iv;
 			}
 		});
