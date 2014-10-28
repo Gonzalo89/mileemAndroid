@@ -84,6 +84,14 @@
             android:label="@string/title_activity_filtros"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.g7.mileemandroid.Activites.DetallePropiedadTabs"
+            android:label="@string/title_activity_detalle_propiedad_tabs" >
+        </activity>
+        <activity
+            android:name="com.g7.mileemandroid.Activites.VideoFragment"
+            android:label="@string/title_activity_video_fragment" >
+        </activity>
         
         <activity android:name="com.g7.mileemandroid.Activites.EmailFormActivity"
             android:label="@string/title_activity_email_form"

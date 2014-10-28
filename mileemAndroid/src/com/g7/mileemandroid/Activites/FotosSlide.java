@@ -1,40 +1,45 @@
 package com.g7.mileemandroid.Activites;
 
+import android.app.Fragment;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.ViewSwitcher.ViewFactory;
 
 import com.g7.mileemandroid.R;
 import com.g7.mileemandroid.Model.Propiedad;
 import com.g7.mileemandroid.Model.PropiedadSingleton;
 
-public class FotosSlide extends ActionBarActivity {
+public class FotosSlide extends Fragment {
 	private ImageSwitcher imageSwitcher;
 	private int position = 0;
 	private Propiedad propiedad = PropiedadSingleton.getPropiedad();
 	private int cantFotos = 0;
 
+	   @Override
+	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	            Bundle savedInstanceState) {	 
+	        View rootView = inflater.inflate(R.layout.activity_fotos_slide, container, false);
+	        return rootView;
+		}
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_fotos_slide);		
+	public void onActivityCreated(Bundle bundle) {
+		super.onActivityCreated(bundle);
 		cantFotos = propiedad.getCantFotos();
-		imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher);
+		imageSwitcher = (ImageSwitcher) getView().findViewById(R.id.imageSwitcher);
 		imageSwitcher.setFactory(new ViewFactory() {
 
 			public View makeView() {
-				ImageView iv = new ImageView(FotosSlide.this);
+				ImageView iv = new ImageView(getActivity());
 				iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
 			    LayoutParams params = new ImageSwitcher.LayoutParams(
@@ -46,8 +51,8 @@ public class FotosSlide extends ActionBarActivity {
 		});
 
 		// Set animations
-		Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-		Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+		Animation fadeIn = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
+		Animation fadeOut = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
 		imageSwitcher.setInAnimation(fadeIn);
 		imageSwitcher.setOutAnimation(fadeOut);
 		if (cantFotos > 0) {

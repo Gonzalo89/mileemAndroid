@@ -91,7 +91,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 
 
 	protected void verDetalle(Long idProp) {
-    	Intent intent = new Intent(this, DetallePropiedad.class);    	
+    	Intent intent = new Intent(this, DetallePropiedadTabs.class);    	
     	Propiedad unaPropiedad = this.buscarPropiedad(idProp);
     	PropiedadSingleton.setPropiedad(unaPropiedad);
     	startActivity(intent);			
