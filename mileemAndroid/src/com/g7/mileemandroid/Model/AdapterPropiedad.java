@@ -97,19 +97,22 @@ public class AdapterPropiedad extends BaseAdapter {
  
         // Creamos un objeto directivo
         Propiedad propiedad = items.get(position);
-        //Rellenamos la fotograf�a
+        
+        // Rellenamos la fotograf�a
         ImageView foto = (ImageView) view.findViewById(R.id.imagenPropiedad);
  //     foto.setImageDrawable(propiedad.getFoto());
         if(propiedad.getCantFotos() > 0)
         	foto.setImageBitmap(propiedad.getFotosThumb()[0]);
         else
         	foto.setImageResource(R.drawable.ic_launcher);
-        //Rellenamos el textos
+        
+        // Rellenamos el textos
         TextView nombre = (TextView) view.findViewById(R.id.direccionLista);
         nombre.setText(propiedad.getDireccion());        
         TextView superficie = (TextView) view.findViewById(R.id.superficieLista);
         superficie.setText(Integer.toString(propiedad.getSuperficie())+"m2");
         TextView precio = (TextView) view.findViewById(R.id.precioLista);
+        
         String moneda = "$";
         if(propiedad.getMoneda() != null) {
             if(propiedad.getMoneda().compareTo("Pesos") == 0)
@@ -118,6 +121,7 @@ public class AdapterPropiedad extends BaseAdapter {
             	moneda = "u$s";        	
         }
         precio.setText(moneda +propiedad.getPrecio());       
+        
         TextView ambientes = (TextView) view.findViewById(R.id.ambientesLista);
         ambientes.setText("Amb: " +propiedad.getAmbientes());      
         return view;
