@@ -40,7 +40,9 @@ public class Propiedad implements Serializable{
 	private List<String> amenities;	
 	private Bitmap[] fotosThumb;
 	private Bitmap[] fotosCompleta;
+	private String[] idVideos;
 	private int cantFotos;
+	private int cantVideos;
 	private String latitud;
 	private String longitud;
 	private long id;
@@ -62,7 +64,7 @@ public class Propiedad implements Serializable{
 			
 			this.cantFotos = jsonFotos.length();
 			
-			if (jsonFotos.length() >= 1) {
+			if (jsonFotos.length() >= 1) { //Cargo fotos
 				this.fotosThumb = new Bitmap[this.cantFotos];
 				this.fotosCompleta = new Bitmap[this.cantFotos];
 				
@@ -108,6 +110,18 @@ public class Propiedad implements Serializable{
 					
 					
 				}
+			}
+
+			JSONArray jsonVideos = json.getJSONArray("videos"); // Cargo Videos
+			this.cantVideos = jsonVideos.length();
+			JSONObject jsonVideo;
+
+			if (this.cantVideos >= 1) {
+				this.idVideos = new String[this.cantVideos];
+				for (int i = 0; i < this.cantVideos; i++) {
+					jsonVideo = jsonVideos.getJSONObject(i);
+					this.idVideos[i] = extractYoutubeId(jsonVideo.getString("url"));
+					}
 			}
 
 			long id = ++Propiedad.contador;
@@ -179,7 +193,22 @@ public class Propiedad implements Serializable{
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
 		}
+	}
+	
+	public String extractYoutubeId(String url) throws MalformedURLException {
+		String query = new URL(url).getQuery();
+		String[] param = query.split("&");
+		String id = null;
+		for (String row : param) {
+			String[] param1 = row.split("=");
+			if (param1[0].equals("v")) {
+				id = param1[1];
+			}
+		}
+		return id;
 	}
 	
 	public String getDireccion() {
@@ -397,6 +426,14 @@ public class Propiedad implements Serializable{
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+
+	public String[] getIdVideos() {
+		return idVideos;
+	}
+
+	public int getCantVideos() {
+		return cantVideos;
 	}
 	
 }
