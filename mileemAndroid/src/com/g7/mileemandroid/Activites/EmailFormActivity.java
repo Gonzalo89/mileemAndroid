@@ -68,12 +68,17 @@ public class EmailFormActivity extends Activity {
 		String telefono = _telefonoEditText.getText().toString();
 		String horario = _horarioEditText.getText().toString();
 		
-		if ( email.matches("") || message.matches("") || telefono.matches("") || horario.matches("") )
+		if ( email.matches("") || message.matches("") || telefono.matches("") )
 		{
 			Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
 		    return;
 		}
-		else 
+		else if ( !this.isValidEmail( _emailEditText.getText().toString() ) )
+		{
+			Toast.makeText(this, "Por favor, ingrese un email válido", Toast.LENGTH_SHORT).show();
+		    return;
+		}
+		else
 		{
 			message += "\n\n Email:" + email + "\n Telefono:" + telefono + "\n Horario de Contacto:" + horario;
 			
@@ -83,23 +88,15 @@ public class EmailFormActivity extends Activity {
 			 finish();
 		}
 		
-//		try {   
-//            GMailSender sender = new GMailSender("rod.testit@gmail.com", "rodtestit");
-//            sender.sendMail("Contacto Mileem", message, "rodrigo.nmato@gmail.com", "rodrigo.nmato@gmail.com");   
-//        } catch (Exception e) {   
-//            Log.e("SendMail", e.getMessage(), e);   
-//        } 
-		
-//		Intent intent = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
-//		intent.setType("text/plain");
-//		intent.putExtra(Intent.EXTRA_SUBJECT, message);
-//		intent.putExtra(Intent.EXTRA_TEXT, "Contacto Mileem");
-//		intent.setData(Uri.parse(email)); // or just "mailto:" for blank
-//		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
-//		startActivity(intent);
 	}
 	
-	
+	public final boolean isValidEmail(CharSequence target) {
+	    if (target == null) {
+	        return false;
+	    } else {
+	        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+	    }
+	}
 
 	public TextView get_anuncianteTextView() {
 		return _anuncianteTextView;

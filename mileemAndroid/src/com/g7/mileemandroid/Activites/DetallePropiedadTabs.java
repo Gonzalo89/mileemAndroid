@@ -19,6 +19,8 @@ public class DetallePropiedadTabs extends Activity implements
 		ActionBar.TabListener {
 	
 	private FotosSlide fotosSlide = null;
+	private DetallePropiedad detallePropiedad = null;
+	private VideoFragment videoFragment = null;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -38,7 +40,7 @@ public class DetallePropiedadTabs extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detalle_propiedad_tabs);
-
+		setTitle("  Detalle de Propiedad");
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -128,12 +130,14 @@ public class DetallePropiedadTabs extends Activity implements
 			// below).
 	        switch (position) {
 	        case 0:
-	            return new DetallePropiedad();
+	        	detallePropiedad = new DetallePropiedad();
+	            return detallePropiedad;
 	        case 1:
 	        	fotosSlide = new FotosSlide();
 	            return fotosSlide;
 	        case 2:
-	            return new VideoFragment();
+	        	videoFragment = new VideoFragment();
+	            return videoFragment;
 	        }
 	 
 	        return null;
@@ -196,4 +200,14 @@ public class DetallePropiedadTabs extends Activity implements
 		if (this.fotosSlide != null)
 			this.fotosSlide.onClickSiguiente(view);
 	}
+	
+	public void onClickContactar(View view) {
+		if (this.detallePropiedad != null)
+			this.detallePropiedad.onClickContactar(view);
+	}
+	
+	public void onClickVerEnMapa(View view) {
+		if (this.detallePropiedad != null)
+			this.detallePropiedad.onClickVerEnMapa(view);
+	}	
 }

@@ -39,7 +39,9 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress" >
-        <requestFocus />
+
+        <requestFocus android:layout_width="match_parent" />
+
     </EditText>
 
     <EditText
@@ -65,16 +67,15 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Horario de contacto"
-        android:inputType="time" />
+        android:inputType="datetime" />
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="330dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.04"
+        android:onClick="onSendEmail"
         android:text="Enviar Email"
         android:textSize="20sp"
-        android:onClick="onSendEmail"
         android:textStyle="bold|normal" />
 
 </LinearLayout>
