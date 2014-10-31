@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.g7.mileemandroid.PruebaVideo;
 import com.g7.mileemandroid.R;
 
 public class DetallePropiedadTabs extends Activity implements
@@ -110,7 +109,7 @@ public class DetallePropiedadTabs extends Activity implements
 			mViewPager.setCurrentItem(tab.getPosition());
 			break;
 		case 2:
-			Intent intent2 = new Intent(this, PruebaVideo.class);
+			Intent intent2 = new Intent(this, VideoActivity.class);
 			startActivity(intent2);
 			break;
 		}
