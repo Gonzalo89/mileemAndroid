@@ -9,10 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.g7.mileemandroid.R;
 
@@ -40,6 +42,8 @@ public class DetallePropiedadTabs extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detalle_propiedad_tabs);
 
+		fotosSlide = new FotosSlide();
+		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -144,8 +148,7 @@ public class DetallePropiedadTabs extends Activity implements
 	        case 0:
 	            return new DetallePropiedad();
 	        case 1:
-	        	fotosSlide = new FotosSlide();
-	            return fotosSlide;
+	        	return fotosSlide;
 	        case 2:
 	            return new VideoFragment();
 	        }
@@ -207,7 +210,10 @@ public class DetallePropiedadTabs extends Activity implements
 	}
 
 	public void onClickSiguiente(View view) {
-		if (this.fotosSlide != null)
+		if (this.fotosSlide != null) {
 			this.fotosSlide.onClickSiguiente(view);
+		}else{
+			Log.e("Error", "fotosSlide es null en DetallePropiedadTabs");
+		}
 	}
 }

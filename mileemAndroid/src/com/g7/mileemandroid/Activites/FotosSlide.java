@@ -3,6 +3,7 @@ package com.g7.mileemandroid.Activites;
 import android.app.Fragment;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher.ViewFactory;
 
 import com.g7.mileemandroid.R;
@@ -21,19 +23,20 @@ import com.g7.mileemandroid.Model.PropiedadSingleton;
 public class FotosSlide extends Fragment {
 	private ImageSwitcher imageSwitcher;
 	private int position = 0;
-	private Propiedad propiedad = PropiedadSingleton.getPropiedad();
+	private Propiedad propiedad;
 	private int cantFotos = 0;
 
 	   @Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	            Bundle savedInstanceState) {	 
 	        View rootView = inflater.inflate(R.layout.activity_fotos_slide, container, false);
+	        propiedad = PropiedadSingleton.getPropiedad();
 	        return rootView;
 		}
 	
 	@Override
 	public void onActivityCreated(Bundle bundle) {
-		super.onActivityCreated(bundle);
+		super.onActivityCreated(bundle);		
 		cantFotos = propiedad.getCantFotos();
 		imageSwitcher = (ImageSwitcher) getView().findViewById(R.id.imageSwitcher);
 		imageSwitcher.setFactory(new ViewFactory() {
@@ -86,8 +89,11 @@ public class FotosSlide extends Fragment {
 		if (position == cantFotos) {
 			position = 0;
 		}
-		if (propiedad.getFotosCompleta() != null)
-			imageSwitcher.setImageDrawable(new BitmapDrawable(this.getResources(), propiedad
-					.getFotosCompleta()[position]));
+		if (propiedad/* .getFotosCompleta() */!= null) {
+			imageSwitcher.setImageDrawable(new BitmapDrawable(this
+					.getResources(), propiedad.getFotosCompleta()[position]));
+		} else {
+			Log.e("Error", "propiedad es null en FotosSlide");
+		}
 	}
 }
