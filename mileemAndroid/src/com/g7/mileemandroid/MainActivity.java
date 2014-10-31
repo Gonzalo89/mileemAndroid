@@ -131,7 +131,7 @@ public class MainActivity extends ActionBarActivity {
     public void buscarPropiedades(View view) {    	
     	Intent intent = new Intent(this, ListaPropiedadesActivity.class); 
     //	Intent intent = new Intent(this, FiltrosActivity.class);
-    //	Intent intent = new Intent(this, DetallePropiedadTabs.class);
+    //	Intent intent = new Intent(this, PruebaVideo.class);
     	String message = "Mensaje a el Listing";
     	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);

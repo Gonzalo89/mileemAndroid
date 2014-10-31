@@ -47,5 +47,6 @@
     <string name="Detalle">Detalle</string>
     <string name="Fotos">Fotos</string>
     <string name="Video">Video</string>
+    <string name="title_activity_prueba_video">PruebaVideo</string>
 
 </resources>

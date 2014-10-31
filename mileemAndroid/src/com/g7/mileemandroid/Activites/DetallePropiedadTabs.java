@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.g7.mileemandroid.PruebaVideo;
 import com.g7.mileemandroid.R;
 
 public class DetallePropiedadTabs extends Activity implements
@@ -98,7 +100,20 @@ public class DetallePropiedadTabs extends Activity implements
 			FragmentTransaction fragmentTransaction) {
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
-		mViewPager.setCurrentItem(tab.getPosition());
+		switch (tab.getPosition()) {
+		case 0:
+			mViewPager.setCurrentItem(tab.getPosition());
+			break;
+		case 1:
+			/*Intent intent1 = new Intent(this, FotosSlide.class);
+			startActivity(intent1);*/
+			mViewPager.setCurrentItem(tab.getPosition());
+			break;
+		case 2:
+			Intent intent2 = new Intent(this, PruebaVideo.class);
+			startActivity(intent2);
+			break;
+		}
 	}
 
 	@Override

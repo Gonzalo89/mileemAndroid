@@ -62,7 +62,7 @@ public class Propiedad implements Serializable{
 			
 			this.cantFotos = jsonFotos.length();
 			
-			if (jsonFotos.length() >= 1) {
+			if (jsonFotos.length() >= 1) { //Cargo fotos
 				this.fotosThumb = new Bitmap[this.cantFotos];
 				this.fotosCompleta = new Bitmap[this.cantFotos];
 				
