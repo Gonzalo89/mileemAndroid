@@ -40,7 +40,7 @@ public class DetallePropiedad extends Fragment {
 		}
 	       
 	   @Override
-	    public void onActivityCreated(Bundle bundle){		
+	   public void onActivityCreated(Bundle bundle){		
 		super.onActivityCreated(bundle); 
 		
 		this.propiedad = PropiedadSingleton.getPropiedad();
@@ -172,7 +172,7 @@ public class DetallePropiedad extends Fragment {
 	
 	public void onClickPhoneCall(View view) {
 //		  if (propiedad.getTelefono() == null) {
-//		         Toast.makeText(this, "TelŽfono no disponible", Toast.LENGTH_SHORT).show();
+//		         Toast.makeText(this, "Telï¿½fono no disponible", Toast.LENGTH_SHORT).show();
 //		         return;
 //		  }
 //		  

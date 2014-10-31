@@ -40,7 +40,7 @@ public class DetallePropiedadTabs extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detalle_propiedad_tabs);
-
+		setTitle("  Detalle de Propiedad");
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
