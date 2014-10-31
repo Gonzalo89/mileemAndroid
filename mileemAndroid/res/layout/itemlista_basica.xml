@@ -1,77 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:minHeight="60dp" 
-    android:background="#dedede" >
+    android:layout_height="wrap_content" 
+    android:background="#ffd966" >
+
+    <!-- Imagen de la propiedad -->
+
+    <ImageView
+        android:id="@+id/imagenPropiedad"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-    	android:paddingLeft="10dip"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
         android:layout_toRightOf="@+id/imagenPropiedad"
         android:orientation="vertical" >
-        
-<!--         <TextView
-                android:id="@+id/direccionLista"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:text="@string/Direccion" />
-		
-		<TextView
-                android:id="@+id/superficieLista"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:text="@string/Superficie" />
-
-        <TextView
-                android:id="@+id/ambientesLista"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Ambientes" /> -->
-
-        <TextView
-            android:id="@+id/direccionLista"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Direccion"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/superficieLista"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Superficie" />
-
-        <TextView
-            android:id="@+id/ambientesLista"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ambientes" />
 
         <TextView
             android:id="@+id/precioLista"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Precio" />
-        
-    </LinearLayout>
+            android:text="Precio"
+            android:textSize="15sp"
+	        android:paddingBottom="8dp"
+            android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imagenPropiedad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/linearLayout1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:minWidth="150dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/ic_launcher" />
+        <TextView
+            android:id="@+id/direccionLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="Verdana"
+            android:text="Direccion"
+            android:textSize="15sp"
+	        android:paddingBottom="8dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/superficieLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="Verdana"
+            android:text="Superficie"
+            android:textSize="15sp"
+	        android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/ambientesLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="Verdana"
+            android:text="Ambientes"
+            android:textSize="15sp"/>
+    </LinearLayout>
 
 </RelativeLayout>
