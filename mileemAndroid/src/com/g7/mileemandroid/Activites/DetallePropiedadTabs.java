@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.g7.mileemandroid.R;
+import com.g7.mileemandroid.Model.PropiedadSingleton;
 
 public class DetallePropiedadTabs extends Activity implements
 		ActionBar.TabListener {
@@ -115,8 +116,17 @@ public class DetallePropiedadTabs extends Activity implements
 			mViewPager.setCurrentItem(tab.getPosition());
 			break;
 		case 2:
-			Intent intent2 = new Intent(this, VideoActivity.class);
-			startActivity(intent2);
+			if(PropiedadSingleton.getPropiedad().getCantVideos() >= 1) {
+				Intent intent2 = new Intent(this, VideoActivity.class);
+				startActivity(intent2);	
+			}else{
+	    		Toast toast1 =
+	    				Toast.makeText(getApplicationContext(),
+	    						"No hay videos", Toast.LENGTH_SHORT);
+
+	    			toast1.show();
+			}
+
 			break;
 		}
 	}
