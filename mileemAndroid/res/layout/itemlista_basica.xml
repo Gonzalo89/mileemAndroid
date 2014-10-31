@@ -5,21 +5,23 @@
     android:background="#ffd966" >
 
     <!-- Imagen de la propiedad -->
+
     <ImageView
         android:id="@+id/imagenPropiedad"
         android:layout_width="150sp"
         android:layout_height="150sp"
-        android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
-        android:src="@drawable/ic_launcher" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
         android:layout_toRightOf="@+id/imagenPropiedad"
         android:orientation="vertical" >
 
@@ -28,7 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Precio"
-            android:textSize="14sp"
+            android:textSize="15sp"
+	        android:paddingBottom="8dp"
             android:textStyle="bold" />
 
         <TextView
@@ -37,7 +40,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="Verdana"
             android:text="Direccion"
-            android:textSize="14sp"
+            android:textSize="15sp"
+	        android:paddingBottom="8dp"
             android:textStyle="bold" />
 
         <TextView
@@ -46,7 +50,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="Verdana"
             android:text="Superficie"
-            android:textSize="14sp" />
+            android:textSize="15sp"
+	        android:paddingBottom="8dp" />
 
         <TextView
             android:id="@+id/ambientesLista"
@@ -54,7 +59,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="Verdana"
             android:text="Ambientes"
-            android:textSize="14sp" />
+            android:textSize="15sp"/>
     </LinearLayout>
 
 </RelativeLayout>

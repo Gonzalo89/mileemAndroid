@@ -5,14 +5,15 @@
     android:background="#ffd966">
     
     <!-- Imagen de la propiedad -->
+
     <ImageView
         android:id="@+id/imagenPropiedad"
         android:layout_width="fill_parent"
         android:layout_height="190sp"
-        android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_launcher" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder" />
     
     <!-- Texto de descripcion de la propiedad -->
     <!-- Alineacion con respecto a imagen  -->
@@ -20,6 +21,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
         android:layout_below="@+id/imagenPropiedad"
         android:orientation="vertical" >
         
@@ -65,11 +67,13 @@
     <!-- Estrella de la publicacion -->
     <ImageView
         android:id="@+id/imagenEstrella"
-        android:layout_width="20sp"
-        android:layout_height="20sp"
+        android:layout_width="25sp"
+        android:layout_height="25sp"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/linearLayout1"
         android:layout_below="@+id/imagenPropiedad"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
         android:minWidth="106dp"
         android:src="@drawable/yellow_star" />
 </RelativeLayout>

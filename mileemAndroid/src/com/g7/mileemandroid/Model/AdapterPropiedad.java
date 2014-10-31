@@ -104,7 +104,7 @@ public class AdapterPropiedad extends BaseAdapter {
         if(propiedad.getCantFotos() > 0)
         	foto.setImageBitmap(propiedad.getFotosThumb()[0]);
         else
-        	foto.setImageResource(R.drawable.ic_launcher);
+        	foto.setImageResource(R.drawable.placeholder);
         
         // Rellenamos el textos
         TextView nombre = (TextView) view.findViewById(R.id.direccionLista);

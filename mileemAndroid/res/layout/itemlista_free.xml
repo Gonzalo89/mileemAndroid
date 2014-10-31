@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" 
+    android:layout_height="80sp" 
     android:background="#ffd966" >
 
     <!-- Imagen de la propiedad -->
+
     <ImageView
         android:id="@+id/imagenPropiedad"
-        android:layout_width="wrap_content"
+        android:layout_width="80sp"
         android:layout_height="80sp"
-        android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
-        android:src="@drawable/ic_launcher" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:paddingLeft="20dp"
         android:layout_toRightOf="@+id/imagenPropiedad"
         android:orientation="vertical" >
 
@@ -29,6 +31,8 @@
             android:layout_height="wrap_content"
             android:text="Precio"
             android:textSize="12sp"
+        	android:paddingBottom="3dp"
+        	android:paddingTop="1dp"
             android:textStyle="bold" />
 
         <TextView
@@ -37,6 +41,7 @@
             android:layout_height="wrap_content"
             android:text="Direccion"
             android:textSize="12sp"
+        	android:paddingBottom="3dp"
             android:textStyle="bold" />
 
         <TextView
@@ -44,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Superficie"
+        	android:paddingBottom="3dp"
             android:textSize="12sp" />
 
         <TextView
