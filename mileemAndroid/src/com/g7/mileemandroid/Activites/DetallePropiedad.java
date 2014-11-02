@@ -47,7 +47,7 @@ public class DetallePropiedad extends Fragment {
 		
 		if(propiedad.getCantFotos() > 0){
 			ImageView imagenView = (ImageView)getView().findViewById(R.id.imagenDetalle);
-			imagenView.setImageBitmap(propiedad.getFotosThumb()[0]);			
+			imagenView.setImageBitmap(propiedad.getFotosCompleta()[0]);			
 		}
 		
 		String moneda = null;
