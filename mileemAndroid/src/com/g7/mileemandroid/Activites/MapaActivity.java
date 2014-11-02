@@ -2,7 +2,6 @@ package com.g7.mileemandroid.Activites;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.g7.mileemandroid.R;
@@ -24,8 +23,7 @@ public class MapaActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_mapa);
-        setTitle("  Localizaci—n");
+		setContentView(R.layout.activity_mapa);        
         
 		// Load Parameters
 		latitud = getIntent().getStringExtra("Latitud");
@@ -53,12 +51,12 @@ public class MapaActivity extends ActionBarActivity {
 		    
 	}
 
-	@Override
+/*	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.mapa, menu);
 		return true;
-	}
+	}*/
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

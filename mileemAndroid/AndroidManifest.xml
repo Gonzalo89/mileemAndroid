@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.g7.mileemandroid"
     android:versionCode="1"
-    android:versionName="2.1" >
+    android:versionName="2.3" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -79,7 +79,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBztJqIWcXpLu3jfLhTlWxG0bax2vQvm3g" />
+            android:value="AIzaSyAFVsmAQsrh-bJwVKjcE-ku1qdGAd2g6rA" />
 
         <activity
             android:name=".Activites.FiltrosActivity"

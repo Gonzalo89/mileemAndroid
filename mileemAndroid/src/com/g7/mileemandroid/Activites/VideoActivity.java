@@ -35,7 +35,6 @@ public class VideoActivity extends YouTubeFailureRecoveryActivity {
 	    		Toast toast1 =
 	    				Toast.makeText(getApplicationContext(),
 	    						"No hay videos", Toast.LENGTH_SHORT);
-
 	    			toast1.show();
 	    	}	
 	    }
