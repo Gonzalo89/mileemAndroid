@@ -163,8 +163,8 @@ public class DetallePropiedadTabs extends Activity implements
 	        case 1:
 	        	return fotosSlide;
 	        case 2:
-	        	videoFragment = new VideoFragment();
-	            return videoFragment;
+	        	detallePropiedad = new DetallePropiedad();//FIXME
+	            return detallePropiedad;
 	        }
 	 
 	        return null;
