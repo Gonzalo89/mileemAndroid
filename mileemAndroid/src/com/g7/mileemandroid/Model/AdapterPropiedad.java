@@ -1,33 +1,48 @@
 package com.g7.mileemandroid.Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.apache.http.client.ClientProtocolException;
 
 import com.g7.mileemandroid.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class AdapterPropiedad extends BaseAdapter {
 
+	// Constantes
 	private static int TYPE_COUNT = 3 ;
 	private static final int ID_TYPE_GRATUITA = 0;
 	private static final int ID_TYPE_BASICA = 1;
 	private static final int ID_TYPE_PREMIUM = 2;
-	/*private static final String TYPE_GRATUITA = "Gratuita";
-	private static final String TYPE_BASICA = "Basica";
-	private static final String TYPE_PREMIUM = "Premium";*/
+    private final String BUNDLE_POS = "pos";
+    private final String BUNDLE_URL_THUMB = "bundleUrlsThumb";
+    private final String BUNDLE_URL_COMPLETE = "bundleUrlsComplete";
+	
+    // Objetos
     protected Activity activity;
     protected ArrayList<Propiedad> items;	
+    private HashMap<Integer, ImageView> imageViews;
 	
+    
     public AdapterPropiedad(Activity activity, ArrayList<Propiedad> items) {
 		this.activity = activity;
 		this.items = items;
+        this.imageViews = new HashMap<Integer, ImageView>();
 	}
 
     @Override
@@ -86,25 +101,24 @@ public class AdapterPropiedad extends BaseAdapter {
             }
         }
     	
-//        // Generamos una convertView por motivos de eficiencia
-//        View v = convertView;
-// 
-//        //Asociamos el layout de la lista que hemos creado
-//        if(convertView == null){
-//            LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            v = inf.inflate(R.layout.itemlista, null);
-//        }
- 
-        // Creamos un objeto directivo
         Propiedad propiedad = items.get(position);
         
-        // Rellenamos la fotograf�a
-        ImageView foto = (ImageView) view.findViewById(R.id.imagenPropiedad);
+        // Inicio carga fotografias asincronica
+        ImageView propiedadImageView = (ImageView) view.findViewById(R.id.imagenPropiedad);
+        imageViews.put(position, propiedadImageView);
+        // Carga de datos para la async task
+        Bundle bundle = new Bundle();
+        bundle.putStringArray(BUNDLE_URL_THUMB, propiedad.getImagesUrlThumb());
+        bundle.putStringArray(BUNDLE_URL_COMPLETE, propiedad.getImagesUrlCompleta());
+        bundle.putInt(BUNDLE_POS, position);
+        // Inicio carga de datos en nuevo thread
+        new FotosPropiedadesTask().execute(bundle);
+        
  //     foto.setImageDrawable(propiedad.getFoto());
-        if(propiedad.getCantFotos() > 0)
-        	foto.setImageBitmap(propiedad.getFotosThumb()[0]);
-        else
-        	foto.setImageResource(R.drawable.placeholder);
+//        if(propiedad.getCantFotos() > 0)
+//        	propiedadImageView.setImageBitmap(propiedad.getFotosThumb()[0]);
+//        else
+//        	propiedadImageView.setImageResource(R.drawable.placeholder);
         
         // Rellenamos el textos
         TextView nombre = (TextView) view.findViewById(R.id.direccionLista);
@@ -126,5 +140,22 @@ public class AdapterPropiedad extends BaseAdapter {
         ambientes.setText("Amb: " +propiedad.getAmbientes());      
         return view;
     }
+    
+    private class FotosPropiedadesTask extends AsyncTask<Bundle, Void, Bundle> {    
+    	
+       @Override
+       protected Bundle doInBackground(Bundle... bundle) {
+    	   
+    	   //PROCESAR
+           Bundle newBundle = new Bundle();
+           return newBundle;
+       }
+       
+		// onPostExecute displays the results of the AsyncTask.
+		@Override
+		protected void onPostExecute(Bundle result) {
+			
+		}
+	}
 
 }

@@ -9,12 +9,23 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.client.ClientProtocolException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.g7.mileemandroid.R;
+
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class Propiedad implements Serializable{
 
@@ -51,6 +62,8 @@ public class Propiedad implements Serializable{
 	private String email;
 	private String nombre;
 	private String apellido;
+	private String[] imagesUrlThumb;
+	private String[] imagesUrlCompleta;
 	
 	public Propiedad(JSONObject json) {
 		
@@ -67,6 +80,8 @@ public class Propiedad implements Serializable{
 			if (jsonFotos.length() >= 1) { //Cargo fotos
 				this.fotosThumb = new Bitmap[this.cantFotos];
 				this.fotosCompleta = new Bitmap[this.cantFotos];
+				this.imagesUrlThumb = new String[this.cantFotos];
+				this.imagesUrlCompleta = new String[this.cantFotos];
 				
 				for(int i = 0; i < this.cantFotos; i++) {
 					JSONObject jsonFoto = jsonFotos.getJSONObject(i);
@@ -83,32 +98,33 @@ public class Propiedad implements Serializable{
 						imageUrlThumb =  "http://" + Constantes.IPSERVER	+ dirFotoThumb;
 						imageUrlCompleta = "http://" + Constantes.IPSERVER	+ dirFotoCompleta;					
 					}
-
-					URL url;					
-					try {
-						//Obtengo fotoThumb						
-						url = new URL(imageUrlThumb);
-						HttpURLConnection connection = (HttpURLConnection) url
-								.openConnection();
-						InputStream is = connection.getInputStream();
-						Bitmap img = BitmapFactory.decodeStream(is);
-						this.fotosThumb[i] = img;	
-
-						//Obtengo fotoCompleta
-						url = new URL(imageUrlCompleta);
-						HttpURLConnection connection2 = (HttpURLConnection) url
-								.openConnection();
-						InputStream is2 = connection2.getInputStream();
-						Bitmap img2 = BitmapFactory.decodeStream(is2);
-						this.fotosCompleta[i] = img2;	
-						
-					} catch (MalformedURLException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}		
 					
-					
+					this.imagesUrlThumb[i] = imageUrlThumb;
+					this.imagesUrlCompleta[i] = imageUrlCompleta;
+
+//					URL url;					
+//					try {
+//						//Obtengo fotoThumb						
+//						url = new URL(imageUrlThumb);
+//						HttpURLConnection connection = (HttpURLConnection) url
+//								.openConnection();
+//						InputStream is = connection.getInputStream();
+//						Bitmap img = BitmapFactory.decodeStream(is);
+//						this.fotosThumb[i] = img;	
+//
+//						//Obtengo fotoCompleta
+//						url = new URL(imageUrlCompleta);
+//						HttpURLConnection connection2 = (HttpURLConnection) url
+//								.openConnection();
+//						InputStream is2 = connection2.getInputStream();
+//						Bitmap img2 = BitmapFactory.decodeStream(is2);
+//						this.fotosCompleta[i] = img2;	
+//						
+//					} catch (MalformedURLException e) {
+//						e.printStackTrace();
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}		
 				}
 			}
 
@@ -436,4 +452,23 @@ public class Propiedad implements Serializable{
 		return cantVideos;
 	}
 	
+
+	public String[] getImagesUrlThumb() {
+		return imagesUrlThumb;
+	}
+
+	public void setImagesUrlThumb(String[] imagesUrlThumb) {
+		this.imagesUrlThumb = imagesUrlThumb;
+	}
+
+	public String[] getImagesUrlCompleta() {
+		return imagesUrlCompleta;
+	}
+
+	public void setImagesUrlCompleta(String[] imagesUrlCompleta) {
+		this.imagesUrlCompleta = imagesUrlCompleta;
+	}
+
+	
 }
+

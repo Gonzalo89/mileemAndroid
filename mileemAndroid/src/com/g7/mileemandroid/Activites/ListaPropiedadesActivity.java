@@ -168,6 +168,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		}
 		return arrayProp;
 	}
+	
     private class PropiedadesTask extends AsyncTask<String, Void, ArrayList<Propiedad>> {
     	
     	Context context;
@@ -213,4 +214,5 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			loadingSpinner.dismiss();
 		}
 	}
+    
 }
