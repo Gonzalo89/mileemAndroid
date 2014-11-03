@@ -1,5 +1,10 @@
 package com.g7.mileemandroid.Model;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,6 +14,8 @@ import com.g7.mileemandroid.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,6 +39,7 @@ public class AdapterPropiedad extends BaseAdapter {
     private final String BUNDLE_POS = "pos";
     private final String BUNDLE_URL_THUMB = "bundleUrlsThumb";
     private final String BUNDLE_URL_COMPLETE = "bundleUrlsComplete";
+    private final String BUNDLE_COUNT = "count";
 	
     // Objetos
     protected Activity activity;
@@ -111,6 +119,7 @@ public class AdapterPropiedad extends BaseAdapter {
         bundle.putStringArray(BUNDLE_URL_THUMB, propiedad.getImagesUrlThumb());
         bundle.putStringArray(BUNDLE_URL_COMPLETE, propiedad.getImagesUrlCompleta());
         bundle.putInt(BUNDLE_POS, position);
+        bundle.putInt(BUNDLE_COUNT, propiedad.getCantFotos());
         // Inicio carga de datos en nuevo thread
         new FotosPropiedadesTask().execute(bundle);
         
@@ -146,6 +155,45 @@ public class AdapterPropiedad extends BaseAdapter {
        @Override
        protected Bundle doInBackground(Bundle... bundle) {
     	   
+    	   int count = bundle[0].getInt(BUNDLE_COUNT);
+    	   String[] thumbUrls = bundle[0].getStringArray(BUNDLE_URL_THUMB);
+    	   String[] completeUrls = bundle[0].getStringArray(BUNDLE_URL_COMPLETE);
+    	   Bitmap[] fotosThumb = new Bitmap[count];
+    	   Bitmap[] fotosCompleta = new Bitmap[count];
+    	   String thumbUrl = "";
+    	   String completeUrl = "";
+			URL url;		
+    	   
+    	   for(int i = 0; i < count; i++) {
+    		   
+    		   thumbUrl = thumbUrls[i];
+    		   completeUrl = completeUrls[i];
+    		   			
+				try {
+					//Obtengo fotoThumb						
+					url = new URL(thumbUrl);
+					HttpURLConnection connection = (HttpURLConnection) url
+							.openConnection();
+					InputStream is = connection.getInputStream();
+					Bitmap img = BitmapFactory.decodeStream(is);
+					fotosThumb[i] = img;	
+
+					//Obtengo fotoCompleta
+					url = new URL(completeUrl);
+					HttpURLConnection connection2 = (HttpURLConnection) url
+							.openConnection();
+					InputStream is2 = connection2.getInputStream();
+					Bitmap img2 = BitmapFactory.decodeStream(is2);
+					fotosCompleta[i] = img2;	
+					
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+    		   
+    	   }
+    	   
     	   //PROCESAR
            Bundle newBundle = new Bundle();
            return newBundle;
@@ -155,6 +203,15 @@ public class AdapterPropiedad extends BaseAdapter {
 		@Override
 		protected void onPostExecute(Bundle result) {
 			
+//			//get picture saved in the map + set
+//            ImageView view = views.get(result.getInt(BUNDLE_POS));
+//            Bitmap bm = (Bitmap) result.getParcelable(BUNDLE_BM);
+//
+//            if (bm != null){ //if bitmap exists...
+//                view.setImageBitmap(bm);
+//            }else{ //if not picture, display the default ressource
+//                view.setImageResource(R.drawable.unknow);
+//            }
 		}
 	}
 
