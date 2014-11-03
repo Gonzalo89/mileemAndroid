@@ -78,8 +78,6 @@ public class Propiedad implements Serializable{
 			this.cantFotos = jsonFotos.length();
 			
 			if (jsonFotos.length() >= 1) { //Cargo fotos
-				this.fotosThumb = new Bitmap[this.cantFotos];
-				this.fotosCompleta = new Bitmap[this.cantFotos];
 				this.imagesUrlThumb = new String[this.cantFotos];
 				this.imagesUrlCompleta = new String[this.cantFotos];
 				
@@ -326,7 +324,7 @@ public class Propiedad implements Serializable{
 	public Bitmap[] getFotosThumb() {
 		return fotosThumb;
 	}
-
+	
 	public void setFoto(Bitmap[] foto) {
 		this.fotosThumb = foto;
 	}
@@ -468,7 +466,14 @@ public class Propiedad implements Serializable{
 	public void setImagesUrlCompleta(String[] imagesUrlCompleta) {
 		this.imagesUrlCompleta = imagesUrlCompleta;
 	}
-
 	
+	public void setFotosThumb(Bitmap[] fotosThumb) {
+		this.fotosThumb = fotosThumb;
+	}
+
+	public void setFotosCompleta(Bitmap[] fotosCompleta) {
+		this.fotosCompleta = fotosCompleta;
+	}
+
 }
 

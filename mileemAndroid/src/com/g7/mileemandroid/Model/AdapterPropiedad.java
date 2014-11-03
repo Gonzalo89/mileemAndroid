@@ -114,20 +114,30 @@ public class AdapterPropiedad extends BaseAdapter {
         // Inicio carga fotografias asincronica
         ImageView propiedadImageView = (ImageView) view.findViewById(R.id.imagenPropiedad);
         imageViews.put(position, propiedadImageView);
-        // Carga de datos para la async task
-        Bundle bundle = new Bundle();
-        bundle.putStringArray(BUNDLE_URL_THUMB, propiedad.getImagesUrlThumb());
-        bundle.putStringArray(BUNDLE_URL_COMPLETE, propiedad.getImagesUrlCompleta());
-        bundle.putInt(BUNDLE_POS, position);
-        bundle.putInt(BUNDLE_COUNT, propiedad.getCantFotos());
-        // Inicio carga de datos en nuevo thread
-        new FotosPropiedadesTask().execute(bundle);
         
- //     foto.setImageDrawable(propiedad.getFoto());
-//        if(propiedad.getCantFotos() > 0)
-//        	propiedadImageView.setImageBitmap(propiedad.getFotosThumb()[0]);
-//        else
-//        	propiedadImageView.setImageResource(R.drawable.placeholder);
+        if (propiedad.getFotosCompleta() == null || propiedad.getFotosThumb() == null) {
+        	
+	        // Carga de datos para la async task
+	        Bundle bundle = new Bundle();
+	        bundle.putStringArray(BUNDLE_URL_THUMB, propiedad.getImagesUrlThumb());
+	        bundle.putStringArray(BUNDLE_URL_COMPLETE, propiedad.getImagesUrlCompleta());
+	        bundle.putInt(BUNDLE_POS, position);
+	        bundle.putInt(BUNDLE_COUNT, propiedad.getCantFotos());
+	        // Inicio carga de datos en nuevo thread
+	        new FotosPropiedadesTask().execute(bundle);
+        }else {
+        	
+        	Bitmap bm = null;
+            if ( propiedad.getFotosCompleta().length != 0)
+            	bm = propiedad.getFotosCompleta()[0];
+            else if ( propiedad.getFotosThumb().length != 0 )
+            	bm = propiedad.getFotosThumb()[0];
+            
+            if (bm != null)
+            	propiedadImageView.setImageBitmap(bm);
+            else
+            	propiedadImageView.setImageResource(R.drawable.placeholder);
+        }
         
         // Rellenamos el textos
         TextView nombre = (TextView) view.findViewById(R.id.direccionLista);
@@ -152,9 +162,13 @@ public class AdapterPropiedad extends BaseAdapter {
     
     private class FotosPropiedadesTask extends AsyncTask<Bundle, Void, Bundle> {    
     	
+    	private final String BUNDLE_THUMB_IMAGES = "bundleThumbImages";
+    	private final String BUNDLE_COMPLETE_IMAGES = "bundleCompleteImages";
+    	
        @Override
        protected Bundle doInBackground(Bundle... bundle) {
     	   
+    	   int position = bundle[0].getInt(BUNDLE_POS);
     	   int count = bundle[0].getInt(BUNDLE_COUNT);
     	   String[] thumbUrls = bundle[0].getStringArray(BUNDLE_URL_THUMB);
     	   String[] completeUrls = bundle[0].getStringArray(BUNDLE_URL_COMPLETE);
@@ -172,16 +186,14 @@ public class AdapterPropiedad extends BaseAdapter {
 				try {
 					//Obtengo fotoThumb						
 					url = new URL(thumbUrl);
-					HttpURLConnection connection = (HttpURLConnection) url
-							.openConnection();
+					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 					InputStream is = connection.getInputStream();
 					Bitmap img = BitmapFactory.decodeStream(is);
 					fotosThumb[i] = img;	
 
 					//Obtengo fotoCompleta
 					url = new URL(completeUrl);
-					HttpURLConnection connection2 = (HttpURLConnection) url
-							.openConnection();
+					HttpURLConnection connection2 = (HttpURLConnection) url.openConnection();
 					InputStream is2 = connection2.getInputStream();
 					Bitmap img2 = BitmapFactory.decodeStream(is2);
 					fotosCompleta[i] = img2;	
@@ -191,11 +203,13 @@ public class AdapterPropiedad extends BaseAdapter {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-    		   
     	   }
     	   
     	   //PROCESAR
            Bundle newBundle = new Bundle();
+           newBundle.putInt(BUNDLE_POS, position);
+           newBundle.putParcelableArray(BUNDLE_THUMB_IMAGES, fotosThumb);
+           newBundle.putParcelableArray(BUNDLE_COMPLETE_IMAGES, fotosCompleta);
            return newBundle;
        }
        
@@ -203,15 +217,30 @@ public class AdapterPropiedad extends BaseAdapter {
 		@Override
 		protected void onPostExecute(Bundle result) {
 			
-//			//get picture saved in the map + set
-//            ImageView view = views.get(result.getInt(BUNDLE_POS));
-//            Bitmap bm = (Bitmap) result.getParcelable(BUNDLE_BM);
-//
-//            if (bm != null){ //if bitmap exists...
-//                view.setImageBitmap(bm);
-//            }else{ //if not picture, display the default ressource
-//                view.setImageResource(R.drawable.unknow);
-//            }
+			// Load Data
+			int position = result.getInt(BUNDLE_POS);
+			Propiedad propiedad = items.get(position);
+			Bitmap[] fotosThumb = (Bitmap[]) result.getParcelableArray(BUNDLE_THUMB_IMAGES);
+	    	Bitmap[] fotosCompleta = (Bitmap[]) result.getParcelableArray(BUNDLE_COMPLETE_IMAGES);
+	    	
+	    	// Save Photos in propiedad
+	    	propiedad.setFotosThumb(fotosThumb);
+	    	propiedad.setFotosCompleta(fotosCompleta);
+	    	
+			// Get picture saved in the map + set
+            ImageView view = imageViews.get(position);
+            Bitmap bm = null;
+            if ( fotosCompleta.length != 0){
+            	bm = fotosCompleta[0];
+            }else if ( fotosThumb.length != 0 ){
+            	bm = fotosThumb[0];
+            }
+            	
+            if (bm != null){ //if bitmap exists...
+                view.setImageBitmap(bm);
+            }else{ //if not picture, display the default resource
+                view.setImageResource(R.drawable.placeholder);
+            }
 		}
 	}
 
