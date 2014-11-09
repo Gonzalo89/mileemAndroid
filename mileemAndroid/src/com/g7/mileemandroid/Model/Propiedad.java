@@ -49,8 +49,6 @@ public class Propiedad implements Serializable{
 	private String departamento;
 	private String moneda;
 	private List<String> amenities;	
-	private Bitmap[] fotosThumb;
-	private Bitmap[] fotosCompleta;
 	private String[] idVideos;
 	private int cantFotos;
 	private int cantVideos;
@@ -64,6 +62,8 @@ public class Propiedad implements Serializable{
 	private String apellido;
 	private String[] imagesUrlThumb;
 	private String[] imagesUrlCompleta;
+	private Bitmap[] fotosThumb;
+	private Bitmap[] fotosCompleta;
 	
 	public Propiedad(JSONObject json) {
 		
@@ -99,30 +99,7 @@ public class Propiedad implements Serializable{
 					
 					this.imagesUrlThumb[i] = imageUrlThumb;
 					this.imagesUrlCompleta[i] = imageUrlCompleta;
-
-//					URL url;					
-//					try {
-//						//Obtengo fotoThumb						
-//						url = new URL(imageUrlThumb);
-//						HttpURLConnection connection = (HttpURLConnection) url
-//								.openConnection();
-//						InputStream is = connection.getInputStream();
-//						Bitmap img = BitmapFactory.decodeStream(is);
-//						this.fotosThumb[i] = img;	
-//
-//						//Obtengo fotoCompleta
-//						url = new URL(imageUrlCompleta);
-//						HttpURLConnection connection2 = (HttpURLConnection) url
-//								.openConnection();
-//						InputStream is2 = connection2.getInputStream();
-//						Bitmap img2 = BitmapFactory.decodeStream(is2);
-//						this.fotosCompleta[i] = img2;	
-//						
-//					} catch (MalformedURLException e) {
-//						e.printStackTrace();
-//					} catch (IOException e) {
-//						e.printStackTrace();
-//					}		
+		
 				}
 			}
 
@@ -473,6 +450,15 @@ public class Propiedad implements Serializable{
 
 	public void setFotosCompleta(Bitmap[] fotosCompleta) {
 		this.fotosCompleta = fotosCompleta;
+	}
+	
+	public boolean descargaDeDatosCompleta() {
+		
+		if (this.fotosThumb == null || this.fotosCompleta == null)
+			return false;
+		if (this.fotosThumb.length != this.imagesUrlThumb.length || this.fotosCompleta.length != this.imagesUrlCompleta.length)
+			return false;
+		return true;
 	}
 
 }
