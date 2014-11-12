@@ -48,5 +48,11 @@
     <string name="Fotos">Fotos</string>
     <string name="Video">Video</string>
     <string name="title_activity_prueba_video">PruebaVideo</string>
+    <string name="title_activity_estadisticas">Estadisticas</string>
+    <string name="new_series">new_series</string>
+    <string name="add">add</string>
+    <string name="y">y</string>
+    <string name="x">x</string>
+    <string name="add_values">add_values</string>
 
 </resources>
