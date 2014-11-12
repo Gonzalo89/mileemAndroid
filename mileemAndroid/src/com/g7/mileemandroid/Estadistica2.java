@@ -22,7 +22,7 @@ public class Estadistica2 extends Activity {
 		PieHelper amb1 = new PieHelper(20, Color.BLUE);		
 		PieHelper amb2 = new PieHelper(30, Color.GREEN);
 		PieHelper amb3 = new PieHelper(30, Color.RED);
-		PieHelper amb4 = new PieHelper(20, Color.YELLOW);		
+		PieHelper amb4 = new PieHelper(20, Color.MAGENTA);		
 		PieView pieView = (PieView)findViewById(R.id.pie_view);
 		ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
 		pieHelperArrayList.add(amb1);
@@ -51,7 +51,7 @@ public class Estadistica2 extends Activity {
 		dataList.add(Integer.valueOf(10));
 		dataList.add(Integer.valueOf(22));
 		dataList.add(Integer.valueOf(12));
-		barView.setDataList(dataList,100);
+		barView.setDataList(dataList,50);
 	}
 
 	@Override

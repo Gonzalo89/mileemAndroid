@@ -55,5 +55,7 @@
     <string name="x">x</string>
     <string name="add_values">add_values</string>
     <string name="title_activity_estadistica2">Estadistica2</string>
+    <string name="Tipologia">Tipoloía</string>
+    <string name="PrecioPromediom2">Precio promedio del m2</string>
 
 </resources>

@@ -4,21 +4,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-<view
-    android:id="@+id/pie_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    class="com.dacer.androidcharts.PieView" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/Barrio"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/Tipologia"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <view
+            android:id="@+id/pie_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="com.dacer.androidcharts.PieView" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/PrecioPromediom2"
+        android:textSize="20sp" />
 
 <HorizontalScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="match_parent" >
 
         <view
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            class="com.dacer.androidcharts.BarView"
-            android:id="@+id/bar_view" />
+            android:id="@+id/bar_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.dacer.androidcharts.BarView" />
+
 </HorizontalScrollView>
 
 </LinearLayout>
