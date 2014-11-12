@@ -89,9 +89,25 @@ public class Estadisticas extends Activity {
 	      SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
 	      renderer.setColor(Color.BLUE);
 	      mRenderer.addSeriesRenderer(renderer);
+	      
+	      mSeries.add("aaaaaaaaaaaaaaaaaaaaaa", 10.5);
+	      
+	      SimpleSeriesRenderer renderer2 = new SimpleSeriesRenderer();
+	      renderer2.setColor(Color.GREEN);
+	      //renderer2.setDisplayBoundingPoints(false);
+	      renderer2.setDisplayChartValues(false);
+	      renderer2.setChartValuesTextSize(20);
+	      renderer2.setShowLegendItem(true);
+	     
+	      
+	      mRenderer.addSeriesRenderer(renderer2);
+	      mRenderer.setLabelsTextSize(50);
+	      mRenderer.setLegendHeight(10);
+	      mRenderer.setLegendTextSize(60);
+	      
 	      ///////////////////////////////////
 	      mChartView = ChartFactory.getPieChartView(this, mSeries, mRenderer);
-	      mRenderer.setClickEnabled(true);
+	      //mRenderer.setClickEnabled(true);
 	     /* mChartView.setOnClickListener(new View.OnClickListener() {
 	        @Override
 	        public void onClick(View v) {

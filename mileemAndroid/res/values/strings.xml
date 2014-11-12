@@ -54,5 +54,6 @@
     <string name="y">y</string>
     <string name="x">x</string>
     <string name="add_values">add_values</string>
+    <string name="title_activity_estadistica2">Estadistica2</string>
 
 </resources>

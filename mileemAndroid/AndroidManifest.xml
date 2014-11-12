@@ -111,6 +111,10 @@
             android:name=".Estadisticas"
             android:label="@string/title_activity_estadisticas" >
         </activity>
+        <activity
+            android:name=".Estadistica2"
+            android:label="@string/title_activity_estadistica2" >
+        </activity>
     </application>
 
 </manifest>
