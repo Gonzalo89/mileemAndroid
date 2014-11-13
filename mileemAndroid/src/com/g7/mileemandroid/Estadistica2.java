@@ -53,7 +53,7 @@ public class Estadistica2 extends Activity {
 		loadingSpinner.setCancelable(false);
 		loadingSpinner.show();
 
-		String url = Constantes.DIRESTADISTICAS + "1"; // TODO harcodeado
+		String url = Constantes.DIRESTADISTICAS + "5"; // TODO harcodeado
 		Log.d("Envio", "Peticion: " + url);
 		new EstadisticasTask(this).execute(url);
 		
@@ -76,7 +76,7 @@ public class Estadistica2 extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
+	}	
 
 	private String downloadJson(String url) throws ClientProtocolException,
 			IOException {
@@ -127,10 +127,10 @@ public class Estadistica2 extends Activity {
 				TextView barrio = (TextView) findViewById(R.id.textViewBarrio);
 				barrio.setText(unaPropiedad.getBarrio());
 
-				float pAmb1 = 20;// TODO no harcodear
-				float pAmb2 = 30;
-				float pAmb3 = 30;
-				float pAmb4 = 20;
+				float pAmb1 = estadisticaBarrio.getpAmb1();
+				float pAmb2 = estadisticaBarrio.getpAmb2();
+				float pAmb3 = estadisticaBarrio.getpAmb3();
+				float pAmb4 = estadisticaBarrio.getpAmb4();
 
 				// Grafico de torta
 				PieHelper amb1 = new PieHelper(pAmb1, Color.BLUE);
