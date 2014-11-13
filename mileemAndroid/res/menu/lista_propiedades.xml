@@ -4,4 +4,6 @@
     tools:context="com.g7.mileemandroid.ListaPropiedadesActivity" >
     <item android:id="@+id/MnuFiltro" android:title="@string/Filtros"
           android:icon="@android:drawable/ic_menu_preferences"></item>
+    <item android:id="@+id/MnuEstadisticas" android:title="@string/Estadisticas"
+          android:icon="@android:drawable/ic_menu_preferences"></item>
 </menu>

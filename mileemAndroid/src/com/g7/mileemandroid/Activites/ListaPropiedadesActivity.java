@@ -35,6 +35,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.g7.mileemandroid.Estadistica2;
 import com.g7.mileemandroid.R;
 import com.g7.mileemandroid.Model.AdapterPropiedad;
 import com.g7.mileemandroid.Model.Constantes;
@@ -82,10 +83,10 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			url += "&codSup="+ filtro.getSupCubierta();	
 		
 		loadingSpinner = new ProgressDialog(this);
-		loadingSpinner.setMessage("Procesando búsqueda...");
+		loadingSpinner.setMessage("Procesando busqueda...");
 		loadingSpinner.setCancelable(false);
 		loadingSpinner.show();
-		Log.d("Envio", "Pericion: " + url);
+		Log.d("Envio", "Peticion: " + url);
 		new PropiedadesTask(this).execute( url );
 	}
 
@@ -131,6 +132,11 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			Intent intent = new Intent(this, FiltrosActivity.class);
 			startActivity(intent);
 			return true;
+		case R.id.MnuEstadisticas:
+			Log.d("Boton", "Apreto menu Estadisticas");
+			Intent intent2 = new Intent(this, Estadistica2.class);
+			startActivity(intent2);
+			return true;			
 		default:
 			return super.onOptionsItemSelected(item);
 		}
