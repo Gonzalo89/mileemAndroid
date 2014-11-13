@@ -90,8 +90,8 @@ public class Propiedad implements Serializable{
 					String imageUrlThumb = "";
 					String imageUrlCompleta = "";					
 					if (Constantes.WEB) {
-						imageUrlThumb =  Constantes.DIRSERVER	+ dirFotoThumb;
-						imageUrlCompleta = Constantes.DIRSERVER	+ dirFotoCompleta;						
+						imageUrlThumb = dirFotoThumb;
+						imageUrlCompleta = dirFotoCompleta;						
 					} else {
 						imageUrlThumb =  "http://" + Constantes.IPSERVER	+ dirFotoThumb;
 						imageUrlCompleta = "http://" + Constantes.IPSERVER	+ dirFotoCompleta;					
