@@ -49,7 +49,7 @@ public class Estadistica2 extends Activity {
 		setContentView(R.layout.activity_estadistica2);
 
 		loadingSpinner = new ProgressDialog(this);
-		loadingSpinner.setMessage("Procesando búsqueda...");
+		loadingSpinner.setMessage(getResources().getString(R.string.EsperandoEstadisticas));
 		loadingSpinner.setCancelable(false);
 		loadingSpinner.show();
 
@@ -148,27 +148,10 @@ public class Estadistica2 extends Activity {
 
 				// Grafico de barras
 				BarView barView = (BarView) findViewById(R.id.bar_view);
-				//ArrayList<String> barriosAdyacentes = new ArrayList<String>();
-				/*ArrayList<String> strList = new ArrayList<String>(); // TODO no
-																		// harcodear
-				strList.add("barrio1");
-				strList.add("barrio2");
-				strList.add("barrio3");
-				strList.add("barrio4");
-				strList.add("barrio5");
-				strList.add("barrio6");
-				strList.add("barrio7");
-				barView.setBottomTextList(strList);*/
 				barView.setBottomTextList(estadisticaBarrio.getBarriosVecinos());
-				ArrayList<Integer> dataList = new ArrayList<Integer>();
-				dataList.add(Integer.valueOf(20));
-				dataList.add(Integer.valueOf(30));
-				dataList.add(Integer.valueOf(40));
-				dataList.add(Integer.valueOf(50));
-				dataList.add(Integer.valueOf(10));
-				dataList.add(Integer.valueOf(22));
-				dataList.add(Integer.valueOf(12));
-				barView.setDataList(dataList, 50);
+				barView.setDataList(
+						estadisticaBarrio.getPrecioPesosM2Vecinos(),
+						estadisticaBarrio.getMaxPesosM2());
 			} else {
 				Toast.makeText(this.context, "Error al conectarse al servidor",
 						Toast.LENGTH_SHORT).show();

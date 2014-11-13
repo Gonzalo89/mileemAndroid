@@ -1,6 +1,7 @@
 package com.g7.mileemandroid.Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,10 +18,12 @@ public class EstadisticaBarrio {
 	private float pAmb3;
 	private float pAmb4;
 	ArrayList<String> barriosVecinos;
-	ArrayList<Float> precioPesosM2Vecinos;
+	ArrayList<Integer> precioPesosM2Vecinos;
+	private int maxPesosM2;
 	
 	public EstadisticaBarrio(String json) {
 		barriosVecinos = new ArrayList<String>();
+		precioPesosM2Vecinos = new ArrayList<Integer>();
 		JSONObject jsonObject = null;
    		JSONArray jsonArray = null;
    		try {
@@ -28,7 +31,8 @@ public class EstadisticaBarrio {
    			this.amb1 = jsonObject.getInt("cantCodAmb1");
    			this.amb2 = jsonObject.getInt("cantCodAmb2");
    			this.amb3 = jsonObject.getInt("cantCodAmb3");
-   			this.amb4 = jsonObject.getInt("cantCodAmb4"); 
+   			this.amb4 = jsonObject.getInt("cantCodAmb4");
+   			this.totalPropiedades = amb1 + amb2+ amb3 + amb4;
    			this.calcularPorcentajesAmb();
    			
 			jsonArray = jsonObject.getJSONArray("vecinos"); ;
@@ -37,7 +41,9 @@ public class EstadisticaBarrio {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				unJson = jsonArray.getJSONObject(i);
 				barriosVecinos.add(unJson.getString("vecino_nombre"));
+				precioPesosM2Vecinos.add(unJson.getInt(("promedioM2")));
 			}
+			this.maxPesosM2 = Collections.max(precioPesosM2Vecinos);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -78,6 +84,14 @@ public class EstadisticaBarrio {
 
 	public float getpAmb4() {
 		return pAmb4;
+	}
+
+	public ArrayList<Integer> getPrecioPesosM2Vecinos() {
+		return precioPesosM2Vecinos;
+	}
+
+	public int getMaxPesosM2() {
+		return maxPesosM2;
 	}
 
 }

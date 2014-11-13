@@ -54,7 +54,7 @@
     <string name="y">y</string>
     <string name="x">x</string>
     <string name="add_values">add_values</string>
-    <string name="title_activity_estadistica2">Estadistica2</string>
+    <string name="title_activity_estadistica2">Estadísticas del barrio</string>
     <string name="Tipologia">Tipología</string>
     <string name="PrecioPromediom2">Precio promedio del m2</string>
     <string name="amb1">1 amb.</string>
@@ -63,5 +63,6 @@
     <string name="amb4">4+ amb.</string>
     <string name="EstadisticasDelBarrio">Estadísticas del barrio</string>
     <string name="Estadisticas">Estadísticas</string>
+    <string name="EsperandoEstadisticas">Esperando estadísticas...</string>
 
 </resources>
