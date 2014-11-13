@@ -126,6 +126,9 @@ public class Estadistica2 extends Activity {
 
 				TextView barrio = (TextView) findViewById(R.id.textViewBarrio);
 				barrio.setText(unaPropiedad.getBarrio());
+				TextView totalPropiedades = (TextView) findViewById(R.id.TotalPropiedades);
+				totalPropiedades.setText(getResources().getString(R.string.TotalDePublicaciones) + 
+						estadisticaBarrio.getTotalPropiedades());
 
 				float pAmb1 = estadisticaBarrio.getpAmb1();
 				float pAmb2 = estadisticaBarrio.getpAmb2();
@@ -145,6 +148,7 @@ public class Estadistica2 extends Activity {
 				pieHelperArrayList.add(amb4);
 				pieView.setDate(pieHelperArrayList);
 				pieView.showPercentLabel(true);
+				
 
 				// Grafico de barras
 				BarView barView = (BarView) findViewById(R.id.bar_view);

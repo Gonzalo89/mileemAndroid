@@ -38,6 +38,8 @@ public class EstadisticaBarrio {
 			jsonArray = jsonObject.getJSONArray("vecinos"); ;
 			JSONObject unJson = null;
 			
+			barriosVecinos.add(jsonObject.getString("nombreBarrio"));//Se carga el barrio original
+			precioPesosM2Vecinos.add(jsonObject.getInt("promedioM2"));
 			for (int i = 0; i < jsonArray.length(); i++) {
 				unJson = jsonArray.getJSONObject(i);
 				barriosVecinos.add(unJson.getString("vecino_nombre"));
@@ -92,6 +94,10 @@ public class EstadisticaBarrio {
 
 	public int getMaxPesosM2() {
 		return maxPesosM2;
+	}
+
+	public int getTotalPropiedades() {
+		return totalPropiedades;
 	}
 
 }

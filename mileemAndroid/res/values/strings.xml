@@ -64,5 +64,6 @@
     <string name="EstadisticasDelBarrio">Estadísticas del barrio</string>
     <string name="Estadisticas">Estadísticas</string>
     <string name="EsperandoEstadisticas">Esperando estadísticas...</string>
+    <string name="TotalDePublicaciones">"Total de publicaciones: "</string>
 
 </resources>
