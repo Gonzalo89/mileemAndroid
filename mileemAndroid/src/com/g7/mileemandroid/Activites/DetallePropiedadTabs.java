@@ -163,8 +163,8 @@ public class DetallePropiedadTabs extends Activity implements
 	        case 1:
 	        	return fotosSlide;
 	        case 2:
-	        	videoFragment = new VideoFragment();
-	            return videoFragment;
+	        	detallePropiedad = new DetallePropiedad();//FIXME
+	            return detallePropiedad;
 	        }
 	 
 	        return null;
@@ -239,5 +239,10 @@ public class DetallePropiedadTabs extends Activity implements
 	public void onClickVerEnMapa(View view) {
 		if (this.detallePropiedad != null)
 			this.detallePropiedad.onClickVerEnMapa(view);
-	}	
+	}
+	
+	public void onClickShare(View view) {
+		if (this.detallePropiedad != null)
+			this.detallePropiedad.onClickShare(view);
+	}
 }

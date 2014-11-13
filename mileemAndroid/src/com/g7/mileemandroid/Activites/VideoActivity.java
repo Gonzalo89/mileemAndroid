@@ -1,5 +1,8 @@
 package com.g7.mileemandroid.Activites;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Window;
@@ -12,7 +15,7 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
 public class VideoActivity extends YouTubeFailureRecoveryActivity {
-		
+	private List<String> listaVideos;
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -29,7 +32,12 @@ public class VideoActivity extends YouTubeFailureRecoveryActivity {
 	      boolean wasRestored) {
 	    if (!wasRestored) {
 	    	if(PropiedadSingleton.getPropiedad().getCantVideos() >= 1){
-	    		player.cueVideo(PropiedadSingleton.getPropiedad().getIdVideos()[0]);//FIXME solo se ve el primer video
+	    		listaVideos = new ArrayList<String>();
+	    		for(int i = 0; i < PropiedadSingleton.getPropiedad().getCantVideos() ; i++) {
+	    			listaVideos.add(PropiedadSingleton.getPropiedad().getIdVideos()[i]);
+	    		}
+	    		//player.cueVideo(PropiedadSingleton.getPropiedad().getIdVideos()[0]);//FIXME solo se ve el primer video
+	    		player.cueVideos(listaVideos);
 	    	}else{
 	    		//player.cueVideo("wKJ9KzGQq0w");
 	    		Toast toast1 =
