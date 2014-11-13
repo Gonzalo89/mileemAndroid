@@ -55,7 +55,11 @@
     <string name="x">x</string>
     <string name="add_values">add_values</string>
     <string name="title_activity_estadistica2">Estadistica2</string>
-    <string name="Tipologia">Tipoloía</string>
+    <string name="Tipologia">Tipología</string>
     <string name="PrecioPromediom2">Precio promedio del m2</string>
+    <string name="amb1">1 amb.</string>
+    <string name="amb2">2 amb.</string>
+    <string name="amb3">3 amb.</string>
+    <string name="amb4">4+ amb.</string>
 
 </resources>
