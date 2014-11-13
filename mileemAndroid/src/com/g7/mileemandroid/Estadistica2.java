@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import com.dacer.androidcharts.BarView;
 import com.dacer.androidcharts.PieHelper;
 import com.dacer.androidcharts.PieView;
+import com.g7.mileemandroid.Model.PropiedadSingleton;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class Estadistica2 extends Activity {
 
@@ -17,6 +20,9 @@ public class Estadistica2 extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_estadistica2);
+		
+		TextView barrio = (TextView)findViewById(R.id.textViewBarrio);		
+		barrio.setText(PropiedadSingleton.getPropiedad().getBarrio());
 		
 		//Grafico de torta
 		PieHelper amb1 = new PieHelper(20, Color.BLUE);		

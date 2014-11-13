@@ -11,11 +11,13 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.g7.mileemandroid.Estadistica2;
 import com.g7.mileemandroid.R;
 import com.g7.mileemandroid.Model.PropiedadSingleton;
 
@@ -82,12 +84,12 @@ public class DetallePropiedadTabs extends Activity implements
 		}
 	}
 
-/*	@Override
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.detalle_propiedad_tabs, menu);
 		return true;
-	}*/
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -95,7 +97,9 @@ public class DetallePropiedadTabs extends Activity implements
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.estadisticas_menu) {			
+			Intent intent = new Intent(this, Estadistica2.class);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
