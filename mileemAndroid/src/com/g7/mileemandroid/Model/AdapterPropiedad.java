@@ -113,6 +113,7 @@ public class AdapterPropiedad extends BaseAdapter {
         
         // Inicio carga fotografias asincronica
         ImageView propiedadImageView = (ImageView) view.findViewById(R.id.imagenPropiedad);
+    	propiedadImageView.setImageResource(R.drawable.placeholder);
         imageViews.put(position, propiedadImageView);
         
         if (propiedad.getFotosCompleta() == null || propiedad.getFotosThumb() == null) {
@@ -135,8 +136,6 @@ public class AdapterPropiedad extends BaseAdapter {
             
             if (bm != null)
             	propiedadImageView.setImageBitmap(bm);
-            else
-            	propiedadImageView.setImageResource(R.drawable.placeholder);
         }
         
         // Rellenamos el textos
@@ -236,11 +235,8 @@ public class AdapterPropiedad extends BaseAdapter {
             	bm = fotosThumb[0];
             }
             	
-            if (bm != null){ //if bitmap exists...
+            if (bm != null) //if bitmap exists...
                 view.setImageBitmap(bm);
-            }else{ //if not picture, display the default resource
-                view.setImageResource(R.drawable.placeholder);
-            }
 		}
 	}
 
