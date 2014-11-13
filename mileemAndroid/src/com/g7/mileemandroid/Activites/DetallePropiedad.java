@@ -53,11 +53,13 @@ public class DetallePropiedad extends Fragment {
 		super.onActivityCreated(bundle); 
 		
 		this.propiedad = PropiedadSingleton.getPropiedad();
-		
-		if(propiedad.getCantFotos() > 0){
-			ImageView imagenView = (ImageView)getView().findViewById(R.id.imagenDetalle);
+
+		// Imagen principal
+		ImageView imagenView = (ImageView)getView().findViewById(R.id.imagenDetalle);
+		if(propiedad.getCantFotos() > 0 && propiedad.getFotosCompleta()[0] != null)
 			imagenView.setImageBitmap(propiedad.getFotosCompleta()[0]);			
-		}
+		else
+			imagenView.setImageResource(R.drawable.placeholder);
 		
 		String moneda = null;
 		if(propiedad.getMoneda().compareTo("Pesos") == 0) 
