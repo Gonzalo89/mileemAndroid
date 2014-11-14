@@ -2,7 +2,6 @@ package com.g7.mileemandroid.Model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +16,7 @@ public class EstadisticaBarrio {
 	private float pAmb2;
 	private float pAmb3;
 	private float pAmb4;
+	private String barrio;
 	ArrayList<String> barriosVecinos;
 	ArrayList<Integer> precioPesosM2Vecinos;
 	private int maxPesosM2;
@@ -33,6 +33,7 @@ public class EstadisticaBarrio {
    			this.amb3 = jsonObject.getInt("cantCodAmb3");
    			this.amb4 = jsonObject.getInt("cantCodAmb4");
    			this.totalPropiedades = amb1 + amb2+ amb3 + amb4;
+   			this.barrio = jsonObject.getString("nombreBarrio");
    			this.calcularPorcentajesAmb();
    			
 			jsonArray = jsonObject.getJSONArray("vecinos"); ;
@@ -99,5 +100,11 @@ public class EstadisticaBarrio {
 	public int getTotalPropiedades() {
 		return totalPropiedades;
 	}
+
+	public String getBarrio() {
+		return barrio;
+	}
+	
+	
 
 }

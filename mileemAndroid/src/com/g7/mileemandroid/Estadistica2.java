@@ -53,7 +53,7 @@ public class Estadistica2 extends Activity {
 		loadingSpinner.setCancelable(false);
 		loadingSpinner.show();
 
-		String url = Constantes.DIRESTADISTICAS + "5"; // TODO harcodeado
+		String url = Constantes.DIRESTADISTICAS + "15"; // TODO harcodeado
 		Log.d("Envio", "Peticion: " + url);
 		new EstadisticasTask(this).execute(url);
 		
@@ -125,7 +125,7 @@ public class Estadistica2 extends Activity {
 				Propiedad unaPropiedad = PropiedadSingleton.getPropiedad();
 
 				TextView barrio = (TextView) findViewById(R.id.textViewBarrio);
-				barrio.setText(unaPropiedad.getBarrio());
+				barrio.setText(estadisticaBarrio.getBarrio());
 				TextView totalPropiedades = (TextView) findViewById(R.id.TotalPropiedades);
 				totalPropiedades.setText(getResources().getString(R.string.TotalDePublicaciones) + 
 						estadisticaBarrio.getTotalPropiedades());
