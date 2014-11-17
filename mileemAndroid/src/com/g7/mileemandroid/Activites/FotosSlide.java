@@ -86,10 +86,10 @@ public class FotosSlide extends Fragment {
 	public void onClickSiguiente(View view) {
 		// imageSwitcher.setImageResource(gallery[position]);
 		position++;
-		if (position == cantFotos) {
+		if (position >= cantFotos) {
 			position = 0;
 		}
-		if (propiedad/* .getFotosCompleta() */!= null) {
+		if (propiedad != null && propiedad.getFotosCompleta().length != 0) {
 			imageSwitcher.setImageDrawable(new BitmapDrawable(this
 					.getResources(), propiedad.getFotosCompleta()[position]));
 		} else {
