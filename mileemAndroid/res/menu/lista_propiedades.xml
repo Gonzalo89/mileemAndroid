@@ -7,19 +7,155 @@
         android:id="@+id/MnuFiltro"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/Filtros">
-    </item>
-    <item
+    </item><item
         android:id="@+id/MnuEstadisticas"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/Estadisticas">
         <menu>
             <item
                 android:id="@+id/Barrio1"
-                android:title="Opción 3.1"/>
+                android:title="Agronomía"/>
             <item
                 android:id="@+id/Barrio2"
-                android:title="Opción 3.2"/>
+                android:title="Almagro"/>
+            <item
+                android:id="@+id/Barrio3"
+                android:title="Balvanera"/>
+            <item
+                android:id="@+id/Barrio4"
+                android:title="Barracas"/>
+            <item
+                android:id="@+id/Barrio5"
+                android:title="Belgrano"/>
+            <item
+                android:id="@+id/Barrio6"
+                android:title="Boedo"/>
+            <item
+                android:id="@+id/Barrio7"
+                android:title="Caballito"/>
+            <item
+                android:id="@+id/Barrio8"
+                android:title="Chacarita"/>
+            <item
+                android:id="@+id/Barrio9"
+                android:title="Coghlan"/>
+            <item
+                android:id="@+id/Barrio10"
+                android:title="Colegiales"/>
+            <item
+                android:id="@+id/Barrio11"
+                android:title="Constitución"/>
+            <item
+                android:id="@+id/Barrio12"
+                android:title="Flores"/>
+            <item
+                android:id="@+id/Barrio13"
+                android:title="Floresta"/>
+            <item
+                android:id="@+id/Barrio14"
+                android:title="La Boca"/>
+            <item
+                android:id="@+id/Barrio15"
+                android:title="La Paternal"/>
+            <item
+                android:id="@+id/Barrio16"
+                android:title="Liniers"/>
+            <item
+                android:id="@+id/Barrio17"
+                android:title="Mataderos"/>
+            <item
+                android:id="@+id/Barrio18"
+                android:title="Monte Castro"/>
+            <item
+                android:id="@+id/Barrio19"
+                android:title="Monserrat"/>
+            <item
+                android:id="@+id/Barrio20"
+                android:title="Nueva Pompeya"/>
+            <item
+                android:id="@+id/Barrio21"
+                android:title="Núñez"/>
+            <item
+                android:id="@+id/Barrio22"
+                android:title="Palermo"/>
+            <item
+                android:id="@+id/Barrio23"
+                android:title="Parque Avellaneda"/>
+            <item
+                android:id="@+id/Barrio24"
+                android:title="Parque Chacabuco"/>
+            <item
+                android:id="@+id/Barrio25"
+                android:title="Parque Chas"/>
+            <item
+                android:id="@+id/Barrio26"
+                android:title="Parque Patricios"/>
+            <item
+                android:id="@+id/Barrio27"
+                android:title="Puerto Madero"/>
+            <item
+                android:id="@+id/Barrio28"
+                android:title="Recoleta"/>
+            <item
+                android:id="@+id/Barrio29"
+                android:title="Retiro"/>
+            <item
+                android:id="@+id/Barrio30"
+                android:title="Saavedra"/>
+            <item
+                android:id="@+id/Barrio31"
+                android:title="San Cristóbal"/>
+            <item
+                android:id="@+id/Barrio32"
+                android:title="San Nicolás"/>
+            <item
+                android:id="@+id/Barrio33"
+                android:title="San Telmo"/>
+            <item
+                android:id="@+id/Barrio34"
+                android:title="Vélez Sársfield"/>
+            <item
+                android:id="@+id/Barrio35"
+                android:title="Versalles"/>
+            <item
+                android:id="@+id/Barrio36"
+                android:title="Villa Crespo"/>
+            <item
+                android:id="@+id/Barrio37"
+                android:title="Villa del Parque"/>
+            <item
+                android:id="@+id/Barrio38"
+                android:title="Villa Devoto"/>
+            <item
+                android:id="@+id/Barrio39"
+                android:title="Villa General Mitre"/>
+            <item
+                android:id="@+id/Barrio40"
+                android:title="Villa Lugano"/>
+            <item
+                android:id="@+id/Barrio41"
+                android:title="Villa Luro"/>
+            <item
+                android:id="@+id/Barrio42"
+                android:title="Villa Ortúzar"/>
+            <item
+                android:id="@+id/Barrio43"
+                android:title="Villa Pueyrredón"/>
+            <item
+                android:id="@+id/Barrio44"
+                android:title="Villa Real"/>
+            <item
+                android:id="@+id/Barrio45"
+                android:title="Villa Riachuelo"/>
+            <item
+                android:id="@+id/Barrio46"
+                android:title="Villa Santa Rita"/>
+            <item
+                android:id="@+id/Barrio47"
+                android:title="Villa Soldati"/>
+            <item
+                android:id="@+id/Barrio48"
+                android:title="Villa Urquiza"/>
         </menu>
     </item>
-
 </menu>

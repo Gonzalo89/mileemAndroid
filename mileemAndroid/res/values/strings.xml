@@ -65,5 +65,6 @@
     <string name="Estadisticas">Estadísticas</string>
     <string name="EsperandoEstadisticas">Esperando estadísticas...</string>
     <string name="TotalDePublicaciones">"Total de publicaciones: "</string>
+    <string name="ShareFrase">Mileem - ¿Qué te parece esta propiedad? Dirección: </string>
 
 </resources>

@@ -196,7 +196,7 @@ public class DetallePropiedad extends Fragment {
 	public void onClickShare (View view) {
 
 		// Contenido
-		String content = "Mileem - Que te parece esta propiedad? Dirección: " + propiedad.getDireccion()+" "+propiedad.getNumero() + " Ambientes: " 
+		String content = getString(R.string.ShareFrase) + propiedad.getDireccion()+" "+propiedad.getNumero() + " Ambientes: " 
 		+ propiedad.getAmbientes() + " Precio: " + propiedad.getPrecio() + " Superficie: " + propiedad.getSuperficie();
 		String subject = "Propiedad en Mileem";
 		
