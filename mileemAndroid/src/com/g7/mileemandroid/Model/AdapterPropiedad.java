@@ -108,6 +108,7 @@ public class AdapterPropiedad extends BaseAdapter {
         
         // Inicio carga fotografias asincronica
         ImageView propiedadImageView = (ImageView) view.findViewById(R.id.imagenPropiedad);
+    	propiedadImageView.setImageResource(R.drawable.placeholder);
         imageViews.put(position, propiedadImageView);
         
         if (propiedad.getFotosCompleta() == null || propiedad.getFotosThumb() == null) {
@@ -130,8 +131,6 @@ public class AdapterPropiedad extends BaseAdapter {
             
             if (bm != null)
             	propiedadImageView.setImageBitmap(bm);
-            else
-            	propiedadImageView.setImageResource(R.drawable.placeholder);
         }
         
         // Rellenamos el textos

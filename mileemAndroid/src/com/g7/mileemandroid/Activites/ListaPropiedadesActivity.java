@@ -82,7 +82,7 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			url += "&codSup="+ filtro.getSupCubierta();	
 		
 		loadingSpinner = new ProgressDialog(this);
-		loadingSpinner.setMessage("Procesando...");
+		loadingSpinner.setMessage("Procesando búsqueda...");
 		loadingSpinner.setCancelable(false);
 		loadingSpinner.show();
 		Log.d("Envio", "Pericion: " + url);
@@ -91,9 +91,15 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 
 
 	protected void verDetalle(Long idProp) {
-    	Intent intent = new Intent(this, DetallePropiedadTabs.class);    	
-    	Propiedad unaPropiedad = this.buscarPropiedad(idProp);
-    	PropiedadSingleton.setPropiedad(unaPropiedad);
+    	
+    	Propiedad propiedad = this.buscarPropiedad(idProp);
+    	if ( !propiedad.descargaDeDatosCompleta() ) {
+			Toast.makeText(this, "Cargando datos de la propiedad, por favor espere y vuelva a intentarlo..", Toast.LENGTH_SHORT).show();
+			return;
+    	}
+    		
+    	Intent intent = new Intent(this, DetallePropiedadTabs.class);
+    	PropiedadSingleton.setPropiedad(propiedad);
     	startActivity(intent);			
 	}
 
