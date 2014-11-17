@@ -66,10 +66,10 @@ public class EstadisticaBarrio {
 			this.pAmb3 = 25;
 			this.pAmb4 = 25;
 		} else {
-			this.pAmb1 = this.amb1 / this.totalPropiedades;
-			this.pAmb2 = this.amb2 / this.totalPropiedades;
-			this.pAmb3 = this.amb3 / this.totalPropiedades;
-			this.pAmb4 = this.amb4 / this.totalPropiedades;
+			this.pAmb1 = ((float)this.amb1 / (float)this.totalPropiedades)*100;
+			this.pAmb2 = ((float)this.amb2 / (float)this.totalPropiedades)*100;
+			this.pAmb3 = ((float)this.amb3 / (float)this.totalPropiedades)*100;
+			this.pAmb4 = ((float)this.amb4 / (float)this.totalPropiedades)*100;
 		}
 	}
 
