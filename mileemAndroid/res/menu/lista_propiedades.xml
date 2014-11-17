@@ -2,8 +2,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.g7.mileemandroid.ListaPropiedadesActivity" >
-    <item android:id="@+id/MnuFiltro" android:title="@string/Filtros"
-          android:icon="@android:drawable/ic_menu_preferences"></item>
-    <item android:id="@+id/MnuEstadisticas" android:title="@string/Estadisticas"
-          android:icon="@android:drawable/ic_menu_preferences"></item>
+
+    <item
+        android:id="@+id/MnuFiltro"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/Filtros">
+    </item>
+    <item
+        android:id="@+id/MnuEstadisticas"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/Estadisticas">
+        <menu>
+            <item
+                android:id="@+id/Barrio1"
+                android:title="Opción 3.1"/>
+            <item
+                android:id="@+id/Barrio2"
+                android:title="Opción 3.2"/>
+        </menu>
+    </item>
+
 </menu>

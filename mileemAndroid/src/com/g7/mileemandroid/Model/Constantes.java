@@ -8,5 +8,6 @@ public class Constantes {
 	public static String DIRESTADISTICAS = "http://young-tundra-9853.herokuapp.com/propiedads/estadisticasBarrio?barrioId=";
 	public static String APIKEYEXPORTAR = "AIzaSyAFVsmAQsrh-bJwVKjcE-ku1qdGAd2g6rA";
 	public static String APIKEYDEBUG = "AIzaSyDkS5HdmvUYnEjKrzzUtnsoKckxzjZoj54";
+	public final static String BARRIO_ID = "BARRIO_ID";
 	public static boolean WEB = true;
 }

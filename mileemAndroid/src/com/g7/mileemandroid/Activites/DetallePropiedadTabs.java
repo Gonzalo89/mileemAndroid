@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.g7.mileemandroid.Estadistica2;
 import com.g7.mileemandroid.R;
+import com.g7.mileemandroid.Model.Constantes;
 import com.g7.mileemandroid.Model.PropiedadSingleton;
 
 public class DetallePropiedadTabs extends Activity implements
@@ -99,6 +100,7 @@ public class DetallePropiedadTabs extends Activity implements
 		int id = item.getItemId();
 		if (id == R.id.estadisticas_menu) {			
 			Intent intent = new Intent(this, Estadistica2.class);
+			intent.putExtra(Constantes.BARRIO_ID, PropiedadSingleton.getPropiedad().getBarrioId());
 			startActivity(intent);
 			return true;
 		}

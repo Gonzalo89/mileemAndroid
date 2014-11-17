@@ -36,7 +36,6 @@ public class VideoActivity extends YouTubeFailureRecoveryActivity {
 	    		for(int i = 0; i < PropiedadSingleton.getPropiedad().getCantVideos() ; i++) {
 	    			listaVideos.add(PropiedadSingleton.getPropiedad().getIdVideos()[i]);
 	    		}
-	    		//player.cueVideo(PropiedadSingleton.getPropiedad().getIdVideos()[0]);//FIXME solo se ve el primer video
 	    		player.cueVideos(listaVideos);
 	    	}else{
 	    		//player.cueVideo("wKJ9KzGQq0w");

@@ -43,7 +43,7 @@ import com.g7.mileemandroid.Model.FiltroSingleton;
 import com.g7.mileemandroid.Model.Propiedad;
 import com.g7.mileemandroid.Model.PropiedadSingleton;
 
-public class ListaPropiedadesActivity extends ActionBarActivity {
+public class ListaPropiedadesActivity extends ActionBarActivity {	
 	static InputStream is = null;
 	static JSONObject jObj = null;
 	static String json = "";
@@ -133,12 +133,14 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			startActivity(intent);
 			return true;
 		case R.id.MnuEstadisticas:
+			return true;
+		default:
+			int id = 1; //item.getMenuInfo();				
 			Log.d("Boton", "Apreto menu Estadisticas");
 			Intent intent2 = new Intent(this, Estadistica2.class);
+			intent2.putExtra(Constantes.BARRIO_ID, id + 1);
 			startActivity(intent2);
-			return true;			
-		default:
-			return super.onOptionsItemSelected(item);
+			return true;	
 		}
 	}
 	

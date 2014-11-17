@@ -47,13 +47,16 @@ public class Estadistica2 extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_estadistica2);
-
+		Bundle extras = getIntent().getExtras(); 
+		int barrioId;
+		barrioId = extras.getInt(Constantes.BARRIO_ID);
+		
 		loadingSpinner = new ProgressDialog(this);
 		loadingSpinner.setMessage(getResources().getString(R.string.EsperandoEstadisticas));
 		loadingSpinner.setCancelable(false);
 		loadingSpinner.show();
 
-		String url = Constantes.DIRESTADISTICAS + "15"; // TODO harcodeado
+		String url = Constantes.DIRESTADISTICAS + barrioId;
 		Log.d("Envio", "Peticion: " + url);
 		new EstadisticasTask(this).execute(url);
 		

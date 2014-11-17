@@ -43,6 +43,7 @@ public class Propiedad implements Serializable{
 	private int dormitorios;
 	private int expensas;
 	private String barrio;
+	private int barrioId;
 	private int supNCubierta;
 	private int numero;
 	private String piso ;
@@ -90,8 +91,8 @@ public class Propiedad implements Serializable{
 					String imageUrlThumb = "";
 					String imageUrlCompleta = "";					
 					if (Constantes.WEB) {
-						imageUrlThumb = dirFotoThumb;
-						imageUrlCompleta = dirFotoCompleta;						
+						imageUrlThumb = Constantes.DIRSERVER + dirFotoThumb;
+						imageUrlCompleta = Constantes.DIRSERVER + dirFotoCompleta;						
 					} else {
 						imageUrlThumb =  "http://" + Constantes.IPSERVER	+ dirFotoThumb;
 						imageUrlCompleta = "http://" + Constantes.IPSERVER	+ dirFotoCompleta;					
@@ -177,6 +178,8 @@ public class Propiedad implements Serializable{
 				this.longitud = json.getString("longitude");
 			if (!json.isNull("tipo_publicacion_id"))
 				this.tipoPublicacionId = json.getInt("tipo_publicacion_id");
+			if (!json.isNull("barrio_id"))
+				this.barrioId = json.getInt("barrio_id");
 			if (!json.isNull("tipo_publicacion"))
 				this.tipoPublicacion = json.getString("tipo_publicacion");
 			else
@@ -459,6 +462,14 @@ public class Propiedad implements Serializable{
 		if (this.fotosThumb.length != this.imagesUrlThumb.length || this.fotosCompleta.length != this.imagesUrlCompleta.length)
 			return false;
 		return true;
+	}
+
+	public int getBarrioId() {
+		return barrioId;
+	}
+
+	public void setBarrioId(int barrioId) {
+		this.barrioId = barrioId;
 	}
 
 }
