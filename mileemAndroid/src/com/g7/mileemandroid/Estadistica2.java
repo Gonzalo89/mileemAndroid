@@ -62,7 +62,7 @@ public class Estadistica2 extends Activity {
 		
 	}
 
-	@Override
+/*	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.estadistica2, menu);
@@ -79,7 +79,7 @@ public class Estadistica2 extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}	
+	}	*/
 
 	private String downloadJson(String url) throws ClientProtocolException,
 			IOException {
@@ -125,10 +125,8 @@ public class Estadistica2 extends Activity {
 		protected void onPostExecute(EstadisticaBarrio result) {
 			estadisticaBarrio = result;
 			if (estadisticaBarrio != null) {
-				Propiedad unaPropiedad = PropiedadSingleton.getPropiedad();
-
 				TextView barrio = (TextView) findViewById(R.id.textViewBarrio);
-				barrio.setText(estadisticaBarrio.getBarrio());
+				barrio.setText(estadisticaBarrio.getBarrio());				
 				TextView totalPropiedades = (TextView) findViewById(R.id.TotalPropiedades);
 				totalPropiedades.setText(getResources().getString(R.string.TotalDePublicaciones) + 
 						estadisticaBarrio.getTotalPropiedades());
@@ -151,14 +149,16 @@ public class Estadistica2 extends Activity {
 				pieHelperArrayList.add(amb4);
 				pieView.setDate(pieHelperArrayList);
 				pieView.showPercentLabel(true);
+				pieView.setClickable(false);
+				pieView.setOnClickListener(null);
 				
 
 				// Grafico de barras
-				BarView barView = (BarView) findViewById(R.id.bar_view);
-				barView.setBottomTextList(estadisticaBarrio.getBarriosVecinos());
+				BarView barView = (BarView) findViewById(R.id.bar_view);				
+				barView.setBottomTextList(estadisticaBarrio.getBarriosVecinosConM2EnDolares());
 				barView.setDataList(
-						estadisticaBarrio.getPrecioPesosM2Vecinos(),
-						estadisticaBarrio.getMaxPesosM2());
+						estadisticaBarrio.getPrecioDolaresM2Vecinos(),
+						estadisticaBarrio.getMaxDolaresM2());
 			} else {
 				Toast.makeText(this.context, "Error al conectarse al servidor",
 						Toast.LENGTH_SHORT).show();

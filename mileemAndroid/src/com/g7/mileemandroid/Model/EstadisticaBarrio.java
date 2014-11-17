@@ -18,12 +18,14 @@ public class EstadisticaBarrio {
 	private float pAmb4;
 	private String barrio;
 	ArrayList<String> barriosVecinos;
-	ArrayList<Integer> precioPesosM2Vecinos;
-	private int maxPesosM2;
+	ArrayList<Integer> precioDolaresM2Vecinos;
+	ArrayList<String> barriosVecinosConM2EnDolares;
+	private int maxDolaresM2;
 	
 	public EstadisticaBarrio(String json) {
 		barriosVecinos = new ArrayList<String>();
-		precioPesosM2Vecinos = new ArrayList<Integer>();
+		precioDolaresM2Vecinos = new ArrayList<Integer>();
+		barriosVecinosConM2EnDolares = new ArrayList<String>();
 		JSONObject jsonObject = null;
    		JSONArray jsonArray = null;
    		try {
@@ -40,13 +42,17 @@ public class EstadisticaBarrio {
 			JSONObject unJson = null;
 			
 			barriosVecinos.add(jsonObject.getString("nombreBarrio"));//Se carga el barrio original
-			precioPesosM2Vecinos.add(jsonObject.getInt("promedioM2"));
+			precioDolaresM2Vecinos.add(jsonObject.getInt("promedioM2Dolares"));
+			barriosVecinosConM2EnDolares.add(jsonObject.getString("nombreBarrio")+ " u$s" + jsonObject.getString("promedioM2Dolares"));
+			String barrioM2EnDolares;
 			for (int i = 0; i < jsonArray.length(); i++) {
-				unJson = jsonArray.getJSONObject(i);
+				unJson = jsonArray.getJSONObject(i);				
 				barriosVecinos.add(unJson.getString("vecino_nombre"));
-				precioPesosM2Vecinos.add(unJson.getInt(("promedioM2")));
+				precioDolaresM2Vecinos.add(unJson.getInt(("promedioM2Dolares")));
+				barrioM2EnDolares = unJson.getString("vecino_nombre") + "\n" + " u$s" + unJson.getString("promedioM2Dolares");
+				barriosVecinosConM2EnDolares.add(barrioM2EnDolares);				
 			}
-			this.maxPesosM2 = Collections.max(precioPesosM2Vecinos);
+			this.maxDolaresM2 = Collections.max(precioDolaresM2Vecinos);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -89,12 +95,9 @@ public class EstadisticaBarrio {
 		return pAmb4;
 	}
 
-	public ArrayList<Integer> getPrecioPesosM2Vecinos() {
-		return precioPesosM2Vecinos;
-	}
 
-	public int getMaxPesosM2() {
-		return maxPesosM2;
+	public int getMaxDolaresM2() {
+		return maxDolaresM2;
 	}
 
 	public int getTotalPropiedades() {
@@ -104,7 +107,14 @@ public class EstadisticaBarrio {
 	public String getBarrio() {
 		return barrio;
 	}
-	
-	
 
+	public ArrayList<String> getBarriosVecinosConM2EnDolares() {
+		return barriosVecinosConM2EnDolares;
+	}
+
+	public ArrayList<Integer> getPrecioDolaresM2Vecinos() {
+		return precioDolaresM2Vecinos;
+	}
+
+	
 }

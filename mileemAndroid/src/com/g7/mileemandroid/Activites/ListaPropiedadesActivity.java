@@ -134,11 +134,12 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			return true;
 		case R.id.MnuEstadisticas:
 			return true;
-		default:
-			int id = 1; //item.getMenuInfo();				
+		default:			
+			String nombreBarrio = (String) item.getTitle();				
 			Log.d("Boton", "Apreto menu Estadisticas");
+			int id = obtenerIdBarrio(nombreBarrio);
 			Intent intent2 = new Intent(this, Estadistica2.class);
-			intent2.putExtra(Constantes.BARRIO_ID, id + 1);
+			intent2.putExtra(Constantes.BARRIO_ID, id);
 			startActivity(intent2);
 			return true;	
 		}
@@ -227,6 +228,157 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			}
 			loadingSpinner.dismiss();
 		}
+	}
+
+	private int obtenerIdBarrio(String nombreBarrio) {
+		int id = 1;
+		switch (nombreBarrio) {
+		case "Agronomía":
+			id = 1;
+			break;
+		case "Almagro":
+			id = 2;
+			break;
+		case "Balvanera":
+			id = 3;
+			break;
+		case "Barracas":
+			id = 4;
+			break;
+		case "Belgrano":
+			id = 5;
+			break;
+		case "Boedo":
+			id = 6;
+			break;
+		case "Caballito":
+			id = 7;
+			break;
+		case "Chacarita":
+			id = 8;
+			break;
+		case "Coghlan":
+			id = 9;
+			break;
+		case "Colegiales":
+			id = 10;
+			break;
+		case "Constitución":
+			id = 11;
+			break;
+		case "Flores":
+			id = 12;
+			break;
+		case "Floresta":
+			id = 13;
+			break;
+		case "La Boca":
+			id = 14;
+			break;
+		case "La Paternal":
+			id = 15;
+			break;
+		case "Liniers":
+			id = 16;
+			break;
+		case "Mataderos":
+			id = 17;
+			break;
+		case "Monte Castro":
+			id = 18;
+			break;
+		case "Monserrat":
+			id = 19;
+			break;
+		case "Nueva Pompeya":
+			id = 20;
+			break;
+		case "Núñez":
+			id = 21;
+			break;
+		case "Palermo":
+			id = 22;
+			break;
+		case "Parque Avellaneda":
+			id = 23;
+			break;
+		case "Parque Chacabuco":
+			id = 24;
+			break;
+		case "Parque Chas":
+			id = 25;
+			break;
+		case "Parque Patricios":
+			id = 26;
+			break;
+		case "Puerto Madero":
+			id = 27;
+			break;
+		case "Recoleta":
+			id = 28;
+			break;
+		case "Retiro":
+			id = 29;
+			break;
+		case "Saavedra":
+			id = 30;
+			break;
+		case "San Cristóbal":
+			id = 31;
+			break;
+		case "San Nicolás":
+			id = 32;
+			break;
+		case "San Telmo":
+			id = 33;
+			break;
+		case "Vélez Sársfield":
+			id = 34;
+			break;
+		case "Versalles":
+			id = 35;
+			break;
+		case "Villa Crespo":
+			id = 36;
+			break;
+		case "Villa del Parque":
+			id = 37;
+			break;
+		case "Villa Devoto":
+			id = 38;
+			break;
+		case "Villa General Mitre":
+			id = 39;
+			break;
+		case "Villa Lugano":
+			id = 40;
+			break;
+		case "Villa Luro":
+			id = 41;
+			break;
+		case "Villa Ortúzar":
+			id = 42;
+			break;
+		case "Villa Pueyrredón":
+			id = 43;
+			break;
+		case "Villa Real":
+			id = 44;
+			break;
+		case "Villa Riachuelo":
+			id = 45;
+			break;
+		case "Villa Santa Rita":
+			id = 46;
+			break;
+		case "Villa Soldati":
+			id = 47;
+			break;
+		case "Villa Urquiza":
+			id = 48;
+			break;
+		}
+		return id;
 	}
     
 }
