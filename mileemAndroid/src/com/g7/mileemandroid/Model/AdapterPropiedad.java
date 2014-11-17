@@ -43,12 +43,14 @@ public class AdapterPropiedad extends BaseAdapter {
 	
     // Objetos
     protected Activity activity;
+    protected ListView listView;
     protected ArrayList<Propiedad> items;	
     private HashMap<Integer, ImageView> imageViews;
 	
     
-    public AdapterPropiedad(Activity activity, ArrayList<Propiedad> items) {
+    public AdapterPropiedad(Activity activity, ArrayList<Propiedad> items, ListView parentListView) {
 		this.activity = activity;
+		this.listView = parentListView;
 		this.items = items;
         this.imageViews = new HashMap<Integer, ImageView>();
 	}
@@ -71,13 +73,6 @@ public class AdapterPropiedad extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         Propiedad propiedad = items.get(position);
- /*       String tipo = propiedad.getTipoPublicacion();
-        if ( tipo.equals(TYPE_PREMIUM) )
-        	return ID_TYPE_PREMIUM;
-        else if ( tipo.equals(TYPE_BASICA) )
-        	return ID_TYPE_BASICA;
-        else
-        	return ID_TYPE_GRATUITA;*/
         return propiedad.getTipoPublicacionId()-1;
     }
 
@@ -226,21 +221,27 @@ public class AdapterPropiedad extends BaseAdapter {
 	    	// Save Photos in propiedad
 	    	propiedad.setFotosThumb(fotosThumb);
 	    	propiedad.setFotosCompleta(fotosCompleta);
+
+	    	int first = listView.getFirstVisiblePosition();
+	    	int last = listView.getLastVisiblePosition();  
 	    	
-			// Get picture saved in the map + set
-            ImageView view = imageViews.get(position);
-            Bitmap bm = null;
-            if ( fotosCompleta.length != 0){
-            	bm = fotosCompleta[0];
-            }else if ( fotosThumb.length != 0 ){
-            	bm = fotosThumb[0];
-            }
-            	
-            if (bm != null){ //if bitmap exists...
-                view.setImageBitmap(bm);
-            }else{ //if not picture, display the default resource
-                view.setImageResource(R.drawable.placeholder);
-            }
+	    	if ( position <= last && position >= first) 
+	    	{
+				// Get picture saved in the map + set
+	            ImageView view = imageViews.get(position);
+	            Bitmap bm = null;
+	            if ( fotosCompleta.length != 0){
+	            	bm = fotosCompleta[0];
+	            }else if ( fotosThumb.length != 0 ){
+	            	bm = fotosThumb[0];
+	            }
+	            	
+	            if (bm != null){ //if bitmap exists...
+	                view.setImageBitmap(bm);
+	            }else{ //if not picture, display the default resource
+	                view.setImageResource(R.drawable.placeholder);
+	            }
+	    	}
 		}
 	}
 
