@@ -457,6 +457,8 @@ public class Propiedad implements Serializable{
 	
 	public boolean descargaDeDatosCompleta() {
 		
+		if (this.imagesUrlCompleta == null && this.imagesUrlThumb == null)
+			return true;
 		if (this.fotosThumb == null || this.fotosCompleta == null)
 			return false;
 		if (this.fotosThumb.length != this.imagesUrlThumb.length || this.fotosCompleta.length != this.imagesUrlCompleta.length)

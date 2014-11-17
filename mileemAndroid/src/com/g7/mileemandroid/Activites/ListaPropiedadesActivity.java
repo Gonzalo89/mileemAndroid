@@ -210,9 +210,9 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 		protected void onPostExecute(ArrayList<Propiedad> result) {
 			propiedades = result;
 			if (propiedades != null) {
-				AdapterPropiedad adapter = new AdapterPropiedad(
-						(Activity) this.context, propiedades);
+				
 				listaPropiedades = (ListView) findViewById(R.id.listaPropiedades);
+				AdapterPropiedad adapter = new AdapterPropiedad((Activity) this.context, propiedades, listaPropiedades);
 				listaPropiedades.setAdapter(adapter);
 				listaPropiedades
 						.setOnItemClickListener(new OnItemClickListener() {
