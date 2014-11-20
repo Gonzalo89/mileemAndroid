@@ -66,5 +66,12 @@
     <string name="EsperandoEstadisticas">Esperando estadísticas...</string>
     <string name="TotalDePublicaciones">"Total de publicaciones: "</string>
     <string name="ShareFrase">Mileem - ¿Qué te parece esta propiedad? Dirección: </string>
+    <string name="title_activity_graficos_tabs">GraficosTabs</string>
+    <string name="title_activity_grafico_torta">GraficoTorta</string>
+    <string name="title_activity_prueba_web_view">PruebaWebView</string>
+    <string name="title_activity_prueba_tabs">PruebaTabs</string>
+    <string name="title_activity_fragment_torta">FragmentTorta</string>
+    <string name="Torta">Torta</string>
+    <string name="Barras">Barras</string>
 
 </resources>

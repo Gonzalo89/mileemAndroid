@@ -20,23 +20,15 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dacer.androidcharts.BarView;
 import com.dacer.androidcharts.PieHelper;
 import com.dacer.androidcharts.PieView;
-import com.g7.mileemandroid.Model.AdapterPropiedad;
+import com.dacer.androidcharts.PieView.OnPieClickListener;
 import com.g7.mileemandroid.Model.Constantes;
 import com.g7.mileemandroid.Model.EstadisticaBarrio;
-import com.g7.mileemandroid.Model.Propiedad;
-import com.g7.mileemandroid.Model.PropiedadSingleton;
 
 public class Estadistica2 extends Activity {
 
@@ -149,8 +141,18 @@ public class Estadistica2 extends Activity {
 				pieHelperArrayList.add(amb4);
 				pieView.setDate(pieHelperArrayList);
 				pieView.showPercentLabel(true);
-				pieView.setClickable(false);
-				pieView.setOnClickListener(null);
+				pieView.setOnPieClickListener(new OnPieClickListener() {
+					
+					@Override
+					public void onPieClick(int index) {
+						int cantidad = estadisticaBarrio.getAmb(index);
+						Toast toast1 =
+					            Toast.makeText(getApplicationContext(),
+					                    Integer.toString(cantidad) /*+ "Index: " +index*/, Toast.LENGTH_SHORT);
+					 
+					        toast1.show();						
+					}
+				});
 				
 
 				// Grafico de barras

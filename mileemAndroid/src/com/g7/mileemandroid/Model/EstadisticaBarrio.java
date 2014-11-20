@@ -116,5 +116,35 @@ public class EstadisticaBarrio {
 		return precioDolaresM2Vecinos;
 	}
 
+	public int getAmb(int i) {
+		switch(i){
+		case 0:
+			return getAmb1();
+		case 1:
+			return getAmb2();
+		case 2:
+			return getAmb3();
+		case 3:
+			return getAmb4();
+		}
+		return -1;
+	}
+
+	public int getAmb1() {
+		return amb1;
+	}
+
+	public int getAmb2() {
+		return amb2;
+	}
+
+	public int getAmb3() {
+		return amb3;
+	}
+
+	public int getAmb4() {
+		return amb4;
+	}
+
 	
 }

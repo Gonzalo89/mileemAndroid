@@ -114,8 +114,30 @@
             android:name=".Estadistica2"
             android:label="@string/title_activity_estadistica2" >
         </activity>
-       
-        
+        <activity
+            android:name=".GraficosTabs"
+            android:label="@string/title_activity_graficos_tabs" >
+        </activity>
+        <activity
+            android:name=".GraficoTorta"
+            android:label="@string/title_activity_grafico_torta"
+            android:parentActivityName="android.support.v4.app.FragmentActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.support.v4.app.FragmentActivity" />
+        </activity>
+        <activity
+            android:name=".PruebaWebView"
+            android:label="@string/title_activity_prueba_web_view" >
+        </activity>
+        <activity
+            android:name=".PruebaTabs"
+            android:label="@string/title_activity_prueba_tabs" >
+        </activity>
+        <activity
+            android:name=".FragmentTorta"
+            android:label="@string/title_activity_fragment_torta" >
+        </activity>
     </application>
 
 </manifest>

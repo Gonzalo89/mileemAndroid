@@ -1,34 +1,24 @@
-package com.g7.mileemandroid.Activites;
+package com.g7.mileemandroid;
 
-import android.app.ActionBar;
+import java.util.Locale;
+
 import android.app.Activity;
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.g7.mileemandroid.Estadistica2;
-import com.g7.mileemandroid.GraficosTabs;
-import com.g7.mileemandroid.R;
-import com.g7.mileemandroid.Model.Constantes;
-import com.g7.mileemandroid.Model.PropiedadSingleton;
-
-public class DetallePropiedadTabs extends Activity implements
-		ActionBar.TabListener {
-	
-	private FotosSlide fotosSlide = null;
-	private DetallePropiedad detallePropiedad = null;
-	private VideoFragment videoFragment = null;
+public class PruebaTabs extends Activity implements ActionBar.TabListener {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -47,9 +37,7 @@ public class DetallePropiedadTabs extends Activity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_detalle_propiedad_tabs);
-		setTitle("  Detalle de Propiedad");
-		fotosSlide = new FotosSlide();
+		setContentView(R.layout.activity_prueba_tabs);
 
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
@@ -89,7 +77,7 @@ public class DetallePropiedadTabs extends Activity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.detalle_propiedad_tabs, menu);
+		getMenuInflater().inflate(R.menu.prueba_tabs, menu);
 		return true;
 	}
 
@@ -99,10 +87,7 @@ public class DetallePropiedadTabs extends Activity implements
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.estadisticas_menu) {			
-			Intent intent = new Intent(this, GraficosTabs.class);
-			intent.putExtra(Constantes.BARRIO_ID, PropiedadSingleton.getPropiedad().getBarrioId());
-			startActivity(intent);
+		if (id == R.id.action_settings) {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -113,29 +98,7 @@ public class DetallePropiedadTabs extends Activity implements
 			FragmentTransaction fragmentTransaction) {
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
-		switch (tab.getPosition()) {
-		case 0:
-			mViewPager.setCurrentItem(tab.getPosition());
-			break;
-		case 1:
-			/*Intent intent1 = new Intent(this, FotosSlide.class);
-			startActivity(intent1);*/
-			mViewPager.setCurrentItem(tab.getPosition());
-			break;
-		case 2:
-			if(PropiedadSingleton.getPropiedad().getCantVideos() >= 1) {
-				Intent intent2 = new Intent(this, VideoActivity.class);
-				startActivity(intent2);	
-			}else{
-	    		Toast toast1 =
-	    				Toast.makeText(getApplicationContext(),
-	    						"No hay videos", Toast.LENGTH_SHORT);
-
-	    			toast1.show();
-			}
-
-			break;
-		}
+		mViewPager.setCurrentItem(tab.getPosition());
 	}
 
 	@Override
@@ -163,18 +126,7 @@ public class DetallePropiedadTabs extends Activity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a PlaceholderFragment (defined as a static inner class
 			// below).
-	        switch (position) {
-	        case 0:
-	        	detallePropiedad = new DetallePropiedad();
-	            return detallePropiedad;
-	        case 1:
-	        	return fotosSlide;
-	        case 2:
-	        	detallePropiedad = new DetallePropiedad();//FIXME
-	            return detallePropiedad;
-	        }
-	 
-	        return null;
+			return PlaceholderFragment.newInstance(position + 1);
 		}
 
 		@Override
@@ -185,13 +137,14 @@ public class DetallePropiedadTabs extends Activity implements
 
 		@Override
 		public CharSequence getPageTitle(int position) {
+			Locale l = Locale.getDefault();
 			switch (position) {
 			case 0:
-				return getString(R.string.Detalle);
+				return getString(R.string.title_section1).toUpperCase(l);
 			case 1:
-				return getString(R.string.Fotos);
+				return getString(R.string.title_section2).toUpperCase(l);
 			case 2:
-				return getString(R.string.Video);
+				return getString(R.string.title_section3).toUpperCase(l);
 			}
 			return null;
 		}
@@ -224,32 +177,10 @@ public class DetallePropiedadTabs extends Activity implements
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(
-					R.layout.fragment_detalle_propiedad_tabs, container, false);
+			View rootView = inflater.inflate(R.layout.fragment_prueba_tabs,
+					container, false);
 			return rootView;
 		}
 	}
 
-	public void onClickSiguiente(View view) {
-		if (this.fotosSlide != null) {
-			this.fotosSlide.onClickSiguiente(view);
-		}else{
-			Log.e("Error", "fotosSlide es null en DetallePropiedadTabs");
-		}
-	}
-	
-	public void onClickContactar(View view) {
-		if (this.detallePropiedad != null)
-			this.detallePropiedad.onClickContactar(view);
-	}
-	
-	public void onClickVerEnMapa(View view) {
-		if (this.detallePropiedad != null)
-			this.detallePropiedad.onClickVerEnMapa(view);
-	}
-	
-	public void onClickShare(View view) {
-		if (this.detallePropiedad != null)
-			this.detallePropiedad.onClickShare(view);
-	}
 }

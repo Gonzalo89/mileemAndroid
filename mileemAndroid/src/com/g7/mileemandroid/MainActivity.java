@@ -133,6 +133,9 @@ public class MainActivity extends ActionBarActivity {
     //	Intent intent = new Intent(this, Estadistica2.class);
     //	Intent intent = new Intent(this, FiltrosActivity.class);
     //	Intent intent = new Intent(this, PruebaVideo.class);
+    //	Intent intent = new Intent(this, GraficosTabs.class);
+    //	Intent intent = new Intent(this, PruebaWebView.class);
+    //	Intent intent = new Intent(this, PruebaTabs.class);
     	String message = "Mensaje a el Listing";
     	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);

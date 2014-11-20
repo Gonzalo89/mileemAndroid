@@ -36,6 +36,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.g7.mileemandroid.Estadistica2;
+import com.g7.mileemandroid.GraficosTabs;
 import com.g7.mileemandroid.R;
 import com.g7.mileemandroid.Model.AdapterPropiedad;
 import com.g7.mileemandroid.Model.Constantes;
@@ -138,7 +139,8 @@ public class ListaPropiedadesActivity extends ActionBarActivity {
 			String nombreBarrio = (String) item.getTitle();				
 			Log.d("Boton", "Apreto menu Estadisticas");
 			int id = obtenerIdBarrio(nombreBarrio);
-			Intent intent2 = new Intent(this, Estadistica2.class);
+			//Intent intent2 = new Intent(this, Estadistica2.class);
+			Intent intent2 = new Intent(this, GraficosTabs.class);
 			intent2.putExtra(Constantes.BARRIO_ID, id);
 			startActivity(intent2);
 			return true;	
