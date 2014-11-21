@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.g7.mileemandroid"
     android:versionCode="1"
-    android:versionName="4.2" >
+    android:versionName="4.6" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -119,7 +119,7 @@
             android:label="@string/title_activity_graficos_tabs" >
         </activity>
         <activity
-            android:name=".GraficoTorta"
+            android:name=".GraficoBarra"
             android:label="@string/title_activity_grafico_torta"
             android:parentActivityName="android.support.v4.app.FragmentActivity" >
             <meta-data
