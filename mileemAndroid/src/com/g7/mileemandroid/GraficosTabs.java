@@ -135,7 +135,7 @@ public class GraficosTabs extends Activity implements ActionBar.TabListener {
 			case 0:
 				return new FragmentTorta(GraficosTabs.this.barrioId);
 			case 1:
-				return new GraficoBarra();
+				return new GraficoBarra(GraficosTabs.this.barrioId);
 			default:
 				return PlaceholderFragment.newInstance(position + 1);
 			}
