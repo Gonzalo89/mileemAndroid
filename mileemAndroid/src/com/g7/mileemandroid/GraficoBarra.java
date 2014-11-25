@@ -32,7 +32,25 @@ import com.g7.mileemandroid.Model.EstadisticaBarrio;
 public class GraficoBarra extends Fragment {
 	EstadisticaBarrio estadisticaBarrio;
 	int barrioId;
-	
+	int cantBarriosVecinos = -1;
+	String Barrio1;
+	String Barrio2;
+	String Barrio3;
+	String Barrio4;
+	String Barrio5;
+	String Barrio6;
+	String Barrio7;
+	String Barrio8;
+	String Barrio9;
+	int precioBarrio1 = -1;
+	int precioBarrio2 = -1;
+	int precioBarrio3 = -1;
+	int precioBarrio4 = -1;
+	int precioBarrio5 = -1;
+	int precioBarrio6 = -1;
+	int precioBarrio7 = -1;
+	int precioBarrio8 = -1;
+	int precioBarrio9 = -1;
 	
 	public GraficoBarra(int barrioId) {
 		super();
@@ -82,13 +100,53 @@ public class GraficoBarra extends Fragment {
 		protected void onPostExecute(EstadisticaBarrio result) {
 			estadisticaBarrio = result;
 			if (estadisticaBarrio != null) {
+				cantBarriosVecinos = estadisticaBarrio.getBarriosVecinos().size() - 1; //FIXME revisar el -1
+
+				if(cantBarriosVecinos >= 1)
+					Barrio1 = estadisticaBarrio.getBarriosVecinos().get(0);
+				if(cantBarriosVecinos >= 2)
+					Barrio2 = estadisticaBarrio.getBarriosVecinos().get(1);
+				if(cantBarriosVecinos >= 3)
+					Barrio3 = estadisticaBarrio.getBarriosVecinos().get(2);
+				if(cantBarriosVecinos >= 4)
+					Barrio4 = estadisticaBarrio.getBarriosVecinos().get(3);
+				if(cantBarriosVecinos >= 5)
+					Barrio5 = estadisticaBarrio.getBarriosVecinos().get(4);
+				if(cantBarriosVecinos >= 6)
+					Barrio6 = estadisticaBarrio.getBarriosVecinos().get(5);
+				if(cantBarriosVecinos >= 7)
+					Barrio7 = estadisticaBarrio.getBarriosVecinos().get(6);
+				if(cantBarriosVecinos >= 8)
+					Barrio8 = estadisticaBarrio.getBarriosVecinos().get(7);
+				if(cantBarriosVecinos >= 9)
+					Barrio9 = estadisticaBarrio.getBarriosVecinos().get(8);
+				
+				if(cantBarriosVecinos >= 1)
+					precioBarrio1 = Integer.parseInt(estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(0));
+				if(cantBarriosVecinos >= 2)
+					precioBarrio2 = Integer.parseInt(estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(1));
+				if(cantBarriosVecinos >= 3)
+					precioBarrio3 = Integer.parseInt(estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(2));
+				if(cantBarriosVecinos >= 4)
+					precioBarrio4 = Integer.parseInt(estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(3));
+				if(cantBarriosVecinos >= 5)
+					precioBarrio5 = Integer.parseInt(estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(4));
+				if(cantBarriosVecinos >= 6)
+					precioBarrio6 = Integer.parseInt(estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(5));
+				if(cantBarriosVecinos >= 7)
+					precioBarrio7 = Integer.parseInt(estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(6));
+				if(cantBarriosVecinos >= 8)
+					precioBarrio8 = Integer.parseInt(estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(7));
+				if(cantBarriosVecinos >= 9)
+					precioBarrio9 = Integer.parseInt(estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(8));				
+				
 				WebView webView = (WebView) getActivity()
-						.findViewById(R.id.web);
+						.findViewById(R.id.web);					
 				webView.addJavascriptInterface(new WebAppInterface(), "Android");
 
 				webView.getSettings().setJavaScriptEnabled(true);
 				webView.loadUrl("http://young-tundra-9853.herokuapp.com/columnchart");
-
+				//webView.loadUrl("http://young-tundra-9853.herokuapp.com/columnchartprueba");
 			} else {
 				Toast.makeText(this.context, "Error al conectarse al servidor",
 						Toast.LENGTH_SHORT).show();
@@ -99,16 +157,141 @@ public class GraficoBarra extends Fragment {
 
 	public class WebAppInterface {
 
-		@JavascriptInterface
-		public ArrayList<String> getBarriosGraficoBarras(){
-			return estadisticaBarrio.getBarriosVecinos();
+	/*	@JavascriptInterface
+		public String[] getBarriosGraficoBarras(){
+			int tam = estadisticaBarrio.getBarriosVecinos().size();
+			String[] resultado = new String[tam];
+			for (int i = 0; i <= tam ; i++ ){
+				resultado[i] = estadisticaBarrio.getBarriosVecinos().get(i);
+			}
+			return resultado;
 		}
 		
 		@JavascriptInterface
-		public ArrayList<String> getPrecioPromedioDeBarrios(){
-			return estadisticaBarrio.getBarriosVecinosConM2EnDolares();
-		}		
+		public String[] getPrecioPromedioDeBarrios(){
+			int tam = estadisticaBarrio.getBarriosVecinosConM2EnDolares().size();
+			String[] resultado = new String[tam];
+			for (int i = 0; i <= tam ; i++ ){
+				resultado[i] = estadisticaBarrio.getBarriosVecinosConM2EnDolares().get(i);
+			}
+			return resultado;
+		}*/
 		
+		@JavascriptInterface
+		public String getBarrio1(){
+			if (Barrio1 != null)
+				return Barrio1;
+			return null;
+		}
+		
+		@JavascriptInterface
+		public String getBarrio2(){
+			if (Barrio2 != null)
+				return Barrio2;
+			return null;
+		}
+		@JavascriptInterface
+		public String getBarrio3(){
+			if (Barrio3 != null)
+				return Barrio3;
+			return null;
+		}
+		@JavascriptInterface
+		public String getBarrio4(){
+			if (Barrio4 != null)
+				return Barrio4;
+			return null;
+		}
+		@JavascriptInterface
+		public String getBarrio5(){
+			if (Barrio5 != null)
+				return Barrio5;
+			return null;
+		}
+		@JavascriptInterface
+		public String getBarrio6(){
+			if (Barrio6 != null)
+				return Barrio6;
+			return null;
+		}
+		@JavascriptInterface
+		public String getBarrio7(){
+			if (Barrio7 != null)
+				return Barrio7;
+			return null;
+		}
+		@JavascriptInterface
+		public String getBarrio8(){
+			if (Barrio8 != null)
+				return Barrio8;
+			return null;
+		}
+		@JavascriptInterface
+		public String getBarrio9(){
+			if (Barrio9 != null)
+				return Barrio9;
+			return null;
+		}		
+		@JavascriptInterface
+		public int getCantidadBarrios(){
+			return cantBarriosVecinos;
+		}
+		
+		@JavascriptInterface
+		public int getEstadisticaBarrio1() {
+			if (precioBarrio1 != -1)
+				return precioBarrio1;
+			return -1;
+		}
+
+		@JavascriptInterface
+		public int getEstadisticaBarrio2() {
+			if (precioBarrio2 != -1)
+				return precioBarrio2;
+			return -1;
+		}
+		@JavascriptInterface
+		public int getEstadisticaBarrio3() {
+			if (precioBarrio1 != -3)
+				return precioBarrio3;
+			return -1;
+		}
+		@JavascriptInterface
+		public int getEstadisticaBarrio4() {
+			if (precioBarrio4 != -1)
+				return precioBarrio4;
+			return -1;
+		}
+		@JavascriptInterface
+		public int getEstadisticaBarrio5() {
+			if (precioBarrio5 != -1)
+				return precioBarrio5;
+			return -1;
+		}
+		@JavascriptInterface
+		public int getEstadisticaBarrio6() {
+			if (precioBarrio6 != -1)
+				return precioBarrio6;
+			return -1;
+		}
+		@JavascriptInterface
+		public int getEstadisticaBarrio7() {
+			if (precioBarrio7 != -1)
+				return precioBarrio7;
+			return -1;
+		}
+		@JavascriptInterface
+		public int getEstadisticaBarrio8() {
+			if (precioBarrio8 != -1)
+				return precioBarrio8;
+			return -1;
+		}
+		@JavascriptInterface
+		public int getEstadisticaBarrio9() {
+			if (precioBarrio9 != -1)
+				return precioBarrio9;
+			return -1;
+		}
 	}
 
 	private String downloadJson(String url) throws ClientProtocolException,
