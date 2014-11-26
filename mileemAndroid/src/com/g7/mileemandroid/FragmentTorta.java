@@ -119,7 +119,7 @@ public class FragmentTorta extends Fragment {
 						public void onPieClick(int index) {
 							int cantidad = estadisticaBarrio.getAmb(index);
 							Toast toast1 =
-						            Toast.makeText(getActivity(),
+						            Toast.makeText(getActivity(), "Cantidad de Propiedades: "+
 						                    Integer.toString(cantidad) /*+ "Index: " +index*/, Toast.LENGTH_SHORT);
 						 
 						        toast1.show();						
